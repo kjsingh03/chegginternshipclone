@@ -1,0 +1,49 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  color:#333333;
+}
+
+a{
+  text-decoration: none;
+}
+
+ul li{ 
+  cursor: pointer;
+}
+
+.btn{
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #eb7100;
+    background: #eb7100;
+    color: #fff;
+    border-radius: 8px;
+    line-height: 33px;
+    font-size: 1.125rem;
+    padding: 0 40px;
+    outline: none;
+    font-weight: 500;
+    padding: 1rem 2rem;
+}
+
+.btn:hover {
+  text-decoration: none !important;
+  transition: transform 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
+  transform: scale(1.02);
+  background-color: #d15b00;
+  color: #fff;
+}
+
+.role{
+  background-color: #EB7100;
+  color:white;
+}
+
+.role.active{
+  color: #EB7100;
+  background-color:white;
+}
