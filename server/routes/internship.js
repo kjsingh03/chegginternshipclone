@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { createInternship, getAllInternships, getInternship, removeInternship, updateInternship } from '../../backend/controllers/internship.js';
+import { createInternship, getAllInternships, getInternship, removeInternship, updateInternship } from '../controllers/internship.js';
 
 const internshipRouter = Router();
 
