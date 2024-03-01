@@ -2,9 +2,9 @@ import Express from 'express';
 import mongoose from 'mongoose'
 import cors from 'cors'
 import 'dotenv/config'
-import userRouter from '../backend/routes/user.js';
-import authRouter from '../backend/routes/auth.js';
-import internshipRouter from '../backend/routes/internship.js';
+import userRouter from './routes/user.js';
+import authRouter from './routes/auth.js';
+import internshipRouter from './routes/internship.js';
 import Razorpay from 'razorpay'
 
 const PORT = process.env.PORT || 6000
