@@ -42,8 +42,7 @@ export const getInternship = async (req, res) => {
         const id = req.params.id;
         let internship = await Internship.findOne({ id: id })
         if (internship) {
-            internship = await Internship.findOne({ id: id })
-                .exec()
+            internship = await Internship.findOne({ id: id }).populate("studentsEnrolled").exec()
             return res.status(200).json({ "Success": true, "message": "Internship fetched successfully", internship })
         }
         else {
@@ -58,6 +57,7 @@ export const getAllInternships = async (req, res) => {
     try {
         let internships = await Internship.find();
         if (internships) {
+            internships=await Internship.find()
             res.status(201).json({ "success": true, internships })
         } else {
             res.status(404).json({ "success": false, "message": "Failed to fetch internships" })
@@ -72,9 +72,9 @@ export const updateInternship = async (req, res) => {
         const id = req.params.id;
         let internship = await Internship.findOne({ id: id })
         if (internship) {
-            internship = await Internship.findOneAndUpdate({ id: id }, req.body, { returnDocument: 'after' })
+            internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled,req.body.studentsEnrolled],certificates:[...internship.certificates,req.body.certificates]}, { returnDocument: 'after' })
             internship.save()
-                .then(() => { return res.status(200).json({ "Success": true, "internship": internship }) })
+                .then(() => { return res.status(200).json({ "Success": true,"message":"Internship updated successully", "internship": internship }) })
                 .catch((err) => { return res.status(404).json({ "Success": "false", "message": "Failed to save internship", "error": err.message }) })
         }
         else {
@@ -82,7 +82,7 @@ export const updateInternship = async (req, res) => {
         }
 
     } catch (err) {
-        res.status(404).json({ "success": false, "message": "Failed to fetch internship" })
+        res.status(404).json({ "success": false, "message": "Failed to fetch internship",err:err })
     }
 }
 

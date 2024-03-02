@@ -32,20 +32,23 @@ export const instance = new Razorpay({
 app.use(cors())
     .use(Express.json())
     .use(Express.static('dist'))
-    .use("/auth",authRouter)
-    .use("/user",userRouter)
-    .use("/internship",internshipRouter)
-    .post("/pay",(req,res)=>{
-        instance.orders.create(req.body, function(err, order) {
-            if(!err){
+    .use("/auth", authRouter)
+    .use("/user", userRouter)
+    .use("/internship", internshipRouter)
+    .post("/pay", (req, res) => {
+        instance.orders.create(req.body, function (err, order) {
+            if (!err) {
                 res.send(order)
             }
-            else{
+            else {
                 res.send(err)
             }
-          });
-        
+        });
     })
+    // .get("/certificates", async (req, res) => {
+    //     let certificates = await Certificate.find()
+    //    res.status(200).send(certificates)
+    // })
 
 // Server Listening
 

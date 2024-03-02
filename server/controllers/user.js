@@ -130,8 +130,8 @@ export const updateUser = async (req, res) => {
             let user = await User.findOne({ username: username })
             // console.log([...user.internships])
             if (user) {
-                user = await User.findOneAndUpdate({ username: username }, {...user._doc,internships:[...user.internships,req.body.internship]}, { returnDocument: 'after' });
-                res.status(200).json({ "success": true, "message": "User updated successfully" });
+                user = await User.findOneAndUpdate({ username: username }, {...user._doc,internships:[...user.internships,req.body.internship],certificates:[...user.certificates,req.body.certificates]}, { returnDocument: 'after' });
+                res.status(200).json({ "success": true, "message": "User updated successfully",user });
             } else {
                 res.status(404).json({ "success": false, "message": "User not found" });
             }

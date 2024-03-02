@@ -15,7 +15,15 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}']
       },
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg', 'src/assets/img1.png',
+        'src/assets/img2.png',
+        'src/assets/logo.png',
+        'src/assets/smallLogo.png',
+        'src/assets/react.svg',
+        "public/vite.svg",
+        "public/smallLogo.png",
+        "public/logo.png"
+      ],
       manifest: {
         name: 'Chegg',
         short_name: 'Chegg',

@@ -11,6 +11,8 @@ import Internship from './components/Pages/Internship.jsx'
 import { store } from './store/store.js'
 import Profile from './components/Pages/Profile.jsx'
 import Add from './components/Pages/Add.jsx'
+import Update from './components/Pages/Update.jsx'
+import Verify from './components/Pages/Verify.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +23,8 @@ const router = createBrowserRouter(
       <Route path="/internship/:id" element={<Internship />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/add" element={<Add />} />
+      <Route path="/update/:id" element={<Update />} />
+      <Route path="/verify" element={<Verify />} />
     </Route>
   )
 )
