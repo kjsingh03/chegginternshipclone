@@ -10,31 +10,22 @@ function Add() {
     const user = JSON.parse(localStorage.getItem("credentials"))
 
     const [form, setForm] = useState({})
-    const [skills, setSkills] = useState([])
-    const [perks, setPerks] = useState([])
-    const [skillCount, setSkillCount] = useState([0])
-    const [perkCount, setPerkCount] = useState([0])
+    const [skills, setSkills] = useState([""])
+    const [perks, setPerks] = useState([""])
+
+    let newSkills = [...skills]
+    let newPerks = [...perks]
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
 
     const submit = () => {
-
-        const skillsList = document.querySelectorAll("#skills")
-        skillsList.forEach(skill => {
-            setSkills(prev => [...prev, skill.value])
-        })
-
-        const perksList = document.querySelectorAll("#perks")
-        perksList.forEach(perk => {
-            setPerks(prev => [...prev, perk.value])
-        })
-
-        axios.post("http://localhost:8080/internship", {...form,skills:skills,perks:perks},{
-            headers:{
-                "Authorization":user?.token,
-                "Content-Type":"application/json"
+        
+        axios.post("http://localhost:8080/internship", { ...form, skills:skills, perks:perks }, {
+            headers: {
+                "Authorization": user?.token,
+                "Content-Type": "application/json"
             }
         })
             .then((res) => {
@@ -47,10 +38,8 @@ function Add() {
                 document.getElementById("error").innerText = err.response.data.message
             })
             .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
+        
     }
-
-    
-
 
     return (
         <>
@@ -64,20 +53,20 @@ function Add() {
                 <input type="number" name="startTime" onChange={handleChange} placeholder="Enter duration (in Months)" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                 <input type="date" name="lastApplyDate" onChange={handleChange} placeholder="Enter lastApplyDate" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                 {
-                    skillCount.map((count, index) => (
-                        <input key={index} type="text" name="skills" id="skills" onChange={e => e.target.value} placeholder="Enter skills" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
+                    skills.map((count, index) => (
+                        <input key={index} type="text" name="skills" id="skills" onChange={e => {newSkills[index]=e.target.value ;setSkills([...newSkills])}} placeholder="Enter skills" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                     ))
                 }
                 <div className="text-gray-600 w-full text-xs cursor-pointer flex justify-end">
-                    <p onClick={() => setSkillCount((prev) => [...prev, prev[prev.length - 1] + 1])} className='w-max border border-gray-600 p-3 rounded-xl'>add skill</p>
+                    <p onClick={() => setSkills((prev) => [...prev, ""])} className='w-max border border-gray-600 p-3 rounded-xl'>add skill</p>
                 </div>
                 {
-                    perkCount.map((perk, index) => (
-                        <input key={index} type="text" name="perks" id="perks" onChange={e => e.target.value} placeholder="Enter perks" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
+                    perks.map((perk, index) => (
+                        <input key={index} type="text" name="perks" id="perks" onChange={e => {newPerks[index]=e.target.value; setPerks([...newPerks])}} placeholder="Enter perks" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                     ))
                 }
                 <div className="text-gray-600 w-full text-xs cursor-pointer flex justify-end">
-                    <p onClick={() => setPerkCount((prev) => [...prev, prev[prev.length - 1] + 1])} className='w-max border border-gray-600 p-3 rounded-xl'>add perk</p>
+                    <p onClick={() => setPerks((prev) => [...prev, prev[prev.length - 1] + 1])} className='w-max border border-gray-600 p-3 rounded-xl'>add perk</p>
                 </div>
                 <input type="number" name="price" onChange={handleChange} placeholder="Enter price" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                 <p className="text-red-500 font-medium h-6" id="error"></p>

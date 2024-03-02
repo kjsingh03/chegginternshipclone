@@ -73,7 +73,7 @@ function Profile() {
                 <h2 className="text-base font-bold"> </h2>
                 {internships &&
                     internships.map((data, index) => (
-                        <Link to={user?.role === "Admin" ? `/update/${data.id}` : `/internship/${data.id}`} key={index} className='flex items-center justify-between shadow-lg py-2 cursor-pointer'>
+                        <Link to={user?.role === "User" ?  `/internship/${data.id}` : null} key={index} className='z-20 flex items-center justify-between shadow-lg py-2 cursor-pointer'>
                             <p className="w-[40%] sm:w-[25%]">{data.position}</p>
                             {
                                 user?.role === "User" &&
@@ -89,11 +89,11 @@ function Profile() {
                             }
                             {
                                 user?.role === "Admin" &&
-                                <p className="w-[33%] sm:w-[25%] cursor-pointer"><i className="fa-solid fa-pencil"></i></p>
+                                <p className="w-[33%] sm:w-[25%] cursor-pointer"><Link to={`/update/${data.id}`}><i className="fa-solid fa-pencil"></i></Link></p>
                             }
                             {
                                 user?.role === "Admin" &&
-                                <p onClick={() => deleteInternship(data.id)} className="w-[20%] sm:w-[25%] cursor-pointer"><i className="fa-solid fa-trash"></i></p>
+                                <p onClick={() => deleteInternship(data.id)} className="w-[20%] sm:w-[25%] cursor-pointer z-50"><i className="fa-solid fa-trash"></i></p>
                             }
                         </Link>
                     ))

@@ -32,14 +32,14 @@ function Update() {
         })
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
-                console.log(res.data.internship)
-                // setTimeout(()=>{
-                //     navigate("/")
-                // },1000)
+                
+                setTimeout(() => {
+                    navigate("/profile")
+                }, 1000)
             })
             .catch((err) => {
-                document.getElementById("error").innerText = err
-                console.log(err)
+                document.getElementById("error").innerText = err.response.data.message
+                console.log(err.response)
             })
             .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
     }
@@ -67,7 +67,7 @@ function Update() {
                 <input value={form.lastApplyDate?.split("T")[0]} type="date" name="lastApplyDate" onChange={handleChange} placeholder="Enter lastApplyDate" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                 {
                     skills.map((count, index) => (
-                        <input value={newSkills[index]} key={index} type="text" name="skills" id="skills" onChange={e => { newSkills[index] = e.target.value; setSkills([...newSkills]) }} placeholder="Enter skills" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
+                        <input value={newSkills[index]} key={index} type="text" name="skills" onChange={e => { newSkills[index] = e.target.value; setSkills([...newSkills]) }} placeholder="Enter skills" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                     ))
                 }
                 <div className="text-gray-600 w-full text-xs cursor-pointer flex justify-end">
@@ -75,7 +75,7 @@ function Update() {
                 </div>
                 {
                     perks.map((perk, index) => (
-                        <input value={newPerks[index]} key={index} type="text" name="perks" id="perks" onChange={e => { newPerks[index] = e.target.value; setPerks([...newPerks]) }} placeholder="Enter perks" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
+                        <input value={newPerks[index]} key={index} type="text" name="perks" onChange={e => { newPerks[index] = e.target.value; setPerks([...newPerks]) }} placeholder="Enter perks" className='border-2 rounded-xl border-slate-300 outline-[#EB7100] p-3' />
                     ))
                 }
                 <div className="text-gray-600 w-full text-xs cursor-pointer flex justify-end">
@@ -87,12 +87,12 @@ function Update() {
                 <h3 className="font-bold my-2 text-4xl">Students Enrolled</h3>
                 <div className='flex items-center justify-between'>
                     <p className="text-base font-bold w-[50%]">Username</p>
-                        <p className="text-base font-bold w-[50%]">Name</p>
-                    
+                    <p className="text-base font-bold w-[50%]">Name</p>
+
                 </div>
                 <ul className="flex flex-col gap-3">
                     {
-                        form?.studentsEnrolled?.map((data,index)=>(
+                        form?.studentsEnrolled?.map((data, index) => (
                             <li className='list-disc flex items-center' key={index}>
                                 <p className='w-[50%]'>{data.username}</p>
                                 <p className='w-[50%]'>{data.name}</p>

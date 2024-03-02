@@ -82,7 +82,7 @@ export const updateInternship = async (req, res) => {
         }
 
     } catch (err) {
-        res.status(404).json({ "success": false, "message": "Failed to fetch internship",err:err })
+        res.status(404).json({ "success": false, "message": "Failed to update internship",err:err })
     }
 }
 
