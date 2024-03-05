@@ -33,7 +33,11 @@ const Navbar = () => {
         </div>
         <ul className="flex items-center justify-between gap-3 sm:gap-5">
           <li className="hidden md:block"><Link to="/">BROWSE</Link></li>
+           {
+          user &&
           <li><Link to="/courses">{!user?.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
+        }
+          
           {
             user?.role === 'Admin' &&
             <li><Link to="/add">ADD NEW</Link></li>
