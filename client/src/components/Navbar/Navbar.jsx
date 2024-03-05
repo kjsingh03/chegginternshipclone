@@ -36,7 +36,7 @@ const Navbar = () => {
 
           {
             user &&
-            <li><Link to="/courses">{!user?.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
+            <li><Link to="/courses">{!user.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
           }
           {
             user?.role === 'Admin' &&
