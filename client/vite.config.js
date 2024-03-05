@@ -25,9 +25,9 @@ export default defineConfig({
         "public/logo.png"
       ],
       manifest: {
-        name: 'Chegg',
-        short_name: 'Chegg',
-        description: 'Chegg App',
+        name: 'SkillsWallah',
+        short_name: 'SkillsWallah',
+        description: 'SkillsWallah',
         theme_color: '#ffffff',
         icons: [
           {

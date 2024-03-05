@@ -1,0 +1,210 @@
+:root {
+    /* Color Scheme */
+    --primary-color: #FFFFFF; /* Main brand color */
+    --secondary-color: #000000; /* Secondary color for contrast */
+    --accent-color: #eeeeee; /* Accent color for highlighting elements */
+    --background-color: #1F1F1F; /* Default background color */
+    --text-color:  #F9F9F9; /* Primary text color */
+    --text-secondary-color: #71717A; /* Secondary text color */
+    --text-hover-color:#F9F9F9;
+    --text-green:#699834;
+    --text-red:#E84646;
+    --border-color: #c8c7c7; /* Default color for borders */
+    --error-color: #FFE5E5; /* Color used for error messages and icons */
+    --success-color: #CEF5DB; /* Color used for success messages and icons */
+    --warning-color: #FFF9ED; /* Color used for warnings and cautionary messages */
+    --info-color: #2196F3; /* Color used for informational messages */
+    --cancel-color:#7638FF;
+    --button-color:#3D5EE1;
+    --button-hover-color:#F7F7FA;
+    --percent-color:#B8B7FF;
+
+    /* Typography */
+    --font-family: "Roboto" , sans-serif; /* Primary font family */
+    --font-size-root: 16px; /* Root font size (for rem calculations) */
+    --font-size-base: 1rem; /* Base font size for regular text */
+    --font-size-xs: 0.5rem;
+    --font-size-sm: 0.75rem;
+    --font-size-xm: 0.875rem; /* Small font size for less important text */
+    --font-size-lg: 1rem; /* Large font size for headings */
+    --font-size-xl: 1.2rem; /* Extra large font size for major headings */
+    --font-size-2xl: 1.5rem; /* Extra large font size for major headings */
+    --font-size-3xl: 1.6rem; /* Extra large font size for major headings */
+    --line-height-base: 1.5; /* Default line height */
+    --heading-font-family: "Roboto", sans-serif; /* Font family for headings */
+  
+    /* Spacing */
+    --spacing-xs: 0.25rem; /* Extra small spacing */
+    --spacing-sm: 0.5rem; /* Small spacing */
+    --spacing-xm: 0.75rem;
+    --spacing-md: 1rem; /* Medium spacing (default for margins and paddings) */
+    --spacing-lg: 2rem; /* Large spacing */
+    --spacing-xl: 3rem; /* Extra large spacing */
+    --spacing-xxl: 5rem; /* Extra extra large spacing */
+  
+    /* Borders and Radius */
+    --outline:none;/*Default outline none*/
+    --border-width: .05rem; /* Default border width */
+    --border-style: solid; /* Default border style */
+    --border-radius: 1rem; /* Default border radius for rounded corners */
+    --border-radius-sm: .5rem; /* Default border radius for rounded corners */
+    --border-radius-lg: 50%; /* Larger border radius for elements like buttons, inputs */
+  
+    /* Box Shadows */
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Default box shadow */
+    --box-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for hover states */
+  
+    /* Transitions */
+    --transition-default: all 0.3s ease; /* Default transition for hover effects and similar */
+  
+    /* Z-index */
+    --zindex-dropdown: 1000; /* Z-index for dropdown menus */
+    --zindex-sticky: 1020; /* Z-index for sticky elements */
+    --zindex-fixed: 1030; /* Z-index for fixed elements */
+    --zindex-modal-backdrop: 1040; /* Z-index for modal backdrops */
+    --zindex-modal: 1050; /* Z-index for modals */
+    --zindex-popover: 1060; /* Z-index for popovers */
+    --zindex-tooltip: 1070; /* Z-index for tooltips */
+  
+    /* Responsive Breakpoints */
+    --breakpoint-xs: 0; /* Extra small devices (portrait phones) */
+    --breakpoint-sm: 576px; /* Small devices (landscape phones) */
+    --breakpoint-md: 768px; /* Medium devices (tablets) */
+    --breakpoint-lg: 992px; /* Large devices (desktops) */
+    --breakpoint-xl: 1200px; /* Extra large devices (large desktops) */
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 65px;
+    bottom: 0;
+    width: 260px;
+    background-color: var(--background-color);
+    box-shadow: var(--box-shadow);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    height: 100vh;
+    z-index: 10000;
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar-toggle {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    background-color: var(--background-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs) var(--spacing-md);
+    cursor: pointer;
+    z-index: var(--zindex-fixed);
+    border: 1px solid var(--border-color);
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: var(--spacing-sm) 0;
+}
+
+/* .menu-item {
+    border-bottom: var(--border-width) var(--border-style) var(--border-color); 
+} */
+
+.menu-item a {
+    width: 100%;
+    text-decoration: none;
+    color: var(--text-secondary-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-size-lg);
+}
+
+.menu-item a span i {
+    width: 1.2rem
+}
+
+.menu-item a:hover {
+    color: var(--text-hover-color);
+}
+
+.menu-item i:nth-child(2) {
+    transition: all ease 0.3s;
+}
+
+.menu-item a:hover i:nth-child(2) {
+    transform: translateX(1rem);
+}
+
+.menu-item i {
+    margin-right: var(--spacing-sm);
+}
+
+.submenu {
+    display: none;
+    list-style: none;
+    padding: 0 var(--spacing-lg);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+.submenu a {
+    padding: var(--spacing-xm) var(--spacing-md);
+    color: var(--text-secondary-color);
+}
+
+.submenu a.active{
+    color:var(--text-hover-color)
+}
+
+.sidebar-opp {
+    width: 100%;
+    margin-left: 0px;
+}
+
+/* ... rest of the responsive styles ... */
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .sidebar {
+        height: calc(100vh - 60px);
+        top: 80px;
+        transform: translateX(0);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar-opp {
+        width: calc(100vw - 280px);
+        margin-left: 250px;
+    }
+
+    .sidebar-toggle {
+        display: none;
+    }
+}

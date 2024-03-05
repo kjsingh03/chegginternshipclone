@@ -9,10 +9,11 @@ import Login from './components/Pages/Login.jsx'
 import Signup from './components/Pages/Signup.jsx'
 import Internship from './components/Pages/Internship.jsx'
 import { store } from './store/store.js'
-import Profile from './components/Pages/Profile.jsx'
+import Courses from './components/Pages/Courses.jsx'
 import Add from './components/Pages/Add.jsx'
 import Update from './components/Pages/Update.jsx'
 import Verify from './components/Pages/Verify.jsx'
+import Profile from './components/Pages/Profile.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,10 +22,12 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/internship/:id" element={<Internship />} />
-      <Route path="/profile" element={<Profile />} />
+      {/* <Route path="/lesson/:id" element={<Internship />} /> */}
+      <Route path="/courses" element={<Courses />} />
       <Route path="/add" element={<Add />} />
       <Route path="/update/:id" element={<Update />} />
       <Route path="/verify" element={<Verify />} />
+      <Route path="/profile" element={<Profile />} />
     </Route>
   )
 )

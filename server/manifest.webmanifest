@@ -1,9 +1,9 @@
 {
     "includeAssets": ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
       "manifest": {
-        "name": "Chegg",
-        "short_name": "Chegg",
-        "description": "Chegg App",
+        "name": "SkillsWallah",
+        "short_name": "SkillsWallah",
+        "description": "SkillsWallah App",
         "theme_color": "#ffffff",
         "icons": [
           {

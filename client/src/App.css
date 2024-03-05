@@ -2,7 +2,19 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
-  color:#333333;
+}
+
+body{
+  background-color: #1F1F1F;
+  color:#969593;
+}
+
+h1,h2,h3,h4,h5,h6{
+  color:#FFFFFF
+}
+
+input{
+  background-color: transparent;
 }
 
 a{
@@ -18,14 +30,13 @@ ul li{
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #eb7100;
-    background: #eb7100;
+    border: 2px solid #313131;
     color: #fff;
     border-radius: 8px;
     line-height: 33px;
     font-size: 1.125rem;
     padding: 0 40px;
-    outline: none;
+    /* outline: none; */
     font-weight: 500;
     padding: 1rem 2rem;
 }
@@ -34,16 +45,41 @@ ul li{
   text-decoration: none !important;
   transition: transform 200ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms;
   transform: scale(1.02);
-  background-color: #d15b00;
-  color: #fff;
+  /* color: #fff; */
 }
 
 .role{
-  background-color: #EB7100;
+  background-color: #969593;
   color:white;
 }
 
 .role.active{
   color: rgb(11, 16, 71);
   background-color:white;
+}
+
+.card:nth-child(1){
+  background-color: #E3FFA8;
+}
+
+.card:nth-child(2){
+  background-color: #45FFBC;
+}
+
+.card:nth-child(3){
+  background-color: #BDBBB7;
+}
+
+@media screen and (max-width:1024px) {
+  
+  .card:nth-child(3){
+    display: none;
+  }
+}
+
+@media screen and (max-width:768px) {
+  
+  .card:nth-child(2){
+    display: none;
+  }
 }

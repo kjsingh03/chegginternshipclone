@@ -5,7 +5,8 @@ export default defineConfig({
   images: [
     'src/assets/img1.png',
     'src/assets/img2.png',
-    "public/logo.png",
-    "public/smallLogo.png",
+    "src/assets/logo.png",
+    "src/assets/logo-nobg.png",
+    "src/assets/smallLogo.png",
 ]
 })

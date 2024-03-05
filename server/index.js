@@ -6,6 +6,7 @@ import userRouter from './routes/user.js';
 import authRouter from './routes/auth.js';
 import internshipRouter from './routes/internship.js';
 import Razorpay from 'razorpay'
+import { sendPromo } from './controllers/user.js';
 
 const PORT = process.env.PORT || 6000
 const MONGO_URL = process.env.MONGO_URL;
@@ -45,10 +46,8 @@ app.use(cors())
             }
         });
     })
-    // .get("/certificates", async (req, res) => {
-    //     let certificates = await Certificate.find()
-    //    res.status(200).send(certificates)
-    // })
+    .get("/promocodes", sendPromo)
+
 
 // Server Listening
 

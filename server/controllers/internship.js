@@ -42,7 +42,7 @@ export const getInternship = async (req, res) => {
         const id = req.params.id;
         let internship = await Internship.findOne({ id: id })
         if (internship) {
-            internship = await Internship.findOne({ id: id }).populate("studentsEnrolled").exec()
+            // internship = await Internship.findOne({ id: id }).populate("studentsEnrolled").exec()
             return res.status(200).json({ "Success": true, "message": "Internship fetched successfully", internship })
         }
         else {
@@ -72,7 +72,20 @@ export const updateInternship = async (req, res) => {
         const id = req.params.id;
         let internship = await Internship.findOne({ id: id })
         if (internship) {
-            internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled,req.body.studentsEnrolled],certificates:[...internship.certificates,req.body.certificates]}, { returnDocument: 'after' })
+            if(req.body.certificates?.user==="" && req.body.studentsEnrolled ==="")
+                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled],certificates:[...internship.certificates]}, { returnDocument: 'after' })
+            else if(req.body.studentsEnrolled ==="")
+                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled]}, { returnDocument: 'after' })
+            else if(req.body.certificates?.user==="" )
+                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,certificates:[...internship.certificates]}, { returnDocument: 'after' })
+            else if(req.body.certificates && req.body.studentsEnrolled)
+                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled,req.body.studentsEnrolled],certificates:[...internship.certificates,req.body.certificates]}, { returnDocument: 'after' })
+            else if(req.body.certificates && !req.body.studentsEnrolled)
+                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,certificates:[...internship.certificates,req.body.certificates]}, { returnDocument: 'after' })
+            else if(!req.body.certificates && req.body.studentsEnrolled)
+                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled,req.body.studentsEnrolled]}, { returnDocument: 'after' })
+            else if(!req.body.certificates && !req.body.studentsEnrolled)
+                internship = await Internship.findOneAndUpdate({ id: id }, req.body, { returnDocument: 'after' })
             internship.save()
                 .then(() => { return res.status(200).json({ "Success": true,"message":"Internship updated successully", "internship": internship }) })
                 .catch((err) => { return res.status(404).json({ "Success": "false", "message": "Failed to save internship", "error": err.message }) })
@@ -89,7 +102,7 @@ export const updateInternship = async (req, res) => {
 export const removeInternship = async (req, res) => {
     try {
         const id = req.params.id;
-        let internship = await Internship.findOne({ id: id }).populate("createdBy").exec();
+        let internship = await Internship.findOne({ id: id })
         if (internship) {
             internship = await Internship.findOneAndDelete({ id: id }, req.body, { returnDocument: 'after' })
             res.status(200).json({ "Success": true, "message": internship })
