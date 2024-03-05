@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateInternships } from '../../store/internshipslice'
 
 function Add() {
 
     const navigate = useNavigate()
 
     const user = JSON.parse(localStorage.getItem("credentials"))
+
+    const internships = useSelector(state => state.internships)
+
+    const dispatch = useDispatch()
 
     const [form, setForm] = useState({})
     const [skills, setSkills] = useState([""])
@@ -32,9 +38,9 @@ function Add() {
 
         newLessons.forEach((newL,index)=>{
             if(newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0]?.length > 8)
-                newLessons[index].url = newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0]
+                newLessons[index].url = newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0] || newLessons[index].url
             else{
-                newLessons[index].url=newL.url?.split("/")[3].split("=")[1].split("&")[0]
+                newLessons[index].url=newL.url?.split("/")[3]?.split("=")[1]?.split("&")[0] || newLessons[index].url
             }
         })
         
@@ -47,6 +53,7 @@ function Add() {
         })
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
+                dispatch(updateInternships([...internships,res.data.internship]))
                 setTimeout(()=>{
                     navigate("/")
                 },1000)

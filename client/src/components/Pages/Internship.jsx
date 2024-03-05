@@ -8,6 +8,7 @@ import pdf from './cert.pdf'
 import font from './Sanchez-Regular.ttf'
 import fontkit from '@pdf-lib/fontkit'
 import './components.css'
+import _ from 'lodash'
 
 function Internship() {
 

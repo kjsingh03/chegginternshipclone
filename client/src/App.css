@@ -83,3 +83,53 @@ ul li{
     display: none;
   }
 }
+
+
+.dropdown{
+  position: relative;
+  padding: 0rem;
+}
+
+.dropdown:hover .dropcontent{
+  display: block;
+}
+
+.dropbtn{
+  padding:0 0.4rem
+}
+
+.dropcontent{
+  display: none;
+  width:max-content;
+  position: absolute;
+  padding: 0.5rem 0.3rem;
+  margin:0.1rem 0;
+  border:1.6px solid #c4c3c3;
+  transform:translate(-0.6rem,0.25rem);
+  border-radius:0.75rem;
+  background-color: var(--bg-color);
+}
+
+.dropcontent p{
+  padding: 0.1rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap:0.5rem;
+  border-radius: 0.75rem;
+}
+
+.dropcontent p span{
+  color:var(--icon-color);
+}
+
+.dropcontent p:hover{
+  color:var(--icon-hover-color);
+  background-color: #85858522;
+}
+
+@media screen and (max-width:786px){
+  .dropcontent{
+      transform:translate(-1.1rem,0.4rem);
+  }
+}
