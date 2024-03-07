@@ -60,6 +60,10 @@ const userSchema = new Schema({
         internship: { type: Schema.Types.ObjectId, ref: "Internship" },
         generated: { type: Boolean, default: false },
         codeId: { type: String },
+        date:{type:Date},
+        percentage:{type:Number},
+        name:{type:String},
+        duration:{type:Number}
     }],
     role: { type: String, enum: ["User", "Admin"], default: "User" },
     token: { type: String },

@@ -49,7 +49,7 @@ function Signup() {
                 <input type="email" name="email" onChange={handleChange} placeholder="Enter Email" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input type="number" name="contact" onChange={handleChange} placeholder="Enter Contact Number (Whatsapp)" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input type="text" name="college" onChange={handleChange} placeholder="Enter college" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                <input type="text" name="password" onChange={handleChange} placeholder="Enter Password" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
+                <input type="text" name="password" onChange={handleChange} placeholder="Create Password" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 
                 <p className="text-red-500 font-medium h-6" id="error">You can set your name only once</p>
                 

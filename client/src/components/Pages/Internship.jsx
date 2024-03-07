@@ -25,8 +25,11 @@ function Internship() {
     const [price, setPrice] = useState(0)
     const [lesson, setLesson] = useState({})
     const [assignment, setAssignment] = useState([])
+    const [points,newPoints] = useState(80)
 
     const user = JSON.parse(localStorage.getItem("credentials"))
+
+    const userCertificate = user?.certificates?.filter(data=>data?.internship===internship?._id)[0]
 
     useEffect(() => {
         axios.get(`http://localhost:8080/internship/${id}`)
@@ -47,8 +50,14 @@ function Internship() {
         axios.get("http://localhost:8080/promocodes")
             .then(res => setPromocodes(res.data.promocodes))
             .catch(err => console.log(err))
-    }, [setGenerated])
 
+           
+    }, [])
+
+    useEffect(()=>{ 
+        if(userCertificate)
+        setCompleted(true)
+    },[internship])
 
     const handleClick = () => {
         const promoSection = document.querySelector(".promosection")
@@ -65,7 +74,6 @@ function Internship() {
             if (!usedPromo) {
                 document.querySelector("#error").innerHTML = "Promocode applied successfully"
                 setPrice(price => {
-                    // console.log('payment done')
                     axios.post("http://localhost:8080/pay", {
                         amount: price * (1 - isPromo.value / 100) * 100,
                         currency: "INR",
@@ -221,43 +229,124 @@ function Internship() {
             const firstPage = pages[0];
 
             // Draw a string of text diagonally across the first page
-            firstPage.drawText(name, {
-                x: 310,
-                y: 300,
-                size: 30,
-                font: SanChezFont,
-                color: rgb(0.96, 0.85, 0.17),
-            });
 
-            firstPage.drawText(`For outstanding completion of ${internship.name} `, {
-                x: 225,
-                y: 265,
-                size: 20,
-                font: SanChezFont,
-                color: rgb(0.04, 0.08, 0.3),
-            });
-            firstPage.drawText(`internship program at Techma Technologies. `, {
-                x: 205,
-                y: 240,
-                size: 20,
-                font: SanChezFont,
-                color: rgb(0.04, 0.08, 0.3),
-            });
-
-            const string = "abcdefghijklmnopqrstuvwxyz0123456789";
-            codeId = "";
-
-            for (let i = 0; i < 8; i++) {
-                codeId += string[Math.floor(Math.random() * string.length)];
+            if(userCertificate){
+                firstPage.drawText(name, {
+                    x: 315,
+                    y: 374,
+                    size: 30,
+                    font: SanChezFont,
+                    color: rgb(0.121, 0.337, 0.517),
+                });
+                firstPage.drawText(`${userCertificate?.duration}`, {
+                    x: 428,
+                    y: 315,
+                    size:16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${userCertificate?.name}`, {
+                    x: 170,
+                    y: 289,
+                    size:16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${userCertificate?.percentage}%`, {
+                    x: 644,
+                    y: 263,
+                    size:16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${userCertificate?.codeId}`, {
+                    x: 699,
+                    y: 132,
+                    size: 16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${userCertificate?.date.split("T")[0].replace(/-/g,"/")}`, {
+                    x: 689,
+                    y: 105,
+                    size: 14,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
             }
+            else{
+                const string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                codeId = "";
+    
+                for (let i = 0; i < 8; i++) {
+                    codeId += string[Math.floor(Math.random() * string.length)];
+                }
 
-            firstPage.drawText(`codeid : ${codeId}`, {
-                x: 650,
-                y: 80,
-                size: 10,
-                font: SanChezFont,
-                color: rgb(0, 0, 0),
-            });
+                firstPage.drawText(name, {
+                    x: 315,
+                    y: 374,
+                    size: 30,
+                    font: SanChezFont,
+                    color: rgb(0.121, 0.337, 0.517),
+                });
+                firstPage.drawText(`${internship.duration}`, {
+                    x: 428,
+                    y: 315,
+                    size:16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${internship.name}`, {
+                    x: 170,
+                    y: 289,
+                    size:16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${points}%`, {
+                    x: 644,
+                    y: 263,
+                    size:16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${codeId}`, {
+                    x: 699,
+                    y: 132,
+                    size: 16,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+                firstPage.drawText(`${new Date().toJSON().slice(0,10).replace(/-/g,'/')}`, {
+                    x: 689,
+                    y: 105,
+                    size: 14,
+                    font: SanChezFont,
+                    color: rgb(0, 0, 0),
+                });
+    
+                axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId } }, {
+                    headers: {
+                        "Authorization": user?.token,
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then((res) => {
+                        axios.put(`http://localhost:8080/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId,percentage:points,name:internship.name,duration:internship.duration,date:new Date().toJSON().slice(0,10) } }, {
+                            headers: {
+                                "Authorization": user?.token,
+                                "Content-Type": "application/json"
+                            }
+                        })
+                            .then((response) => {
+                                setGenerated(true)
+                                localStorage.setItem("credentials", JSON.stringify(response.data.user))
+                            })
+                            .catch((err) => console.log(err))
+                    })
+                    .catch((err) => console.log(err))
+            }
+            
 
             // Serialize the PDFDocument to bytes (a Uint8Array)
             const pdfBytes = await pdfDoc.save();
@@ -266,31 +355,6 @@ function Internship() {
 
             const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
 
-            axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId } }, {
-                headers: {
-                    "Authorization": user?.token,
-                    "Content-Type": "application/json"
-                }
-            })
-                .then((res) => {
-                    axios.put(`http://localhost:8080/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId } }, {
-                        headers: {
-                            "Authorization": user?.token,
-                            "Content-Type": "application/json"
-                        }
-                    })
-                        .then((response) => {
-                            console.log(response.data)
-                            setGenerated(true)
-                            localStorage.setItem("credentials", JSON.stringify(response.data.user))
-                        })
-                        .catch((err) => {
-                            console.log(err)
-                        })
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
 
             var file = new File(
                 [pdfBytes],
@@ -299,18 +363,20 @@ function Internship() {
                     type: "application/pdf;charset=utf-8",
                 }
             );
+
             saveAs(file);
 
         };
 
         //check if the text is empty or not
         if (val.trim() !== "") {
-            // console.log(val);
             generatePDF(val);
         } else {
             console.log("error")
         }
     }
+
+    
 
     if (!access) {
         return (
@@ -322,7 +388,7 @@ function Internship() {
                         <p className='flex items-center gap-2'><i className="w-4 fa-solid fa-calendar-days"></i>{internship.duration} Weeks </p>
                         {/* <p className='flex items-center gap-2'><i className="fa-solid fa-hourglass-end"></i> {internship.lastApplyDate?.split("T")[0].replace(/-/g, "/")}</p> */}
                     </div>
-                    <h2 className="text-base font-bold">Skill(s) required</h2>
+                    <h2 className="text-base font-bold">Skill(s) offered</h2>
                     <div className="flex items-center gap-12">
                         {internship?.skills?.map((skill, index) => (
                             <p key={index} className='flex items-center gap-2'>{skill} </p>
@@ -372,23 +438,23 @@ function Internship() {
                         <li className="menu-item"><div >Lesson</div></li>
                         {
                             internship?.lessons.map((lesson, index) => (
-                                <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setAssignment({}) }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span><i className="fa-solid fa-chevron-right"></i></div></Link></li>
+                                <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setAssignment({});document.querySelector(".getCertificate").style.display='none' }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span><i className="fa-solid fa-chevron-right"></i></div></Link></li>
                             ))
                         }
 
                         <li className="menu-item"><div to={`/assignment/${id}`}>Assignment</div></li>
-                        <li className="menu-item" onClick={() => { setLesson({}); setAssignment(internship?.questions) }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Assignment</span><i
+                        <li className="menu-item" onClick={() => { setLesson({}); setAssignment(internship?.questions);document.querySelector(".getCertificate").style.display='none' }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Assignment</span><i
                             className="fa-solid fa-chevron-right"></i>
                         </Link></li>
                         {
-                            completed && 
-                        <li className="menu-item"><div to={`/assignment/${id}`}>Certificate</div></li>
+                            completed &&
+                            <li className="menu-item"><div to={`/assignment/${id}`}>Certificate</div></li>
                         }
                         {
-                            completed && <li className="menu-item" onClick={() => {setLesson({});setAssignment({})}}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
-                            className="fa-solid fa-chevron-right"></i>
-                        </Link></li>
-    }
+                            completed && <li className="menu-item" onClick={() => { setLesson({}); setAssignment({}) ;document.querySelector(".getCertificate").style.display='block'}}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
+                                className="fa-solid fa-chevron-right"></i>
+                            </Link></li>
+                        }
 
 
                     </ul>
@@ -416,12 +482,12 @@ function Internship() {
                                     </div>
                                 </div>
                             ))}
-                            <button onClick={() => {setCompleted(true); setAssignment({})}} className='btn w-max text-sm'>Complete</button>
+                            <button onClick={() => { setCompleted(true); setAssignment({});document.querySelector(".getCertificate").style.display='block' }} className='btn w-max text-sm'>Complete</button>
                         </div>
                     }
                     {
-                        completed && 
-                        <div className="">
+                        completed &&
+                        <div className="getCertificate hidden">
                             <button onClick={getCertificate} className="btn">Get certificate</button>
                         </div>
                     }

@@ -35,7 +35,6 @@ function Verify() {
             }
         })
     }
-    console.log(certificate)
 
     useEffect(() => {
         axios.get("http://localhost:8080/internship")
