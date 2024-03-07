@@ -52,6 +52,6 @@ app.use(cors())
 // Server Listening
 
 app.listen(PORT, () => {
-    console.log(`Server is working at http://localhost:${PORT}`)
+    console.log(`Server is working at http://localhost:${PORT}`);
 })
 
