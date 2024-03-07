@@ -53,6 +53,5 @@ app.use(cors())
 
 app.listen(PORT, () => {
     console.log(`Server is working at http://localhost:${PORT}`);
-    console.log(MONGO_URL)
 })
 
