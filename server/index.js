@@ -6,6 +6,7 @@ import userRouter from './routes/user.js';
 import authRouter from './routes/auth.js';
 import internshipRouter from './routes/internship.js';
 import Razorpay from 'razorpay'
+import path from 'path'
 import { sendPromo } from './controllers/user.js';
 
 const PORT = process.env.PORT || 6000
@@ -32,7 +33,7 @@ export const instance = new Razorpay({
 
 app.use(cors())
     .use(Express.json())
-    .use(Express.static('dist'))
+    .use(Express.static(path.join(path.resolve(),'/dist')))
     .use("/auth", authRouter)
     .use("/user", userRouter)
     .use("/internship", internshipRouter)
