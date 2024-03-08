@@ -27,7 +27,7 @@ export const instance = new Razorpay({
     mongoose.connect(MONGO_URL)
         .then(() => console.log("Database connected successfully"))
         .catch((err) => console.log(err))
-})()
+})();
 
 // Middlewares
 
@@ -47,7 +47,7 @@ app.use(cors())
             }
         });
     })
-    .get("/promocodes", sendPromo)
+    .get("/promocodes", sendPromo);
 
 
 // Server Listening
