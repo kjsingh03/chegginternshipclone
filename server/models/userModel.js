@@ -5,12 +5,10 @@ import { Schema, model } from "mongoose";
 //     codeId:{type:String},
 // })
 
-const optionSchema = new Schema()
-
-const questionSchema = new Schema()
 
 const internshipSchema = new Schema({
     name: { type: String, required: [true, "Enter Course Name"] },
+    branch: { type: String, required: [true, "Enter Branch Name"],enum:["Computer","Civil","Electronics","Mechanical"] },
     duration: { type: Number, required: [true, "Enter Duration"] },
     discount: { type: Number, required: [true, "Enter discount"] },
     skills: [{ type: String }],

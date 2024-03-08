@@ -433,12 +433,12 @@ function Internship() {
         return (
             <>
                 <Navbar />
-                <div className="sidebar" id="sidebar">
+                <div className="sidebar px-3" id="sidebar">
                     <ul className="sidebar-menu">
                         <li className="menu-item"><div >Lesson</div></li>
                         {
                             internship?.lessons.map((lesson, index) => (
-                                <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setAssignment({});document.querySelector(".getCertificate").style.display='none' }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span><i className="fa-solid fa-chevron-right"></i></div></Link></li>
+                                <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setAssignment({});document.querySelector(".getCertificate").style.display='none' }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
                             ))
                         }
 
@@ -487,7 +487,7 @@ function Internship() {
                     }
                     {
                         completed &&
-                        <div className="getCertificate hidden">
+                        <div className="hidden getCertificate">
                             <button onClick={getCertificate} className="btn">Get certificate</button>
                         </div>
                     }

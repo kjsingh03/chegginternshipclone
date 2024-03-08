@@ -36,16 +36,16 @@ function Add() {
         e.preventDefault()
 
 
-        newLessons.forEach((newL,index)=>{
-            if(newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0]?.length > 8)
+        newLessons.forEach((newL, index) => {
+            if (newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0]?.length > 8)
                 newLessons[index].url = newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0] || newLessons[index].url
-            else{
-                newLessons[index].url=newL.url?.split("/")[3]?.split("=")[1]?.split("&")[0] || newLessons[index].url
+            else {
+                newLessons[index].url = newL.url?.split("/")[3]?.split("=")[1]?.split("&")[0] || newLessons[index].url
             }
         })
-        
+        // console.log(form)
 
-        axios.post("http://localhost:8080/internship", { ...form, skills: newSkills, perks: newPerks, questions: newQuestion,lessons:[...newLessons] }, {
+        axios.post("http://localhost:8080/internship", { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons] }, {
             headers: {
                 "Authorization": user?.token,
                 "Content-Type": "application/json"
@@ -53,10 +53,10 @@ function Add() {
         })
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
-                dispatch(updateInternships([...internships,res.data.internship]))
-                setTimeout(()=>{
-                    navigate("/")
-                },1000)
+                dispatch(updateInternships([...internships, res.data.internship]))
+                // setTimeout(() => {
+                //     navigate("/")
+                // }, 1000)
             })
             .catch((err) => {
                 document.getElementById("error").innerText = err.response.data.message
@@ -70,24 +70,42 @@ function Add() {
             <Navbar />
             <div className='min-h-screen flex flex-col gap-6 w-[90%] sm:w-[50%] md:w-[40%] xl:w-[30%] mx-auto py-12 shadow-lg pt-[8rem]'>
                 <input type="text" name="name" onChange={handleChange} placeholder="Enter Course Name" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
+                <select type="text" name="branch" onChange={handleChange} placeholder="Enter Branch Name" className='border-2 bg-transparent rounded-xl border-[#313131] outline-[#313131] p-3' >
+                    <option className='bg-transparent'>Select Branch</option>
+                    <option className='bg-transparent' value="Computer">Computer Science Engineering / IT</option>
+                    <option className='bg-transparent' value="Mechanical">Mechanical Engineering</option>
+                    <option className='bg-transparent' value="Civil">Civil Engineering</option>
+                    <option className='bg-transparent' value="Electronics">Electronics & Communication Engineering</option>
+                </select>
                 <input type="number" name="duration" onChange={handleChange} placeholder="Enter Duration (in weeks)" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input type="number" name="price" onChange={handleChange} placeholder="Enter price" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input type="number" name="discount" onChange={handleChange} placeholder="Enter Discount (in percentage)" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 {
                     skills.map((count, index) => (
                         <input key={index} type="text" name="skills" id="skills" onChange={e => { newSkills[index] = e.target.value; setSkills(newSkills) }} placeholder="Enter skills" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                        ))
-                    }
-                <div className="w-full text-xs cursor-pointer flex justify-end">
+                    ))
+                }
+                <div className="w-full text-xs cursor-pointer gap-4 flex justify-end">
+
                     <p onClick={() => setSkills((prev) => [...prev, ""])} className='w-max border border-gray-600 p-3 rounded-xl'>add skill</p>
+
+                    {
+                        skills.length > 0 &&
+                        <p onClick={() => setSkills((prev) => prev.slice(0, -1))} className='w-max border border-gray-600 p-3 rounded-xl'>remove skill</p>
+                    }
                 </div>
                 {
                     perks.map((perk, index) => (
                         <input key={index} type="text" name="perks" id="perks" onChange={e => { newPerks[index] = e.target.value; setPerks(newPerks) }} placeholder="Enter perks" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                        ))
-                    }
-                <div className="w-full text-xs cursor-pointer flex justify-end">
+                    ))
+                }
+                <div className="w-full text-xs cursor-pointer gap-4 flex justify-end">
                     <p onClick={() => setPerks((prev) => [...prev, prev[prev.length - 1] + 1])} className='w-max border border-gray-600 p-3 rounded-xl'>add perk</p>
+                    {
+                        perks.length > 0 &&
+                        <p onClick={() => setPerks((prev) => prev.slice(0, -1))} className='w-max border border-gray-600 p-3 rounded-xl'>remove perk</p>
+                    }
+                
                 </div>
 
 
@@ -103,7 +121,7 @@ function Add() {
                             {
                                 options.map((option, optionIndex) => (
                                     <div className="flex gap-2 option" key={optionIndex}>
-                                        <input type="checkbox" name="correct" onChange={e => {  newQuestion[index].options[optionIndex].correct = e.target.checked }} placeholder="Enter correct" className='w-4 border-2 rounded-xl border-[#313131] outline-[#313131] ' />
+                                        <input type="checkbox" name="correct" onChange={e => { newQuestion[index].options[optionIndex].correct = e.target.checked }} placeholder="Enter correct" className='w-4 border-2 rounded-xl border-[#313131] outline-[#313131] ' />
                                         <input type="text" name="option" onChange={e => { newQuestion[index].options[optionIndex].option = e.target.value }} placeholder="Enter option" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                                     </div>
                                 ))
@@ -123,7 +141,7 @@ function Add() {
                 <div className="flex items-center justify-between">
                     <p className='w-max  p-3 rounded-xl'>Add Lesson !</p>
                 </div>
-                
+
 
                 {
                     lessons &&
@@ -137,7 +155,7 @@ function Add() {
                 }
 
                 <div className="w-full text-xs cursor-pointer gap-4 flex justify-end">
-                    <p onClick={() => setLessons((prev) => [...prev, { lesson: "", url: "", description:"" }])} className='w-max border border-gray-600 p-3 rounded-xl'>add Lesson</p>
+                    <p onClick={() => setLessons((prev) => [...prev, { lesson: "", url: "", description: "" }])} className='w-max border border-gray-600 p-3 rounded-xl'>add Lesson</p>
                     {
                         lessons.length > 0 &&
                         <p onClick={() => setLessons((prev) => prev.slice(0, -1))} className='w-max border border-gray-600 p-3 rounded-xl'>remove Lesson</p>
@@ -147,7 +165,7 @@ function Add() {
                 <div className="flex items-center justify-between">
                     <p className='w-max  p-3 rounded-xl'>Add Assignment !</p>
                 </div>
-                
+
                 <input type="text" name="assignmentTask" onChange={handleChange} placeholder="Enter description" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input type="text" name="assignmentUrl" onChange={handleChange} placeholder="Enter drive link" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
 

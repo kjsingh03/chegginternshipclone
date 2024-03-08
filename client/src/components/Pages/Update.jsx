@@ -89,6 +89,13 @@ function Update() {
             <div className='min-h-screen flex flex-col gap-6 w-[90%] sm:w-[50%] md:w-[40%] xl:w-[30%] mx-auto py-12 shadow-lg pt-[8rem]'>
                 <h3 className="font-bold my-2 text-4xl">Update Internship</h3>
                 <input value={form?.name || ""} type="text" name="name" onChange={handleChange} placeholder="Enter name" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
+                <select type="text" name="branch" value={form?.branch || ""} onChange={handleChange} placeholder="Enter Branch Name" className='border-2 bg-transparent rounded-xl border-[#313131] outline-[#313131] p-3' >
+                    <option className='bg-transparent'>Select Branch</option>
+                    <option className='bg-transparent' value="Computer">Computer Science Engineering / IT</option>
+                    <option className='bg-transparent' value="Mechanical">Mechanical Engineering</option>
+                    <option className='bg-transparent' value="Civil">Civil Engineering</option>
+                    <option className='bg-transparent' value="Electronics">Electronics & Communication Engineering</option>
+                </select>
                 <input value={form?.duration || ""} type="number" name="duration" onChange={handleChange} placeholder="Enter duration (in Months)" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input value={form?.discount || ""} type="number" name="discount" onChange={handleChange} placeholder="Enter discount" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 {
@@ -101,7 +108,7 @@ function Update() {
                     <p onClick={() => setSkills((prev) => [...prev, ""])} className='w-max border border-gray-600 p-3 rounded-xl'>add skill</p>
                     {
                         skills.length > 0 &&
-                        <p onClick={() => setSkills((prev) => prev.slice(0, -1))} className='w-max border border-gray-600 p-3 rounded-xl'>remove perk</p>
+                        <p onClick={() => setSkills((prev) => prev.slice(0, -1))} className='w-max border border-gray-600 p-3 rounded-xl'>remove skill</p>
                     }
                 </div>
                 {

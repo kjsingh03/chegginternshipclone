@@ -80,7 +80,7 @@
     top: 65px;
     bottom: 0;
     width: 260px;
-    background-color: var(--background-color);
+    background-color: #ffffff;
     box-shadow: var(--box-shadow);
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
@@ -132,7 +132,7 @@
 }
 
 .menu-item a:hover {
-    color: var(--text-hover-color);
+    color: #3D5EE1;
 }
 
 .menu-item i:nth-child(2) {
@@ -190,8 +190,8 @@
 
 @media screen and (min-width: 992px) {
     .sidebar {
-        height: calc(100vh - 60px);
-        top: 80px;
+        height: calc(100vh - 52px);
+        top: 52px;
         transform: translateX(0);
     }
 
