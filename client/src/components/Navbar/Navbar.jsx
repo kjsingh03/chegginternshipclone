@@ -28,18 +28,13 @@ const Navbar = () => {
       const toggler = document.getElementById('navbar-toggler')
       const navbar = document.querySelector('.nav-sidebar')
       const navList = document.querySelector('.nav-list')
+      const navbg = 
 
       toggler.addEventListener('click', () => {
-        console.log('click')
-        navbar.style.display = 'flex'
-        setTimeout(() => {
-          document.addEventListener('click', (event) => {
-            if (!navList.contains(event.target)) {
-              navbar.style.display = 'none'
-            }
+        navbar.style.transform = navbar.style.transform==='translateX(0)'?'translateX(-100%)':'translateX(0)';
+        document.querySelector('.nav-list ~ div').addEventListener('click', (event) => {
+              navbar.style.transform = 'translateX(-100%)'
           })
-          document.removeEventListener('click',()=>{console.log('remove')})
-        }, 0)
       })
     // })
     }, [])
@@ -88,12 +83,10 @@ const Navbar = () => {
           }
         </ul>
       </div>
-      <div className="hidden nav-sidebar sm:hidden flex-col absolute z-[1000] w-screen bg-[#0000005b]">
+      <div className="nav-sidebar translate-x-[-100%] absolute z-[1000] w-screen flex">
         <div className="nav-list flex flex-col gap-4 bg-white h-screen w-[15rem] text-sm p-4 font-medium">
-          <div className="">
             <p>{user?.name}</p>
             <p>{user?.email}</p>
-          </div>
           <p className=""><Link to="/">HOME</Link></p>
 
           {
@@ -117,9 +110,10 @@ const Navbar = () => {
           <p className=""><Link to="/verify">CERTIFICATE VERIFICATION</Link></p>
           {
             user &&
-            <li className="hidden sm:block" onClick={logout}>LOGOUT</li>
+            <p className="" onClick={logout}>LOGOUT</p>
           }
         </div>
+        <div className="w-[calc(100vw-15rem)] bg-[#0000005b] h-screen"></div>
       </div>
     </>
   );
