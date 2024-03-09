@@ -16,7 +16,9 @@ function Signup() {
 
     const submit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/auth/signup", { ...form, role })
+        // setForm({...form,username:form?.username?.toLowerCase()})
+
+        axios.post("http://localhost:8080/auth/signup", { ...form, role: role })
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
                 setTimeout(() => navigate("/"), 1000)
@@ -24,6 +26,8 @@ function Signup() {
             })
             .catch((err) => document.getElementById("error").innerText = err.response.data.message)
             .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
+
+
     }
 
     // const setUserType = (e) => {
@@ -50,11 +54,11 @@ function Signup() {
                 <input type="number" name="contact" onChange={handleChange} placeholder="Enter Contact Number (Whatsapp)" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input type="text" name="college" onChange={handleChange} placeholder="Enter college" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
                 <input type="text" name="password" onChange={handleChange} placeholder="Create Password" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                
-                <p className="text-red-500 font-medium h-6" id="error">You can set your name only once</p>
-                
+
+                <p className="text-red-500 font-medium h-6" id="error">Note : you can set your name only once</p>
+
                 <button className="btn text-sm" onClick={submit}>Sign Up</button>
-                
+
                 <div className="w-full text-center font-medium">
                     <p>Don't have an account? <span onClick={() => navigate("/login")} className='text-red-500 hover:underline cursor-pointer'>Sign In</span></p>
                 </div>

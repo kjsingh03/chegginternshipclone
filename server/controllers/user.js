@@ -10,7 +10,9 @@ const privateKey = fs.readFileSync(path.join(path.resolve(), './private.key'), "
 
 export const signup = async (req, res) => {
     try {
-        let user = await User.findOne({ username: req.body.username })
+        let {username} =req.body
+        username = username?.toLowerCase();
+        let user = await User.findOne({ username: username })
         if (!user) {
             user = await User.findOne({ email: req.body.email })
             if (!user) {
@@ -43,7 +45,8 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        let { username, password } = req.body;
+        username = username?.toLowerCase();
         if (username) {
             if (password) {
                 let user = await User.findOne({ username: username })

@@ -50,7 +50,7 @@ const internshipSchema = new Schema({
 const userSchema = new Schema({
     name: { type: String, required: [true, "Enter name"] },
     username: { type: String, required: [true, "Enter Username"], unique: [true, "User already exits"] },
-    email: { type: String, required: [true, "Enter Email"], unique: [true, "valid email"], validate: [(email) => { return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email) }, "Please enter a valid email"] },
+    email: { type: String, required: [true, "Enter Email"], unique: [true, "Email already exists"], validate: [(email) => { return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email) }, "Please enter a valid email"] },
     contact: { type: Number, required: [true, "Enter contact number"] },
     college: { type: String, required: [true, "Enter college"] },
     password: { type: String, required: [true, "Enter password"], minlength: [8, "Password must be atleast 8 characters long"] },
