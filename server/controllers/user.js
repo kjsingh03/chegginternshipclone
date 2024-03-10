@@ -46,7 +46,6 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         let { username, password } = req.body;
-        username = username?.toLowerCase();
         if (username) {
             if (password) {
                 let user = await User.findOne({ username: username })
@@ -131,6 +130,7 @@ export const getAllUsers = async (req, res) => {
     try {
         let users = await User.find();
         if (users) {
+            users = await User.find().populate("internships").exec()
             res.status(200).json(users);
         }
         else {

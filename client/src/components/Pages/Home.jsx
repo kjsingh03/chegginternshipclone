@@ -62,9 +62,10 @@ const Home = () => {
             }}
             spaceBetween={30}
             autoplay={{
-              delay: 3500,
-              disableOnInteraction: false,
+              delay: 4000,
+              disableOnInteraction: true,
             }}
+            speed={1200}
             // loop={true}
             navigation={true}
             modules={[Autoplay, Navigation]}
@@ -134,7 +135,8 @@ const Home = () => {
                   centeredSlides: true,
                   autoplay:{
                     delay:4000
-                  }
+                  },
+                  speed:800
                 },
                 640: {
                   slidesPerView: 2,
@@ -174,7 +176,7 @@ const Home = () => {
                   centeredSlides: true,
                   autoplay:{
                     delay:4000
-                  }
+                  },speed:800
                 },
                 640: {
                   slidesPerView: 2,
@@ -214,7 +216,8 @@ const Home = () => {
                   centeredSlides: true,
                   autoplay:{
                     delay:4000
-                  }
+                  },
+                  speed:800
                 },
                 640: {
                   slidesPerView: 2,
@@ -254,7 +257,8 @@ const Home = () => {
                   centeredSlides: true,
                   autoplay:{
                     delay:4000
-                  }
+                  },
+                  speed:800
                 },
                 640: {
                   slidesPerView: 2,
@@ -291,8 +295,13 @@ const Home = () => {
                 0: {
                   slidesPerView: 1,
                   grabCursor: true,
-                  centeredSlides: true
+                  centeredSlides: true,
+                  autoplay:{
+                    delay:4000
+                  },
+                  speed:800
                 },
+                
                 640: {
                   slidesPerView: 2,
                   spaceBetween: 0,

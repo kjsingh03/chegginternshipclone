@@ -65,6 +65,8 @@ const Navbar = () => {
             }
 
             <li className="hidden sm:block"><Link to="/verify">CERTIFICATE VERIFICATION</Link></li>
+            <li><Link to="/about">ABOUT US</Link></li>
+          <li><Link to="/contact">CONTACT US</Link></li>
           </ul>
         </div>
         {/* <div className="border border-[#313131] p-3 rounded-xl hidden lg:block">
@@ -78,11 +80,15 @@ const Navbar = () => {
           }
           {
             user &&
+            <li className="block"><Link to="/admin">ADMIN</Link></li>
+          }
+          {
+            user &&
             <li className="hidden sm:block" onClick={logout}>LOGOUT</li>
           }
           {
             !user &&
-            <li className="block"><Link to="/login">SIGNIN</Link></li>
+            <li className="block"><Link to="/login">LOG IN</Link></li>
           }
         </ul>
       </div>

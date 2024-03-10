@@ -19,6 +19,7 @@ const internshipSchema = new Schema({
     certificates: [{
         user: { type: String },
         codeId: { type: String },
+        courseName:{ type: String },
     }],
     questions: [
         {
@@ -67,11 +68,9 @@ const userSchema = new Schema({
     internships: [{ type: Schema.Types.ObjectId, ref: "Internship" }],
     promocodes: [{
         name: {
-            type: String, required: [true, "Enter Promocode Name"],
-            minlength: [1, "Enter Promocode"]
+            type: String
         }, value: {
-            type: Number,
-            required: [true, "Enter Promo Value"]
+            type: Number
         }
     }]
 })

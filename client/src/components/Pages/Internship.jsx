@@ -27,6 +27,7 @@ function Internship() {
     const [test, setTest] = useState([])
     const [points, setPoints] = useState(0)
     const [activeOptions, setActiveOptions] = useState([])
+    const [disabled, setDisabled] = useState(true)
 
     let newActiveOptions = [...activeOptions]
 
@@ -60,7 +61,7 @@ function Internship() {
 
     useEffect(() => {
         if (userCertificate)
-            setCompleted(true)
+            setDisabled(false)
     }, [internship])
 
     const handleClick = () => {
@@ -234,14 +235,6 @@ function Internship() {
 
             // Draw a string of text diagonally across the first page
 
-            let testLength = 0 ;
-            const testQuestion = document.querySelectorAll('.testQuestion')
-            for(let i in testQuestion){
-                testLength++;
-                console.log(testQuestion[i])
-            }
-            console.log(testLength)
-
             if (userCertificate) {
                 firstPage.drawText(name, {
                     x: 315,
@@ -264,7 +257,7 @@ function Internship() {
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-                firstPage.drawText(`${points/testLength*100}%`, {
+                firstPage.drawText(`${userCertificate.percentage}%`, {
                     x: 634,
                     y: 257,
                     size: 16,
@@ -272,21 +265,21 @@ function Internship() {
                     color: rgb(0, 0, 0),
                 });
                 firstPage.drawText(`${userCertificate?.codeId}`, {
-                    x: 699,
-                    y: 132,
+                    x: 678,
+                    y: 105,
                     size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
                 firstPage.drawText(`${userCertificate?.date.split("T")[0].replace(/-/g, "/")}`, {
-                    x: 689,
-                    y: 105,
+                    x: 672,
+                    y: 85,
                     size: 14,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
             }
-            else {
+            else{
                 const string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 codeId = "";
 
@@ -315,7 +308,7 @@ function Internship() {
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-                firstPage.drawText(`${points}%`, {
+                firstPage.drawText(`${points / 15 * 100}%`, {
                     x: 634,
                     y: 257,
                     size: 16,
@@ -323,21 +316,21 @@ function Internship() {
                     color: rgb(0, 0, 0),
                 });
                 firstPage.drawText(`${codeId}`, {
-                    x: 699,
-                    y: 132,
+                    x: 678,
+                    y: 105,
                     size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
                 firstPage.drawText(`${new Date().toJSON().slice(0, 10).replace(/-/g, '/')}`, {
-                    x: 689,
-                    y: 105,
+                    x: 672,
+                    y: 85,
                     size: 14,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
 
-                axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId } }, {
+                axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId ,courseName:internship.name} }, {
                     headers: {
                         "Authorization": user?.token,
                         "Content-Type": "application/json"
@@ -383,6 +376,7 @@ function Internship() {
         //check if the text is empty or not
         if (val.trim() !== "") {
             generatePDF(val);
+
         } else {
             console.log("error")
         }
@@ -410,16 +404,22 @@ function Internship() {
     }
 
     const submitQuiz = () => {
-        setCompleted(true);
-        setTest({});
-        document.querySelector(".getCertificate").style.display = 'block'
-        let newPoints =0;
+        let newPoints = 0;
         activeOptions.forEach((option, index) => {
-            
-            if(test[index].options[activeOptions[index]].correct)
-                newPoints+=1
+
+            if (test[index].options[activeOptions[index]]?.correct)
+                newPoints += 1
         })
         setPoints(newPoints)
+        if (newPoints >= 1) {
+            setCompleted(true)
+            setDisabled(false)
+            setTest({});
+        }
+        else {
+            document.getElementById("error").innerText = "Marks less than 75% try again"
+            console.log(document.getElementById("error"))
+        }
     }
 
 
@@ -487,20 +487,20 @@ function Internship() {
                             <li className="menu-item"><div >Lesson</div></li>
                             {
                                 internship?.lessons.map((lesson, index) => (
-                                    <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setTest({}); document.querySelector(".getCertificate").style.display = 'none' }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
+                                    <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setTest({}); setCompleted(false) }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
                                 ))
                             }
 
                             <li className="menu-item"><div to={`/assignment/${id}`}>Test</div></li>
-                            <li className="menu-item" onClick={() => { setLesson({}); setTest(internship?.questions); document.querySelector(".getCertificate").style.display = 'none' }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Test</span><i
+                            <li className="menu-item" onClick={() => { setLesson({}); setTest(internship?.questions); setCompleted(false); }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Test</span><i
                                 className="fa-solid fa-chevron-right"></i>
                             </Link></li>
                             {
-                                completed &&
+
                                 <li className="menu-item"><div to={`/assignment/${id}`}>Certificate</div></li>
                             }
                             {
-                                completed && <li className="menu-item" onClick={() => { setLesson({}); setTest({}); document.querySelector(".getCertificate").style.display = 'block' }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
+                                <li className="menu-item" onClick={() => { setLesson({}); setTest({}); setCompleted(true); }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
                                     className="fa-solid fa-chevron-right"></i>
                                 </Link></li>
                             }
@@ -521,14 +521,13 @@ function Internship() {
                                 <iframe style={{ display: lesson.lesson ? 'block' : 'none', width: '100%', height: '100%' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                             </div>
                             <p className="text-sm lg:text-lg font-medium w-full">{lesson.description}</p>
-
                         </div>
                     }
                     {
                         test?.length > 0 &&
                         <div className="flex flex-col gap-5 px-8 text-sm">
                             {test?.map((data, index) => (
-                                <div  className="testQuestion flex flex-col gap-5" key={index}>
+                                <div className="testQuestion flex flex-col gap-5" key={index}>
                                     <h1 className="text-xl">{data.question}</h1>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <p onClick={() => selectOption(index, 0)} className='border border-[#1B88F4] p-2 rounded-xl'>1. {data.options[0].option}</p>
@@ -538,13 +537,15 @@ function Internship() {
                                     </div>
                                 </div>
                             ))}
+                            <p className="text-red-500 h-6" id="error"></p>
                             <button onClick={() => submitQuiz()} className='btn w-max text-sm'>Complete</button>
                         </div>
                     }
                     {
                         completed &&
-                        <div className="getCertificate hidden">
-                            <button onClick={getCertificate} className="btn">Get certificate</button>
+                        <div className="getCertificate">
+                            <button onClick={() => { if (disabled) { document.getElementById('error').innerText="Kindly complete test first" ; setTimeout(()=>document.getElementById('error').innerText="",1000) } else { getCertificate() } }} className="btn">Get certificate</button>
+                            <p className="text-red-500 h-6 py-4 font-medium" id="error"></p>
                         </div>
                     }
                 </div>

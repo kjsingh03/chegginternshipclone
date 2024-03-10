@@ -20,13 +20,14 @@ function Verify() {
         setCertificate(certificates?.filter((cert) => cert.codeId === codeId)[0])
 
         setCertificate((prev) => {
+            console.log(prev)
             if (prev) {
                 axios.get(`http://localhost:8080/user/${prev?.user}`)
                     .then(res => {
                         setView(true)
                         setTimeout(() => {
                             document.getElementById("name").innerText = res.data.name
-                            document.getElementById("username").innerText = res.data.username
+                            document.getElementById("course").innerText = prev.courseName
                             document.getElementById("contact").innerText = res.data.contact
                             document.getElementById("college").innerText = res.data.college
                         }, 0)
@@ -65,7 +66,7 @@ function Verify() {
                 </p>
 
                 <div className="flex justify-center">
-                    <input type="text" name="username" onChange={e => setCodeId(e.target.value)} placeholder="Enter codeid" className='  outline-[#1B88F4] p-4' />
+                    <input type="text" name="username" onChange={e => setCodeId(e.target.value)} placeholder="Enter codeid" className='hover:shadow-lg cursor-pointer  outline-[#1B88F4] p-4' />
 
                     <button className="btn rounded-none" onClick={submit}>Verify</button>
                 </div>
@@ -73,25 +74,25 @@ function Verify() {
                 {
                     view &&
                     <div className="flex flex-col gap-3 justify-center text-left items-center">
-                        <div className="flex items-center gap-6 h-7">
+                        <div className="flex items-center gap-2 h-7">
                             <p className="w-[5rem]">Name</p>
                             <p className="w-6">:</p>
-                            <p id="name" className="w-[10rem]"></p>
+                            <p id="name" className="w-[15rem]"></p>
                         </div>
-                        <div className="flex items-center gap-6 h-7">
-                            <p className="w-[5rem]">Username</p>
+                        <div className="flex items-center gap-2 h-7">
+                            <p className="w-[5rem]">Course</p>
                             <p className="w-6">:</p>
-                            <p id="username" className="w-[10rem]"></p>
+                            <p id="course" className="w-[15rem]"></p>
                         </div>
-                        <div className="flex items-center gap-6 h-7">
+                        <div className="flex items-center gap-2 h-7">
                             <p className="w-[5rem]">Contact</p>
                             <p className="w-6">:</p>
-                            <p id="contact" className="w-[10rem]"></p>
+                            <p id="contact" className="w-[15rem]"></p>
                         </div>
-                        <div className="flex items-center gap-6 h-7">
+                        <div className="flex items-center gap-2 h-7">
                             <p className="w-[5rem]">College</p>
                             <p className="w-6">:</p>
-                            <p id="college" className="w-[10rem]"></p>
+                            <p id="college" className="w-[15rem]"></p>
                         </div>
                     </div>
 

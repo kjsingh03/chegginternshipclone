@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    internships:[]
+    internships:[],
+    test:[]
 }
 
 export const internshipSlice = createSlice({
@@ -10,6 +11,9 @@ export const internshipSlice = createSlice({
     reducers:{
         updateInternships:(state,action)=>{
             state.internships = action.payload
+        },
+        setTest:(state,action)=>{
+            state.test = action.payload
         }
     }
 })

@@ -19,6 +19,7 @@ import TnC from './components/Pages/TnC.jsx'
 import PrivacyPolicy from './components/Pages/PrivacyPolicy.jsx'
 import About from './components/Pages/About.jsx'
 import Refund from './components/Pages/Refund.jsx'
+import AdminPanel from './components/Pages/AdminPanel.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/about" element={<About />} />
       <Route path="/refund" element={<Refund />} />
+      <Route path="/admin" element={<AdminPanel />} />
     </Route>
   )
 )

@@ -22,10 +22,11 @@ function Login() {
         axios.post("http://localhost:8080/auth/login", form)
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
+                // console.log(res.data)
                 setTimeout(() => navigate("/"), 1000)
                 localStorage.setItem("credentials", JSON.stringify(res.data.user))
             })
-            .catch((err) => document.getElementById("error").innerText = err.response.data.message)
+            .catch((err) => document.getElementById("error").innerText = err.response.data.error)
             .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
     }
 
@@ -48,7 +49,7 @@ function Login() {
                 <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
                 <input type="text" name="password" onChange={handleChange} placeholder="Enter Password" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
                 <p className="text-red-500 font-medium h-6" id="error"></p>
-                <button className="btn text-sm w-full" onClick={submit}>Sign In</button>
+                <button className="btn text-sm w-full" onClick={submit}>Log In</button>
                 <div className="w-full text-center font-medium">
                     <p>Don't have an account? <span onClick={() => navigate("/signup")} className='text-red-500 hover:underline cursor-pointer'>Sign Up</span></p>
                 </div>
