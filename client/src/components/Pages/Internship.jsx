@@ -24,18 +24,22 @@ function Internship() {
     const [promocodes, setPromocodes] = useState([])
     const [price, setPrice] = useState(0)
     const [lesson, setLesson] = useState({})
-    const [assignment, setAssignment] = useState([])
-    const [points,newPoints] = useState(80)
+    const [test, setTest] = useState([])
+    const [points, setPoints] = useState(0)
+    const [activeOptions, setActiveOptions] = useState([])
+
+    let newActiveOptions = [...activeOptions]
 
     const user = JSON.parse(localStorage.getItem("credentials"))
 
-    const userCertificate = user?.certificates?.filter(data=>data?.internship===internship?._id)[0]
+    const userCertificate = user?.certificates?.filter(data => data?.internship === internship?._id)[0]
 
     useEffect(() => {
         axios.get(`http://localhost:8080/internship/${id}`)
             .then(res => {
                 setInternship(res.data.internship)
                 setLesson(res.data.internship.lessons[0])
+                // setTest(res.data.internship.questions)
                 setPrice(Math.floor(res.data.internship.price * (1 - res.data.internship.discount / 100)))
                 setGenerated(user?.certificates.filter(certificate => certificate?.internship === res.data.internship._id)[0])
                 for (let data in user?.internships) {
@@ -51,13 +55,13 @@ function Internship() {
             .then(res => setPromocodes(res.data.promocodes))
             .catch(err => console.log(err))
 
-           
+
     }, [])
 
-    useEffect(()=>{ 
-        if(userCertificate)
-        setCompleted(true)
-    },[internship])
+    useEffect(() => {
+        if (userCertificate)
+            setCompleted(true)
+    }, [internship])
 
     const handleClick = () => {
         const promoSection = document.querySelector(".promosection")
@@ -230,7 +234,15 @@ function Internship() {
 
             // Draw a string of text diagonally across the first page
 
-            if(userCertificate){
+            let testLength = 0 ;
+            const testQuestion = document.querySelectorAll('.testQuestion')
+            for(let i in testQuestion){
+                testLength++;
+                console.log(testQuestion[i])
+            }
+            console.log(testLength)
+
+            if (userCertificate) {
                 firstPage.drawText(name, {
                     x: 315,
                     y: 374,
@@ -239,23 +251,23 @@ function Internship() {
                     color: rgb(0.121, 0.337, 0.517),
                 });
                 firstPage.drawText(`${userCertificate?.duration}`, {
-                    x: 428,
+                    x: 421,
                     y: 315,
-                    size:16,
+                    size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
                 firstPage.drawText(`${userCertificate?.name}`, {
-                    x: 170,
-                    y: 289,
-                    size:16,
+                    x: 540,
+                    y: 287,
+                    size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-                firstPage.drawText(`${userCertificate?.percentage}%`, {
-                    x: 644,
-                    y: 263,
-                    size:16,
+                firstPage.drawText(`${points/testLength*100}%`, {
+                    x: 634,
+                    y: 257,
+                    size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
@@ -266,7 +278,7 @@ function Internship() {
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-                firstPage.drawText(`${userCertificate?.date.split("T")[0].replace(/-/g,"/")}`, {
+                firstPage.drawText(`${userCertificate?.date.split("T")[0].replace(/-/g, "/")}`, {
                     x: 689,
                     y: 105,
                     size: 14,
@@ -274,10 +286,10 @@ function Internship() {
                     color: rgb(0, 0, 0),
                 });
             }
-            else{
-                const string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            else {
+                const string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 codeId = "";
-    
+
                 for (let i = 0; i < 8; i++) {
                     codeId += string[Math.floor(Math.random() * string.length)];
                 }
@@ -290,23 +302,23 @@ function Internship() {
                     color: rgb(0.121, 0.337, 0.517),
                 });
                 firstPage.drawText(`${internship.duration}`, {
-                    x: 428,
+                    x: 421,
                     y: 315,
-                    size:16,
+                    size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
                 firstPage.drawText(`${internship.name}`, {
-                    x: 170,
-                    y: 289,
-                    size:16,
+                    x: 540,
+                    y: 287,
+                    size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
                 firstPage.drawText(`${points}%`, {
-                    x: 644,
-                    y: 263,
-                    size:16,
+                    x: 634,
+                    y: 257,
+                    size: 16,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
@@ -317,14 +329,14 @@ function Internship() {
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-                firstPage.drawText(`${new Date().toJSON().slice(0,10).replace(/-/g,'/')}`, {
+                firstPage.drawText(`${new Date().toJSON().slice(0, 10).replace(/-/g, '/')}`, {
                     x: 689,
                     y: 105,
                     size: 14,
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-    
+
                 axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId } }, {
                     headers: {
                         "Authorization": user?.token,
@@ -332,7 +344,7 @@ function Internship() {
                     }
                 })
                     .then((res) => {
-                        axios.put(`http://localhost:8080/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId,percentage:points,name:internship.name,duration:internship.duration,date:new Date().toJSON().slice(0,10) } }, {
+                        axios.put(`http://localhost:8080/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId, percentage: points, name: internship.name, duration: internship.duration, date: new Date().toJSON().slice(0, 10) } }, {
                             headers: {
                                 "Authorization": user?.token,
                                 "Content-Type": "application/json"
@@ -346,7 +358,7 @@ function Internship() {
                     })
                     .catch((err) => console.log(err))
             }
-            
+
 
             // Serialize the PDFDocument to bytes (a Uint8Array)
             const pdfBytes = await pdfDoc.save();
@@ -376,7 +388,40 @@ function Internship() {
         }
     }
 
-    
+    const activateSidebar = () => {
+        const toggler = document.getElementById('sidebar-toggler')
+        const sidebar = document.querySelector('.sidebar')
+
+        if (sidebar.classList.contains('active'))
+            sidebar.classList.remove('active')
+        else
+            sidebar.classList.add('active')
+
+        document.querySelector('.sidebar ~ .black').addEventListener('click', () => {
+            sidebar.classList.remove('active')
+        })
+
+    }
+
+    const selectOption = (index, option) => {
+
+        newActiveOptions[index] = option
+        setActiveOptions([...newActiveOptions])
+    }
+
+    const submitQuiz = () => {
+        setCompleted(true);
+        setTest({});
+        document.querySelector(".getCertificate").style.display = 'block'
+        let newPoints =0;
+        activeOptions.forEach((option, index) => {
+            
+            if(test[index].options[activeOptions[index]].correct)
+                newPoints+=1
+        })
+        setPoints(newPoints)
+    }
+
 
     if (!access) {
         return (
@@ -409,7 +454,7 @@ function Internship() {
                     <div className="promosection hidden bg-black/5 items-center text-white text-lg justify-center absolute h-full top-0 left-0 z-40 w-full">
                         <div className="flex flex-col items-center gap-5 w-[25rem] bg-[#272626] p-6 rounded-xl">
                             <i onClick={() => document.querySelector('.promosection').style.display = "none"} className="fa-solid fa-xmark w-full text-right"></i>
-                            <input type="text" name="username" onChange={e => setPromo(e.target.value)} placeholder="Enter promocode" className='border-2 rounded-xl border-[#313131] outline-[#313131] p-4' />
+                            <input type="text" name="username" onChange={e => setPromo(e.target.value)} placeholder="Enter promocode" className='border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-4' />
                             <p className=" text-base font-medium h-6">Price : {price}</p>
                             <p className="text-red-500 text-sm font-medium h-6" id="error"></p>
                             <div className="flex gap-2">
@@ -433,61 +478,72 @@ function Internship() {
         return (
             <>
                 <Navbar />
-                <div className="sidebar px-3" id="sidebar">
-                    <ul className="sidebar-menu">
-                        <li className="menu-item"><div >Lesson</div></li>
-                        {
-                            internship?.lessons.map((lesson, index) => (
-                                <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setAssignment({});document.querySelector(".getCertificate").style.display='none' }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
-                            ))
-                        }
 
-                        <li className="menu-item"><div to={`/assignment/${id}`}>Assignment</div></li>
-                        <li className="menu-item" onClick={() => { setLesson({}); setAssignment(internship?.questions);document.querySelector(".getCertificate").style.display='none' }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Assignment</span><i
-                            className="fa-solid fa-chevron-right"></i>
-                        </Link></li>
-                        {
-                            completed &&
-                            <li className="menu-item"><div to={`/assignment/${id}`}>Certificate</div></li>
-                        }
-                        {
-                            completed && <li className="menu-item" onClick={() => { setLesson({}); setAssignment({}) ;document.querySelector(".getCertificate").style.display='block'}}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
+                <button onClick={activateSidebar} id="sidebar-toggler" className="absolute block lg:hidden text-xl py-[0.71rem] px-4 z-[2000]"  >☰</button>
+                <div className="flex">
+
+                    <div className="sidebar px-3 lg:shadow-none shadow-xl" id="sidebar">
+                        <ul className="sidebar-menu">
+                            <li className="menu-item"><div >Lesson</div></li>
+                            {
+                                internship?.lessons.map((lesson, index) => (
+                                    <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setTest({}); document.querySelector(".getCertificate").style.display = 'none' }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
+                                ))
+                            }
+
+                            <li className="menu-item"><div to={`/assignment/${id}`}>Test</div></li>
+                            <li className="menu-item" onClick={() => { setLesson({}); setTest(internship?.questions); document.querySelector(".getCertificate").style.display = 'none' }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Test</span><i
                                 className="fa-solid fa-chevron-right"></i>
                             </Link></li>
-                        }
+                            {
+                                completed &&
+                                <li className="menu-item"><div to={`/assignment/${id}`}>Certificate</div></li>
+                            }
+                            {
+                                completed && <li className="menu-item" onClick={() => { setLesson({}); setTest({}); document.querySelector(".getCertificate").style.display = 'block' }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
+                                    className="fa-solid fa-chevron-right"></i>
+                                </Link></li>
+                            }
 
 
-                    </ul>
+                        </ul>
+                    </div>
+
+                    <div className="black fixed translate-x-[-100%] right-0 w-[calc(100vw)] z-[900] bg-[#0000005b] h-screen"></div>
+
                 </div>
-                <div className="ml-[18rem] pt-[6rem]">
+                <div className="w-full md:w-[80%] lg:w-auto mx-auto lg:ml-[18rem] pt-[6rem]">
                     {
                         lesson &&
-                        <div className='flex flex-col gap-6'>
-                            <h4 className='text-2xl'>{lesson.lesson}</h4>
-                            <iframe width="560" height="315" style={{ display: lesson.lesson ? 'block' : 'none' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            <h4>{lesson.description}</h4>
+                        <div className='flex flex-col gap-6 items-center md:items-start text-center md:text-left'>
+                            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{lesson.lesson}</h1>
+                            <div style={{ display: lesson.lesson ? 'block' : 'none' }} className="md:w-[40rem] md:h-[21rem] sm:w-[26rem] sm:h-[14rem] ">
+                                <iframe style={{ display: lesson.lesson ? 'block' : 'none', width: '100%', height: '100%' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                            </div>
+                            <p className="text-sm lg:text-lg font-medium w-full">{lesson.description}</p>
+
                         </div>
                     }
                     {
-                        assignment.length > 0 &&
-                        <div className="flex flex-col gap-5">
-                            {assignment.map((data, index) => (
-                                <div className="flex flex-col gap-5" key={index}>
+                        test?.length > 0 &&
+                        <div className="flex flex-col gap-5 px-8 text-sm">
+                            {test?.map((data, index) => (
+                                <div  className="testQuestion flex flex-col gap-5" key={index}>
                                     <h1 className="text-xl">{data.question}</h1>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <p>{data.options[0].option}</p>
-                                        <p>{data.options[1].option}</p>
-                                        <p>{data.options[2].option}</p>
-                                        <p>{data.options[3].option}</p>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <p onClick={() => selectOption(index, 0)} className='border border-[#1B88F4] p-2 rounded-xl'>1. {data.options[0].option}</p>
+                                        <p onClick={() => selectOption(index, 1)} className='border border-[#1B88F4] p-2 rounded-xl'>2. {data.options[1].option}</p>
+                                        <p onClick={() => selectOption(index, 2)} className='border border-[#1B88F4] p-2 rounded-xl'>3. {data.options[2].option}</p>
+                                        <p onClick={() => selectOption(index, 3)} className='border border-[#1B88F4] p-2 rounded-xl'>4. {data.options[3].option}</p>
                                     </div>
                                 </div>
                             ))}
-                            <button onClick={() => { setCompleted(true); setAssignment({});document.querySelector(".getCertificate").style.display='block' }} className='btn w-max text-sm'>Complete</button>
+                            <button onClick={() => submitQuiz()} className='btn w-max text-sm'>Complete</button>
                         </div>
                     }
                     {
                         completed &&
-                        <div className="hidden getCertificate">
+                        <div className="getCertificate hidden">
                             <button onClick={getCertificate} className="btn">Get certificate</button>
                         </div>
                     }

@@ -6,7 +6,7 @@ function Card({ data }) {
     const user = JSON.parse(localStorage.getItem("credentials"))
 
     return (
-        <Link to={user ? `/internship/${data.id}` : "/login"} className="shadow-sm card w-[20rem] sm:w-[19rem] overflow-hidden hover:shadow-xl transition-all duration-150 ease-in flex flex-col justify-between px-10 py-8 md:p-8 gap-9 rounded-lg border border-[#EAECF0]">
+        <Link to={user ? `/internship/${data.id}` : "/login"} className="shadow-sm card w-[20rem] sm:w-[19rem] overflow-hidden hover:shadow-lg transition-all duration-150 ease-in flex flex-col justify-between px-10 py-8 md:p-8 gap-9 rounded-lg border border-[#EAECF0]">
             <div className="flex flex-col gap-1">
                 <h3 className="text-lg font-bold  ">{data.name}</h3>
                 {/* <h2 className="text-base font-bold  ">{data.organisation}</h2> */}
@@ -19,7 +19,7 @@ function Card({ data }) {
                     <p className='flex gap-2 text-sm text-red-500'>({data.discount}% off)</p>
                 </div>
             </div>
-            <div className='btn '>View Details</div>
+            <div className='btn text-sm text-[#1B88F4] bg-transparent border-2 border-[#1B88F4]'>View Details</div>
         </Link>
     )
 }

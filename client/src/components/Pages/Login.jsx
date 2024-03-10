@@ -45,8 +45,8 @@ function Login() {
                     <p onClick={setUserType} className="role active w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">User</p>
                     <p onClick={setUserType} className="role w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">Organisation</p>
                 </div> */}
-                <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                <input type="text" name="password" onChange={handleChange} placeholder="Enter Password" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
+                <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
+                <input type="text" name="password" onChange={handleChange} placeholder="Enter Password" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
                 <p className="text-red-500 font-medium h-6" id="error"></p>
                 <button className="btn text-sm w-full" onClick={submit}>Sign In</button>
                 <div className="w-full text-center font-medium">

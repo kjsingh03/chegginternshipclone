@@ -21,6 +21,7 @@ import thumb5 from '../../assets/5.png'
 import thumb6 from '../../assets/6.png'
 import thumb7 from '../../assets/7.png'
 import Footer from '../Footer/Footer';
+import Component from '../whatsapp/Component';
 
 const Home = () => {
 
@@ -51,22 +52,9 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <Component />
       <div className='flex flex-col gap-4 max-h-screen overflow-y-auto'>
-
-        <div className="w-full xl:w-[90%] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12 pt-[7rem] ">
-          <h1 className="text-base xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mx-auto">Courses that Transform, Learning that Lasts.</h1>
-          <p className="text-sm lg:text-xl font-medium w-full sm:w-[90%] mx-auto">
-            Crafting Excellence with Skillwallah: Your Journey Begins Now.
-          </p>
-
-          {
-            !user &&
-            <Link to="/login"><button className="btn">Get started</button></Link>
-          }
-        </div>
-
-
-        <div className="py-[3.5rem] w-full mx-auto ">
+        <div className="py-[3.5rem] w-full mx-auto lg:gap-12 pt-[3.25rem]">
           <Swiper
             style={{
               "--swiper-navigation-color": "#000",
@@ -80,7 +68,7 @@ const Home = () => {
             // loop={true}
             navigation={true}
             modules={[Autoplay, Navigation]}
-            className="mySwiper xs:h-[] sm:h-[] md:h w-[80%] md:w-[40rem] md:h-[23rem]"
+            className="mySwiper xs:h-[] sm:h-[] md:h md:h-[41rem]"
           >
             <SwiperSlide>
               <img src={thumb1} className="w-full h-full object-bottom" />
@@ -104,8 +92,21 @@ const Home = () => {
               <img src={thumb7} className="w-full h-full object-bottom" />
             </SwiperSlide>
           </Swiper>
-
         </div>
+
+        <div className="w-full xl:w-[90%] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12  ">
+          <h1 className="text-base xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mx-auto">Courses that Transform, Learning that Lasts.</h1>
+          <p className="text-sm lg:text-xl font-medium w-full sm:w-[90%] mx-auto">
+            Crafting Excellence with Skillwallah: Your Journey Begins Now.
+          </p>
+
+          {
+            !user &&
+            <Link to="/login"><button className="btn">Get started</button></Link>
+          }
+        </div>
+
+
 
         <div className="internship-section flex flex-col gap-4 sm:gap-10">
           <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
@@ -130,7 +131,10 @@ const Home = () => {
                 0: {
                   slidesPerView: 1,
                   grabCursor: true,
-                  centeredSlides: true
+                  centeredSlides: true,
+                  autoplay:{
+                    delay:4000
+                  }
                 },
                 640: {
                   slidesPerView: 2,
@@ -138,15 +142,16 @@ const Home = () => {
                 },
                 900: {
                   slidesPerView: 3,
-                  spaceBetween: 0
+                  spaceBetween: 0 
                 },
               }}
               autoplay={{
-                delay: 2000,
+                delay: 2750,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto internship-swiper"
+              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
             >
               {
                 internships?.map((data, index) => (
@@ -166,7 +171,10 @@ const Home = () => {
                 0: {
                   slidesPerView: 1,
                   grabCursor: true,
-                  centeredSlides: true
+                  centeredSlides: true,
+                  autoplay:{
+                    delay:4000
+                  }
                 },
                 640: {
                   slidesPerView: 2,
@@ -178,11 +186,12 @@ const Home = () => {
                 },
               }}
               autoplay={{
-                delay: 2000,
+                delay: 2750,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto internship-swiper"
+              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Computer').map((data, index) => (
@@ -194,7 +203,7 @@ const Home = () => {
             </Swiper>
           </div>
           <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-8 mx-auto flex flex-col gap-4 sm:gap-6">
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold px-6 sm:px-0  ">Electronics Engineering</h2>
+            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold px-6 sm:px-0  ">ECE/EEE Engineering</h2>
 
             <Swiper
               spaceBetween={0}
@@ -202,7 +211,10 @@ const Home = () => {
                 0: {
                   slidesPerView: 1,
                   grabCursor: true,
-                  centeredSlides: true
+                  centeredSlides: true,
+                  autoplay:{
+                    delay:4000
+                  }
                 },
                 640: {
                   slidesPerView: 2,
@@ -214,11 +226,12 @@ const Home = () => {
                 },
               }}
               autoplay={{
-                delay: 2000,
+                delay: 2750,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto internship-swiper"
+              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Electronics').map((data, index) => (
@@ -238,7 +251,10 @@ const Home = () => {
                 0: {
                   slidesPerView: 1,
                   grabCursor: true,
-                  centeredSlides: true
+                  centeredSlides: true,
+                  autoplay:{
+                    delay:4000
+                  }
                 },
                 640: {
                   slidesPerView: 2,
@@ -250,11 +266,12 @@ const Home = () => {
                 },
               }}
               autoplay={{
-                delay: 2000,
+                delay: 2750,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto internship-swiper"
+              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Mechanical').map((data, index) => (
@@ -286,11 +303,12 @@ const Home = () => {
                 },
               }}
               autoplay={{
-                delay: 2000,
+                delay: 2750,
                 disableOnInteraction: false,
+                pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto internship-swiper"
+              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Civil').map((data, index) => (

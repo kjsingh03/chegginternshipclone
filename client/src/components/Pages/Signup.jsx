@@ -48,12 +48,12 @@ function Signup() {
                     <p onClick={setUserType} className="role active w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">User</p>
                     <p onClick={setUserType} className="role w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">Organisation</p>
                 </div> */}
-                <input type="text" name="name" onChange={handleChange} placeholder="Enter Name (for certification)" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                <input type="email" name="email" onChange={handleChange} placeholder="Enter Email" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                <input type="number" name="contact" onChange={handleChange} placeholder="Enter Contact Number (Whatsapp)" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                <input type="text" name="college" onChange={handleChange} placeholder="Enter college" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
-                <input type="text" name="password" onChange={handleChange} placeholder="Create Password" className='w-full border-2 rounded-xl border-[#313131] outline-[#313131] p-3' />
+                <input type="text" name="name" onChange={handleChange} placeholder="Enter Name (for certification)" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
+                <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
+                <input type="email" name="email" onChange={handleChange} placeholder="Enter Email" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
+                <input type="number" name="contact" onChange={handleChange} placeholder="Enter Contact Number (Whatsapp)" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
+                <input type="text" name="college" onChange={handleChange} placeholder="Enter college" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
+                <input type="text" name="password" onChange={handleChange} placeholder="Create Password" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
 
                 <p className="text-red-500 font-medium h-6" id="error">Note : you can set your name only once</p>
 

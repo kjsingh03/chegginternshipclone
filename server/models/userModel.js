@@ -8,7 +8,7 @@ import { Schema, model } from "mongoose";
 
 const internshipSchema = new Schema({
     name: { type: String, required: [true, "Enter Course Name"] },
-    branch: { type: String, required: [true, "Enter Branch Name"],enum:["Computer","Civil","Electronics","Mechanical"] },
+    branch: { type: String, required: [true, "Enter Branch Name"], enum: ["Computer", "Civil", "Electronics", "Mechanical", "Mining"] },
     duration: { type: Number, required: [true, "Enter Duration"] },
     discount: { type: Number, required: [true, "Enter discount"] },
     skills: [{ type: String }],
@@ -33,7 +33,7 @@ const internshipSchema = new Schema({
     lessons: [
         {
             lesson: { type: String, required: [true, "Enter Lesson Name"] },
-            url: { type: String, required: [true, "Enter URL"] },
+            url: { type: String },
             description: { type: String }
         }],
     assignmentTask: { type: String, required: [true, "Enter Assignment"] },
@@ -56,17 +56,24 @@ const userSchema = new Schema({
     password: { type: String, required: [true, "Enter password"], minlength: [8, "Password must be atleast 8 characters long"] },
     certificates: [{
         internship: { type: Schema.Types.ObjectId, ref: "Internship" },
-        generated: { type: Boolean, default: false },
         codeId: { type: String },
-        date:{type:Date},
-        percentage:{type:Number},
-        name:{type:String},
-        duration:{type:Number}
+        date: { type: Date },
+        percentage: { type: Number },
+        name: { type: String },
+        duration: { type: Number }
     }],
     role: { type: String, enum: ["User", "Admin"], default: "User" },
     token: { type: String },
     internships: [{ type: Schema.Types.ObjectId, ref: "Internship" }],
-    promocodes: [{ name: { type: String }, value: { type: Number }, used: { type: Boolean, default: false } }]
+    promocodes: [{
+        name: {
+            type: String, required: [true, "Enter Promocode Name"],
+            minlength: [1, "Enter Promocode"]
+        }, value: {
+            type: Number,
+            required: [true, "Enter Promo Value"]
+        }
+    }]
 })
 
 export const Internship = model("Internship", internshipSchema);

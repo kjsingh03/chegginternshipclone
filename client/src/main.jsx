@@ -14,6 +14,11 @@ import Add from './components/Pages/Add.jsx'
 import Update from './components/Pages/Update.jsx'
 import Verify from './components/Pages/Verify.jsx'
 import Profile from './components/Pages/Profile.jsx'
+import Contact from './components/Pages/Contact.jsx'
+import TnC from './components/Pages/TnC.jsx'
+import PrivacyPolicy from './components/Pages/PrivacyPolicy.jsx'
+import About from './components/Pages/About.jsx'
+import Refund from './components/Pages/Refund.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +33,11 @@ const router = createBrowserRouter(
       <Route path="/update/:id" element={<Update />} />
       <Route path="/verify" element={<Verify />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/tnc" element={<TnC />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/refund" element={<Refund />} />
     </Route>
   )
 )

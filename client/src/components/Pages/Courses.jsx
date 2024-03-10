@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { updateInternships } from '../../store/internshipslice'
 import { Link } from 'react-router-dom'
+import Footer from '../Footer/Footer'
+import Component from '../whatsapp/Component'
 
 function Profile() {
 
@@ -71,6 +73,8 @@ function Profile() {
                 }
 
             </div>
+            <Component/>
+            <Footer/>
         </>
     )
 }

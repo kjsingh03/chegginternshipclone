@@ -25,36 +25,39 @@ const Navbar = () => {
 
   useEffect(() => {
     // document.addEventListener('DOMContentLoaded', function () {
-      const toggler = document.getElementById('navbar-toggler')
-      const navbar = document.querySelector('.nav-sidebar')
-      const navList = document.querySelector('.nav-list')
-      const navbg = 
+    const toggler = document.getElementById('navbar-toggler')
+    const navbar = document.querySelector('.nav-sidebar')
+    const navList = document.querySelector('.nav-list')
+    const navbg =
 
       toggler.addEventListener('click', () => {
-        navbar.style.transform = navbar.style.transform==='translateX(0)'?'translateX(-100%)':'translateX(0)';
+        navbar.style.transform = navbar.style.transform === 'translateX(0)' ? 'translateX(-100%)' : 'translateX(0)';
         document.querySelector('.nav-list ~ div').addEventListener('click', (event) => {
-              navbar.style.transform = 'translateX(-100%)'
-          })
+          navbar.style.transform = 'translateX(-100%)'
+        })
       })
     // })
-    }, [])
+  }, [])
 
 
   return (
     <>
-      <div className="z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-2 py-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
-        <div className="flex items-center justify-between gap-2 md:gap-3 sm:gap-5 ">
-          <button id="navbar-toggler" className="block sm:hidden text-xl px-4"  >☰</button>
+      <div className="z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-12 lg:px-2 py-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
+        <div className="flex items-center justify-between gap-2 md:gap-3 sm:gap-5 relative">
+          <button id="navbar-toggler" className="block sm:hidden text-xl px-4 absolute left-[-3rem] z-[1500]"  >☰</button>
           <div className="w-[7rem] ">
             <Link to="/"><img src={logo} alt="SkillsWallah Logo" className="block w-full h-full object-fill" /></Link>
             {/* <Link to="/"><img src={smallLogo} alt="SkillsWallah Logo" className="block sm:hidden w-full h-full object-fill" /></Link> */}
           </div>
           <ul className="flex items-center justify-between gap-3 sm:gap-5">
-            <li className="hidden sm:block"><Link to="/">HOME</Link></li>
+            {
+              !user?.role === 'Admin' &&
+              <li className="hidden sm:block"><Link to="/">HOME</Link></li>
+            }
 
             {
               user &&
-              <li className="hidden sm:block"><Link to="/courses">{!user.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
+              <li className="hidden sm:block"><Link to="/courses">{user.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
             }
             {
               user?.role === 'Admin' &&
@@ -85,29 +88,38 @@ const Navbar = () => {
       </div>
       <div className="nav-sidebar translate-x-[-100%] absolute z-[1000] w-screen flex">
         <div className="nav-list flex flex-col gap-4 bg-white h-screen w-[15rem] text-sm p-4 font-medium">
-            <p>{user?.name}</p>
-            <p>{user?.email}</p>
+          <div className="flex items-center gap-2">
+            <i className="fa-solid fa-user-circle text-3xl"></i>
+            <div className="">
+              <p>{user?.name}</p>
+              <p className="text-xs">{user?.email}</p>
+            </div>
+          </div>
           <p className=""><Link to="/">HOME</Link></p>
 
-          {
-            user &&
-            <div onClick={() => document.querySelector('.nav-courses').style.display = document.querySelector('.nav-courses').style.display === 'flex' ? 'none' : 'flex'}>
-              <p className=""> COURSES <i className="fa-solid fa-chevron-down"></i></p>
-              <div className="hidden nav-courses flex-col gap-4 p-4">
-                {
-                  internships?.map((data, index) => (
-                    <p key={index}><Link to={`/internship/${data.id}`}>{data.name}</Link></p>
-                  ))
-                }
-              </div>
+
+          <div onClick={() => document.querySelector('.nav-courses').style.display = document.querySelector('.nav-courses').style.display === 'flex' ? 'none' : 'flex'}>
+            <p className=""> COURSES <i className="fa-solid fa-chevron-down"></i></p>
+            <div className="hidden nav-courses flex-col gap-4 p-4">
+              {
+                internships?.map((data, index) => (
+                  <p key={index}><Link to={`/internship/${data.id}`}>{data.name}</Link></p>
+                ))
+              }
             </div>
-          }
+          </div>
+
           {
             user?.role === 'Admin' &&
             <p className=""><Link to="/add">ADD NEW</Link></p>
           }
 
-          <p className=""><Link to="/verify">CERTIFICATE VERIFICATION</Link></p>
+          <p><Link to="/verify">CERTIFICATE VERIFICATION</Link></p>
+          <p><Link to="/about">ABOUT US</Link></p>
+          <p><Link to="/privacy">PRIVACY POLICY</Link></p>
+          <p><Link to="/contact">CONTACT US</Link></p>
+          <p><Link to="/refund">REFUND POLICY</Link></p>
+          <p><Link to="/tnc">TERMS & CONDITIONS</Link></p>
           {
             user &&
             <p className="" onClick={logout}>LOGOUT</p>
