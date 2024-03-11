@@ -124,6 +124,14 @@ const Navbar = () => {
             user?.role === 'Admin' &&
             <p className=""><Link to="/add">ADD NEW</Link></p>
           }
+          {
+            user?.role === 'Admin' &&
+            <p className=""><Link to="/courses">COURSES</Link></p>
+          }
+          {
+            user?.role !== 'Admin' &&
+            <p className=""><Link to="/courses">MY COURSES</Link></p>
+          }
 
           <p><Link to="/verify">CERTIFICATE VERIFICATION</Link></p>
           <p><Link to="/about">ABOUT US</Link></p>
