@@ -58,14 +58,7 @@
     --transition-default: all 0.3s ease; /* Default transition for hover effects and similar */
   
     /* Z-index */
-    --zindex-dropdown: 1000; /* Z-index for dropdown menus */
-    --zindex-sticky: 1020; /* Z-index for sticky elements */
-    --zindex-fixed: 1030; /* Z-index for fixed elements */
-    --zindex-modal-backdrop: 1040; /* Z-index for modal backdrops */
-    --zindex-modal: 1050; /* Z-index for modals */
-    --zindex-popover: 1060; /* Z-index for popovers */
-    --zindex-tooltip: 1070; /* Z-index for tooltips */
-  
+    
     /* Responsive Breakpoints */
     --breakpoint-xs: 0; /* Extra small devices (portrait phones) */
     --breakpoint-sm: 576px; /* Small devices (landscape phones) */
@@ -86,7 +79,7 @@
     transition: transform 0.3s ease-in-out;
     overflow-y: auto;
     /* height: 100vh; */
-    z-index: 1250;
+    z-index: 998;
     height: calc(100vh - 51px);
         top: 51px;
 }
@@ -109,7 +102,7 @@
     border-radius: var(--border-radius);
     padding: var(--spacing-xs) var(--spacing-md);
     cursor: pointer;
-    z-index: var(--zindex-fixed);
+    z-index: 998;
     border: 1px solid var(--border-color);
 }
 
