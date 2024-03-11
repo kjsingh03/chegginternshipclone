@@ -5,6 +5,8 @@ import Footer from '../Footer/Footer'
 
 function AdminPanel() {
 
+    const user = JSON.parse(localStorage.getItem('credentials'))
+
     // const [user, setUser] = useState({})
     const [promocodes, setPromocodes] = useState([])
     const [users, setUsers] = useState([])

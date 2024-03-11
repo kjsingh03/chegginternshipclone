@@ -26,7 +26,7 @@ function Login() {
                 setTimeout(() => navigate("/"), 1000)
                 localStorage.setItem("credentials", JSON.stringify(res.data.user))
             })
-            .catch((err) => document.getElementById("error").innerText = err.response.data.error)
+            .catch((err) => document.getElementById("error").innerText = err.response.data.message)
             .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
     }
 
@@ -46,14 +46,14 @@ function Login() {
                     <p onClick={setUserType} className="role active w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">User</p>
                     <p onClick={setUserType} className="role w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">Organisation</p>
                 </div> */}
-                <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
-                <input type="text" name="password" onChange={handleChange} placeholder="Enter Password" className='w-full border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-3' />
+                <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
+                <input type="text" name="password" onChange={handleChange} placeholder="Enter Password" className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
                 <p className="text-red-500 font-medium h-6" id="error"></p>
                 <button className="btn text-sm w-full" onClick={submit}>Log In</button>
                 <div className="w-full text-center font-medium">
                     <p>Don't have an account? <span onClick={() => navigate("/signup")} className='text-red-500 hover:underline cursor-pointer'>Sign Up</span></p>
                 </div>
-                <GoogleOAuthProvider clientId="998073669915-anlutjml8l1v5kmhkrvnh5klk3sa9qmk.apps.googleusercontent.com">
+                <GoogleOAuthProvider clientId="338532837249-shjrc0p3oo4omlac9659sl36a1gggo2h.apps.googleusercontent.com">
                     <Google />
                 </GoogleOAuthProvider>
             </div>

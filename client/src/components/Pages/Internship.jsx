@@ -57,7 +57,7 @@ function Internship() {
             .catch(err => console.log(err))
 
 
-    }, [])
+    }, [id])
 
     useEffect(() => {
         if (userCertificate)
@@ -65,8 +65,15 @@ function Internship() {
     }, [internship])
 
     const handleClick = () => {
-        const promoSection = document.querySelector(".promosection")
-        promoSection.style.display = "flex"
+        if(user){
+            const promoSection = document.querySelector(".promosection")
+            promoSection.style.display = "flex"
+        }
+        else{
+            navigate('/login')
+            setTimeout(()=>document.getElementById("error").innerText="Kindly Login First",50)
+            setTimeout(()=>document.getElementById("error").innerText="",1150)
+        }
     }
 
     const submit = () => {
@@ -77,7 +84,9 @@ function Internship() {
         if (isPromo) {
 
             if (!usedPromo) {
-                document.querySelector("#error").innerHTML = "Promocode applied successfully"
+                document.getElementById("success").style.display='block'
+                document.getElementById("error").style.display='none'
+                document.getElementById("success").innerHTML = "Promocode applied successfully"
                 setPrice(price => {
                     axios.post("http://localhost:8080/pay", {
                         amount: price * (1 - isPromo.value / 100) * 100,
@@ -411,7 +420,7 @@ function Internship() {
                 newPoints += 1
         })
         setPoints(newPoints)
-        if (newPoints >= 1) {
+        if (newPoints >= 12) {
             setCompleted(true)
             setDisabled(false)
             setTest({});
@@ -427,14 +436,14 @@ function Internship() {
         return (
             <>
                 <Navbar />
-                <div className="w-full lg:w-[90%] xl:w-[80%] p-10 mx-auto py-[8rem] flex flex-col gap-6 ">
+                <div className="w-full lg:w-[90%] xl:w-[80%] p-10 mx-auto py-[5rem] sm:py-[8rem] flex flex-col gap-6 ">
                     <h3 className="text-lg font-bold">{internship.name}</h3>
                     <div className="flex md:flex-row flex-col w-full gap-6 md:items-center justify-between">
                         <p className='flex items-center gap-2'><i className="w-4 fa-solid fa-calendar-days"></i>{internship.duration} Weeks </p>
                         {/* <p className='flex items-center gap-2'><i className="fa-solid fa-hourglass-end"></i> {internship.lastApplyDate?.split("T")[0].replace(/-/g, "/")}</p> */}
                     </div>
                     <h2 className="text-base font-bold">Skill(s) offered</h2>
-                    <div className="flex items-center gap-12">
+                    <div className="flex sm:items-center gap-6 sm:gap-12 sm:flex-row flex-col">
                         {internship?.skills?.map((skill, index) => (
                             <p key={index} className='flex items-center gap-2'>{skill} </p>
                         ))}
@@ -447,19 +456,19 @@ function Internship() {
                     </div>
                     <h2 className="text-base font-bold">Price</h2>
                     <p className='flex items-center gap-2'>{price} </p>
-                    {
-                        user.role === 'User' &&
-                        <div onClick={handleClick} className="btn w-max h-12">Buy Now</div>
-                    }
-                    <div className="promosection hidden bg-black/5 items-center text-white text-lg justify-center absolute h-full top-0 left-0 z-40 w-full">
-                        <div className="flex flex-col items-center gap-5 w-[25rem] bg-[#272626] p-6 rounded-xl">
+                    
+                    <div onClick={handleClick} className="btn w-max py-2 text-base">Buy Now</div>
+                     
+                    <div className="promosection hidden bg-black/40 items-center text-[black] text-lg justify-center absolute h-full top-0 left-0 z-[1000] w-full">
+                        <div className="flex flex-col items-center gap-5 w-[25rem] bg-white p-6 rounded-xl">
                             <i onClick={() => document.querySelector('.promosection').style.display = "none"} className="fa-solid fa-xmark w-full text-right"></i>
                             <input type="text" name="username" onChange={e => setPromo(e.target.value)} placeholder="Enter promocode" className='border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-4' />
-                            <p className=" text-base font-medium h-6">Price : {price}</p>
-                            <p className="text-red-500 text-sm font-medium h-6" id="error"></p>
+                            <p className="text-base font-semibold h-3">Price : {price}</p>
+                            <p className="text-red-500 text-[1rem] font-medium h-6" id="error"></p>
+                            <p className="text-green-500 text-[1rem] font-medium h-6 hidden" id="success"></p>
                             <div className="flex gap-2">
-                                <div onClick={submit} className="btn w-max h-12">Apply promo</div>
-                                <div onClick={payNow} className="btn w-max h-12">Pay now</div>
+                                <div onClick={submit} className="btn w-max py-2 text-base ">Apply promo</div>
+                                <div onClick={payNow} className="btn w-max py-2 text-base ">Pay now</div>
                             </div>
                         </div>
 

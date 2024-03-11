@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-12 lg:px-2 py-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
+      <div className="z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-0 pl-12 lg:px-2 py-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
         <div className="flex items-center justify-between gap-2 md:gap-3 sm:gap-5 relative">
           <button id="navbar-toggler" className="block sm:hidden text-xl px-4 absolute left-[-3rem] z-[1500]"  >☰</button>
           <div className="w-[7rem] ">
@@ -65,8 +65,8 @@ const Navbar = () => {
             }
 
             <li className="hidden sm:block"><Link to="/verify">CERTIFICATE VERIFICATION</Link></li>
-            <li><Link to="/about">ABOUT US</Link></li>
-          <li><Link to="/contact">CONTACT US</Link></li>
+            <li className="hidden md:block"><Link to="/about">ABOUT US</Link></li>
+          <li className="hidden md:block"><Link to="/contact">CONTACT US</Link></li>
           </ul>
         </div>
         {/* <div className="border border-[#313131] p-3 rounded-xl hidden lg:block">
@@ -79,7 +79,7 @@ const Navbar = () => {
             <li className="block"><Link to="/profile">PROFILE</Link></li>
           }
           {
-            user &&
+            user?.role==='Admin' &&
             <li className="block"><Link to="/admin">ADMIN</Link></li>
           }
           {

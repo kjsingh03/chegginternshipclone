@@ -32,6 +32,7 @@ h1,h2,h3,h4,h5,h6{
 
 input{
   background-color: transparent;
+  border:1px solid #d1cece
 }
 
 a{
@@ -50,6 +51,7 @@ ul li{
   background-color:#1B88F4;
   border-radius:0.75rem;
   width:max-content;
+  cursor: pointer;
 }
 
 .btn:hover {

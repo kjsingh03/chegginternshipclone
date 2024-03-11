@@ -12,7 +12,7 @@ function Footer() {
             <div className="w-[18rem] pb-8">
               <img src={logo} alt="SkillsWallah Internships" className="w-full h-full object-fill" />
             </div>
-            <button className='install-btn btn text-sm text-[#ffffff] bg-transparent border-2 border-[#ffffff]'>Download</button>
+            <button className='install-btn btn text-sm text-[#ffffff] bg-transparent border-2 border-[#ffffff] mb-12'>Download</button>
           </div>
           <div className="">
             
