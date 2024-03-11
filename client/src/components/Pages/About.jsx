@@ -8,6 +8,8 @@ function About() {
     return (
         <>
             <Navbar />
+            <div className="h-screen overflow-y-auto">
+
             <div className="w-full xl:w-[95%] min-h-[100vh] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12 pb-[5rem] pt-[8rem]">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mx-auto">About skillwallah</h1>
                
@@ -28,6 +30,7 @@ function About() {
             </div>
             <Component/>
             <Footer />
+            </div>
         </>
     )
 }

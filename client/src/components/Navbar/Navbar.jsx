@@ -94,15 +94,20 @@ const Navbar = () => {
       </div>
       <div className="nav-sidebar translate-x-[-100%] absolute z-[1000] w-screen flex">
         <div className="nav-list flex flex-col gap-4 bg-white h-screen w-[15rem] text-sm p-4 font-medium">
-          <div className="flex items-center gap-2">
+          
+        {/* <div className="w-[7rem] mx-8 py-3">
+            <Link to="/"><img src={logo} alt="SkillsWallah Logo" className="block w-full h-full object-fill" /></Link>
+          </div> */}
+
+          <div className="flex items-center gap-2 py-3">
             <i className="fa-solid fa-user-circle text-3xl"></i>
             <div className="">
               <p>{user?.name}</p>
               <p className="text-xs">{user?.email}</p>
             </div>
           </div>
-          <p className=""><Link to="/">HOME</Link></p>
 
+          <p className=""><Link to="/">HOME</Link></p>
 
           <div onClick={() => document.querySelector('.nav-courses').style.display = document.querySelector('.nav-courses').style.display === 'flex' ? 'none' : 'flex'}>
             <p className=""> COURSES <i className="fa-solid fa-chevron-down"></i></p>

@@ -69,6 +69,8 @@ function Add() {
     return (
         <>
             <Navbar />
+            <div className="h-screen overflow-y-auto">
+
             <div className='min-h-screen flex flex-col gap-6 w-[90%] md:w-[85%] xl:w-[70%] mx-auto py-12 shadow-lg pt-[8rem]'>
 
                 <h3 className="font-bold my-2 text-3xl sm:text-4xl">Add New Internship</h3>
@@ -204,6 +206,7 @@ function Add() {
                 </div>  */}
             </div >
             <Footer/>
+            </div>
         </>
     )
 }

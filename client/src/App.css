@@ -43,6 +43,11 @@ ul li{
   cursor: pointer;
 }
 
+.option.active{
+  background-color: #1B88F4;
+  color:white;
+}
+
 .btn{
   color:white;
   font-size:1.25rem;
@@ -128,7 +133,7 @@ ul li{
     stroke: black !important;
 }
 
-@media screen and (max-width:900px){
+@media screen and (max-width:1024px){
   .internship-section .swiper-slide:nth-child(1){
     margin-left: 1.25rem;
   }
@@ -145,11 +150,11 @@ ul li{
 }
 @media screen and (max-width:480px){
   .internship-section .swiper-slide:nth-child(1){
-    margin-left: 4%;
+    margin-left: 1%;
   }
 }
 @media screen and (max-width:375px){
   .internship-section .swiper-slide:nth-child(1){
-    margin-left: 1%;
+    margin-left: 5%;
   }
 }

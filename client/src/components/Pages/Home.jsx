@@ -52,7 +52,8 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Component />
+      <div className="h-screen overflow-y-auto">
+
       <div className='flex flex-col gap-4 max-h-screen overflow-y-auto'>
         <div className="py-[3.5rem] w-full mx-auto lg:gap-12 pt-[3.25rem]">
           <Swiper
@@ -109,10 +110,11 @@ const Home = () => {
 
 
 
-        <div className="internship-section flex flex-col gap-4 sm:gap-10">
+        <div className="internship-section flex flex-col gap-4 sm:gap-10 py-12">
           <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+
             <div className="flex justify-between items-center px-6 sm:px-4">
-              <h2 className="text-base xs:text-2xl sm:text-3xl font-bold xs:px- sm:px-0  ">Featured skill programs</h2>
+              <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 xs:px- sm:px-0  ">Featured skill programs</h2>
               <div className="dropdown z-[50] flex items-center gap-4 md:gap-8 border-[1.6px] border-[#c4c3c3] rounded-xl py-[0.375rem] px-4 md:px-2 md:py-1 cursor-pointer">
                 <div className="">
                   <div className="dropbtn">Sort</div>
@@ -136,13 +138,14 @@ const Home = () => {
                   autoplay:{
                     delay:4000
                   },
-                  speed:800
+                  speed:800,
+                  spaceBetween: 20,
                 },
                 640: {
                   slidesPerView: 2,
-                  spaceBetween: 0,
+                  spaceBetween: 120,
                 },
-                900: {
+                1200: {
                   slidesPerView: 3,
                   spaceBetween: 0 
                 },
@@ -164,8 +167,9 @@ const Home = () => {
               }
             </Swiper>
           </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-8 mx-auto flex flex-col gap-4 sm:gap-6">
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold px-6 sm:px-0  ">CSE/IT Engineering</h2>
+          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+
+            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">CSE/IT Engineering</h2>
 
             <Swiper
               spaceBetween={0}
@@ -176,13 +180,15 @@ const Home = () => {
                   centeredSlides: true,
                   autoplay:{
                     delay:4000
-                  },speed:800
+                  },
+                  speed:800,
+                  spaceBetween: 20,
                 },
                 640: {
                   slidesPerView: 2,
-                  spaceBetween: 0,
+                  spaceBetween: 120,
                 },
-                900: {
+                1200: {
                   slidesPerView: 3,
                   spaceBetween: 0
                 },
@@ -204,8 +210,9 @@ const Home = () => {
               }
             </Swiper>
           </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-8 mx-auto flex flex-col gap-4 sm:gap-6">
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold px-6 sm:px-0  ">ECE/EEE Engineering</h2>
+          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+
+            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">ECE/EEE Engineering</h2>
 
             <Swiper
               spaceBetween={0}
@@ -217,13 +224,14 @@ const Home = () => {
                   autoplay:{
                     delay:4000
                   },
-                  speed:800
+                  speed:800,
+                  spaceBetween: 20,
                 },
                 640: {
                   slidesPerView: 2,
-                  spaceBetween: 0,
+                  spaceBetween: 120,
                 },
-                900: {
+                1200: {
                   slidesPerView: 3,
                   spaceBetween: 0
                 },
@@ -245,8 +253,9 @@ const Home = () => {
               }
             </Swiper>
           </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-8 mx-auto flex flex-col gap-4 sm:gap-6">
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold px-6 sm:px-0  ">Mechanical Engineering</h2>
+          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+
+            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Mechanical Engineering</h2>
 
             <Swiper
               spaceBetween={0}
@@ -258,13 +267,14 @@ const Home = () => {
                   autoplay:{
                     delay:4000
                   },
-                  speed:800
+                  speed:800,
+                  spaceBetween: 20,
                 },
                 640: {
                   slidesPerView: 2,
-                  spaceBetween: 0,
+                  spaceBetween: 120,
                 },
-                900: {
+                1200: {
                   slidesPerView: 3,
                   spaceBetween: 0
                 },
@@ -286,8 +296,9 @@ const Home = () => {
               }
             </Swiper>
           </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-8 mx-auto flex flex-col gap-4 sm:gap-6">
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold px-6 sm:px-0  ">Civil Engineering</h2>
+          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+
+            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Civil Engineering</h2>
 
             <Swiper
               spaceBetween={0}
@@ -299,14 +310,14 @@ const Home = () => {
                   autoplay:{
                     delay:4000
                   },
-                  speed:800
+                  speed:800,
+                  spaceBetween: 20,
                 },
-                
                 640: {
                   slidesPerView: 2,
-                  spaceBetween: 0,
+                  spaceBetween: 120,
                 },
-                900: {
+                1200: {
                   slidesPerView: 3,
                   spaceBetween: 0
                 },
@@ -336,6 +347,8 @@ const Home = () => {
 
         <Footer />
       </div >
+      <Component />
+      </div>
     </>
   );
 };

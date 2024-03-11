@@ -31,6 +31,8 @@ function Profile() {
     return (
         <>
             <Navbar />
+            <div className="h-screen overflow-y-auto">
+
             <div className="w-full lg:w-[90%] xl:w-[80%] px-0 sm:px-16 mx-auto flex flex-col gap-6 text-center py-[8rem] ">
                 <h3 className="font-bold my-2 text-4xl">My Courses</h3>
                 <h3 className="font-bold my-4 text-2xl">
@@ -75,6 +77,7 @@ function Profile() {
             </div>
             <Component/>
             <Footer/>
+            </div>
         </>
     )
 }

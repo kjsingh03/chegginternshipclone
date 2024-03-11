@@ -9,6 +9,9 @@ import font from './Sanchez-Regular.ttf'
 import fontkit from '@pdf-lib/fontkit'
 import './components.css'
 import _ from 'lodash'
+import '../../App.css'
+import Component from '../whatsapp/Component'
+import Footer from '../Footer/Footer';
 
 function Internship() {
 
@@ -65,14 +68,14 @@ function Internship() {
     }, [internship])
 
     const handleClick = () => {
-        if(user){
+        if (user) {
             const promoSection = document.querySelector(".promosection")
             promoSection.style.display = "flex"
         }
-        else{
+        else {
             navigate('/login')
-            setTimeout(()=>document.getElementById("error").innerText="Kindly Login First",50)
-            setTimeout(()=>document.getElementById("error").innerText="",1150)
+            setTimeout(() => document.getElementById("error").innerText = "Kindly Login First", 50)
+            setTimeout(() => document.getElementById("error").innerText = "", 1150)
         }
     }
 
@@ -84,8 +87,8 @@ function Internship() {
         if (isPromo) {
 
             if (!usedPromo) {
-                document.getElementById("success").style.display='block'
-                document.getElementById("error").style.display='none'
+                document.getElementById("success").style.display = 'block'
+                document.getElementById("error").style.display = 'none'
                 document.getElementById("success").innerHTML = "Promocode applied successfully"
                 setPrice(price => {
                     axios.post("http://localhost:8080/pay", {
@@ -100,7 +103,7 @@ function Internship() {
                             "key": "rzp_test_dI2cMfs9QmKiFd",
                             "amount": price * (1 - isPromo.value / 100) * 100,
                             "currency": "INR",
-                            "name": "SkillsWallah Internships",
+                            "name": "SkillWallah Internships",
                             "description": "Test Transaction",
                             "image": logo,
                             "order_id": res.data.id,
@@ -167,7 +170,7 @@ function Internship() {
                 "key": "rzp_test_dI2cMfs9QmKiFd",
                 "amount": price * 100,
                 "currency": "INR",
-                "name": "SkillsWallah Internships",
+                "name": "SkillWallah Internships",
                 "description": "Test Transaction",
                 "image": logo,
                 "order_id": res.data.id,
@@ -266,7 +269,7 @@ function Internship() {
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-                firstPage.drawText(`${userCertificate.percentage}%`, {
+                firstPage.drawText(`${(userCertificate.percentage / 15 * 100).toFixed(2)}%`, {
                     x: 634,
                     y: 257,
                     size: 16,
@@ -288,7 +291,7 @@ function Internship() {
                     color: rgb(0, 0, 0),
                 });
             }
-            else{
+            else {
                 const string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
                 codeId = "";
 
@@ -317,7 +320,7 @@ function Internship() {
                     font: SanChezFont,
                     color: rgb(0, 0, 0),
                 });
-                firstPage.drawText(`${points / 15 * 100}%`, {
+                firstPage.drawText(`${(points / 15 * 100).toFixed(2)}%`, {
                     x: 634,
                     y: 257,
                     size: 16,
@@ -339,7 +342,7 @@ function Internship() {
                     color: rgb(0, 0, 0),
                 });
 
-                axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId ,courseName:internship.name} }, {
+                axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId, courseName: internship.name } }, {
                     headers: {
                         "Authorization": user?.token,
                         "Content-Type": "application/json"
@@ -408,6 +411,14 @@ function Internship() {
 
     const selectOption = (index, option) => {
 
+        const optionsQuery = document.querySelectorAll(".options")
+
+        optionsQuery[index]?.childNodes.forEach((child, index) => {
+            child.classList.remove('active')
+        })
+
+        optionsQuery[index]?.childNodes[option].classList.toggle('active')
+
         newActiveOptions[index] = option
         setActiveOptions([...newActiveOptions])
     }
@@ -427,7 +438,8 @@ function Internship() {
         }
         else {
             document.getElementById("error").innerText = "Marks less than 75% try again"
-            console.log(document.getElementById("error"))
+            setTimeout(() => document.getElementById("error").innerText = "", 1000)
+            // console.log(document.getElementById("error"))
         }
     }
 
@@ -436,50 +448,56 @@ function Internship() {
         return (
             <>
                 <Navbar />
-                <div className="w-full lg:w-[90%] xl:w-[80%] p-10 mx-auto py-[5rem] sm:py-[8rem] flex flex-col gap-6 ">
-                    <h3 className="text-lg font-bold">{internship.name}</h3>
-                    <div className="flex md:flex-row flex-col w-full gap-6 md:items-center justify-between">
-                        <p className='flex items-center gap-2'><i className="w-4 fa-solid fa-calendar-days"></i>{internship.duration} Weeks </p>
-                        {/* <p className='flex items-center gap-2'><i className="fa-solid fa-hourglass-end"></i> {internship.lastApplyDate?.split("T")[0].replace(/-/g, "/")}</p> */}
-                    </div>
-                    <h2 className="text-base font-bold">Skill(s) offered</h2>
-                    <div className="flex sm:items-center gap-6 sm:gap-12 sm:flex-row flex-col">
-                        {internship?.skills?.map((skill, index) => (
-                            <p key={index} className='flex items-center gap-2'>{skill} </p>
-                        ))}
-                    </div>
-                    <h2 className="text-base font-bold">Perks</h2>
-                    <div className="flex items-center gap-12">
-                        {internship?.perks?.map((perk, index) => (
-                            <p key={index} className='flex items-center gap-2'>{perk} </p>
-                        ))}
-                    </div>
-                    <h2 className="text-base font-bold">Price</h2>
-                    <p className='flex items-center gap-2'>{price} </p>
-                    
-                    <div onClick={handleClick} className="btn w-max py-2 text-base">Buy Now</div>
-                     
-                    <div className="promosection hidden bg-black/40 items-center text-[black] text-lg justify-center absolute h-full top-0 left-0 z-[1000] w-full">
-                        <div className="flex flex-col items-center gap-5 w-[25rem] bg-white p-6 rounded-xl">
-                            <i onClick={() => document.querySelector('.promosection').style.display = "none"} className="fa-solid fa-xmark w-full text-right"></i>
-                            <input type="text" name="username" onChange={e => setPromo(e.target.value)} placeholder="Enter promocode" className='border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-4' />
-                            <p className="text-base font-semibold h-3">Price : {price}</p>
-                            <p className="text-red-500 text-[1rem] font-medium h-6" id="error"></p>
-                            <p className="text-green-500 text-[1rem] font-medium h-6 hidden" id="success"></p>
-                            <div className="flex gap-2">
-                                <div onClick={submit} className="btn w-max py-2 text-base ">Apply promo</div>
-                                <div onClick={payNow} className="btn w-max py-2 text-base ">Pay now</div>
-                            </div>
-                        </div>
+                <div className="h-screen overflow-y-auto">
 
-                    </div>
-                    {
-                        completed && user.role === 'User' &&
-                        <div className="">
-                            <div onClick={getCertificate} className="btn w-max h-12">Get Certificate</div>
+                    <div className="w-full lg:w-[90%] xl:w-[80%] p-10 mx-auto py-[5rem] sm:py-[8rem] flex flex-col gap-6 ">
+                        <h3 className="text-lg font-bold">{internship.name}</h3>
+                        <div className="flex md:flex-row flex-col w-full gap-6 md:items-center justify-between">
+                            <p className='flex items-center gap-2'><i className="w-4 fa-solid fa-calendar-days"></i>{internship.duration} Weeks </p>
+                            {/* <p className='flex items-center gap-2'><i className="fa-solid fa-hourglass-end"></i> {internship.lastApplyDate?.split("T")[0].replace(/-/g, "/")}</p> */}
                         </div>
-                    }
-                </div >
+                        <h2 className="text-base font-bold">Skill(s) offered</h2>
+                        <div className="flex sm:items-center gap-6 sm:gap-12 sm:flex-row flex-col">
+                            {internship?.skills?.map((skill, index) => (
+                                <p key={index} className='flex items-center gap-2'>{skill} </p>
+                            ))}
+                        </div>
+                        <h2 className="text-base font-bold">Perks</h2>
+                        <div className="flex items-center gap-12">
+                            {internship?.perks?.map((perk, index) => (
+                                <p key={index} className='flex items-center gap-2'>{perk} </p>
+                            ))}
+                        </div>
+                        <h2 className="text-base font-bold">Price</h2>
+                        <p className='flex items-center gap-2'>{price} </p>
+
+                        <div onClick={handleClick} className="btn w-max py-2 text-base">Buy Now</div>
+
+                        <div className="promosection hidden bg-black/40 items-center text-[black] text-lg justify-center absolute h-full top-0 left-0 z-[1001] w-full">
+                            <div className="flex flex-col items-center gap-5 w-[25rem] bg-white p-6 rounded-xl">
+                                <i onClick={() => document.querySelector('.promosection').style.display = "none"} className="fa-solid fa-xmark w-full text-right"></i>
+                                <input type="text" name="username" onChange={e => setPromo(e.target.value)} placeholder="Enter promocode" className='border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-4' />
+                                <p className="text-base font-semibold h-3">Price : {price}</p>
+                                <p className="text-red-500 text-[1rem] font-medium h-6" id="error"></p>
+                                <p className="text-green-500 text-[1rem] font-medium h-6 hidden" id="success"></p>
+                                <div className="flex gap-2">
+                                    <div onClick={submit} className="btn w-max py-2 text-base ">Apply promo</div>
+                                    <div onClick={payNow} className="btn w-max py-2 text-base ">Pay now</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {
+                            completed && user.role === 'User' &&
+                            <div className="">
+                                <div onClick={getCertificate} className="btn w-max h-12">Get Certificate</div>
+                            </div>
+                        }
+                    </div >
+
+                    <Component />
+                    <Footer />
+                </div>
             </>
         )
     }
@@ -487,76 +505,81 @@ function Internship() {
         return (
             <>
                 <Navbar />
+                <div className="h-screen overflow-y-auto">
 
-                <button onClick={activateSidebar} id="sidebar-toggler" className="absolute block lg:hidden text-xl py-[0.71rem] px-4 z-[2000]"  >☰</button>
-                <div className="flex">
+                    <button onClick={activateSidebar} id="sidebar-toggler" className="absolute block lg:hidden text-xl py-[0.71rem] px-4 z-[2000]"  >☰</button>
+                    <div className="flex">
 
-                    <div className="sidebar px-3 lg:shadow-none shadow-xl" id="sidebar">
-                        <ul className="sidebar-menu">
-                            <li className="menu-item"><div >Lesson</div></li>
-                            {
-                                internship?.lessons.map((lesson, index) => (
-                                    <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setTest({}); setCompleted(false) }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
-                                ))
-                            }
+                        <div className="sidebar px-3 lg:shadow-none shadow-xl" id="sidebar">
+                            <ul className="sidebar-menu">
+                                <li className="menu-item"><div >Lesson</div></li>
+                                {
+                                    internship?.lessons.map((lesson, index) => (
+                                        <li className="menu-item" key={index}><Link><div onClick={() => { setLesson(lesson); setTest({}); setCompleted(false) }}><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
+                                    ))
+                                }
 
-                            <li className="menu-item"><div to={`/assignment/${id}`}>Test</div></li>
-                            <li className="menu-item" onClick={() => { setLesson({}); setTest(internship?.questions); setCompleted(false); }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Test</span><i
-                                className="fa-solid fa-chevron-right"></i>
-                            </Link></li>
-                            {
-
-                                <li className="menu-item"><div to={`/assignment/${id}`}>Certificate</div></li>
-                            }
-                            {
-                                <li className="menu-item" onClick={() => { setLesson({}); setTest({}); setCompleted(true); }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
+                                <li className="menu-item"><div to={`/assignment/${id}`}>Test</div></li>
+                                <li className="menu-item" onClick={() => { setLesson({}); setTest(internship?.questions); setCompleted(false); }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Test</span><i
                                     className="fa-solid fa-chevron-right"></i>
                                 </Link></li>
-                            }
+                                {
+
+                                    <li className="menu-item"><div to={`/assignment/${id}`}>Certificate</div></li>
+                                }
+                                {
+                                    <li className="menu-item" onClick={() => { setLesson({}); setTest({}); setCompleted(true); }}><Link><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i
+                                        className="fa-solid fa-chevron-right"></i>
+                                    </Link></li>
+                                }
 
 
-                        </ul>
+                            </ul>
+                        </div>
+
+                        <div className="black fixed translate-x-[-100%] right-0 w-[calc(100vw)] z-[900] bg-[#0000005b] h-screen"></div>
+
+                    </div>
+                    <div className="w-full md:w-[80%] lg:w-auto mx-auto lg:ml-[18rem] pt-[6rem]">
+                        {
+                            lesson &&
+                            <div className='flex flex-col gap-6 items-center md:items-start text-center md:text-left'>
+                                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{lesson.lesson}</h1>
+                                <div style={{ display: lesson.lesson ? 'block' : 'none' }} className="md:w-[40rem] md:h-[21rem] sm:w-[26rem] sm:h-[14rem] ">
+                                    <iframe style={{ display: lesson.lesson ? 'block' : 'none', width: '100%', height: '100%' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                </div>
+                                <p className="text-sm lg:text-lg font-medium w-full">{lesson.description}</p>
+                            </div>
+                        }
+                        {
+                            test?.length > 0 &&
+                            <div className="flex flex-col gap-5 px-8 text-sm">
+                                {test?.map((data, index) => (
+                                    <div className="testQuestion flex flex-col gap-5" key={index}>
+                                        <h1 className="text-xl">{data.question}</h1>
+                                        <div className="options grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <p onClick={() => { selectOption(index, 0) }} className='option border border-[#1B88F4] p-2 rounded-xl'>1. {data.options[0].option}</p>
+                                            <p onClick={() => { selectOption(index, 1) }} className='option border border-[#1B88F4] p-2 rounded-xl'>2. {data.options[1].option}</p>
+                                            <p onClick={() => { selectOption(index, 2) }} className='option border border-[#1B88F4] p-2 rounded-xl'>3. {data.options[2].option}</p>
+                                            <p onClick={() => { selectOption(index, 3) }} className='option border border-[#1B88F4] p-2 rounded-xl'>4. {data.options[3].option}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                                <p className="text-red-500 h-6" id="error"></p>
+                                <button onClick={() => submitQuiz()} className='btn w-max text-sm'>Complete</button>
+                            </div>
+                        }
+                        {
+                            completed &&
+                            <div className="getCertificate">
+                                <button onClick={() => { if (disabled) { document.getElementById('error').innerText = "Kindly complete test first"; setTimeout(() => document.getElementById('error').innerText = "", 1000) } else { getCertificate() } }} className="btn">Get certificate</button>
+                                <p className="text-red-500 h-6 py-4 font-medium" id="error"></p>
+                            </div>
+                        }
                     </div>
 
-                    <div className="black fixed translate-x-[-100%] right-0 w-[calc(100vw)] z-[900] bg-[#0000005b] h-screen"></div>
-
-                </div>
-                <div className="w-full md:w-[80%] lg:w-auto mx-auto lg:ml-[18rem] pt-[6rem]">
-                    {
-                        lesson &&
-                        <div className='flex flex-col gap-6 items-center md:items-start text-center md:text-left'>
-                            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{lesson.lesson}</h1>
-                            <div style={{ display: lesson.lesson ? 'block' : 'none' }} className="md:w-[40rem] md:h-[21rem] sm:w-[26rem] sm:h-[14rem] ">
-                                <iframe style={{ display: lesson.lesson ? 'block' : 'none', width: '100%', height: '100%' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                            </div>
-                            <p className="text-sm lg:text-lg font-medium w-full">{lesson.description}</p>
-                        </div>
-                    }
-                    {
-                        test?.length > 0 &&
-                        <div className="flex flex-col gap-5 px-8 text-sm">
-                            {test?.map((data, index) => (
-                                <div className="testQuestion flex flex-col gap-5" key={index}>
-                                    <h1 className="text-xl">{data.question}</h1>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <p onClick={() => selectOption(index, 0)} className='border border-[#1B88F4] p-2 rounded-xl'>1. {data.options[0].option}</p>
-                                        <p onClick={() => selectOption(index, 1)} className='border border-[#1B88F4] p-2 rounded-xl'>2. {data.options[1].option}</p>
-                                        <p onClick={() => selectOption(index, 2)} className='border border-[#1B88F4] p-2 rounded-xl'>3. {data.options[2].option}</p>
-                                        <p onClick={() => selectOption(index, 3)} className='border border-[#1B88F4] p-2 rounded-xl'>4. {data.options[3].option}</p>
-                                    </div>
-                                </div>
-                            ))}
-                            <p className="text-red-500 h-6" id="error"></p>
-                            <button onClick={() => submitQuiz()} className='btn w-max text-sm'>Complete</button>
-                        </div>
-                    }
-                    {
-                        completed &&
-                        <div className="getCertificate">
-                            <button onClick={() => { if (disabled) { document.getElementById('error').innerText="Kindly complete test first" ; setTimeout(()=>document.getElementById('error').innerText="",1000) } else { getCertificate() } }} className="btn">Get certificate</button>
-                            <p className="text-red-500 h-6 py-4 font-medium" id="error"></p>
-                        </div>
-                    }
+                    <Component />
+                    <Footer />
                 </div>
 
             </>
