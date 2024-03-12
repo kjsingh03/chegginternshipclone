@@ -37,7 +37,15 @@ function Update() {
 
     const submit = () => {
 
-        axios.put(`http://localhost:8080/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: newLessons }, {
+        newLessons.forEach((newL, index) => {
+            if (newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0]?.length > 8)
+                newLessons[index].url = newL.url?.split("/")[3]?.split("=")[0]?.split("?")[0] || newLessons[index].url
+            else {
+                newLessons[index].url = newL.url?.split("/")[3]?.split("=")[1]?.split("&")[0] || newLessons[index].url
+            }
+        })
+
+        axios.put(`http://localhost:8080/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons] }, {
             headers: {
                 "Authorization": user?.token,
                 "Content-Type": "application/json"

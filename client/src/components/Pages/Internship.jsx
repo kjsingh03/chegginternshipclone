@@ -443,7 +443,7 @@ function Internship() {
         }
     }
 
-
+console.log(lesson?.url)
     if (!access) {
         return (
             <>
