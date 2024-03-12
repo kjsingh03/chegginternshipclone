@@ -100,10 +100,10 @@ function Internship() {
                         }
                     }).then(res => {
                         var options = {
-                            "key": "rzp_test_dI2cMfs9QmKiFd",
+                            "key": "rzp_live_g81VV59tp11XQq",
                             "amount": price * (1 - isPromo.value / 100) * 100,
                             "currency": "INR",
-                            "name": "SkillWallah Internships",
+                            "name": "SkillWallah Internship",
                             "description": "Test Transaction",
                             "image": logo,
                             "order_id": res.data.id,
@@ -167,10 +167,10 @@ function Internship() {
             }
         }).then(res => {
             var options = {
-                "key": "rzp_test_dI2cMfs9QmKiFd",
+                "key": "rzp_live_g81VV59tp11XQq",
                 "amount": price * 100,
                 "currency": "INR",
-                "name": "SkillWallah Internships",
+                "name": "SkillWallah Internship",
                 "description": "Test Transaction",
                 "image": logo,
                 "order_id": res.data.id,
