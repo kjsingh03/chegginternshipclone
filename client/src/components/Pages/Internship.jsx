@@ -126,6 +126,7 @@ function Internship() {
                             },
                             "prefill": {
                                 "username": user.username,
+                                "contact":user.contact
                             }
                         };
                         var rzp1 = new Razorpay(options);
@@ -193,6 +194,7 @@ function Internship() {
                 },
                 "prefill": {
                     "username": user.username,
+                    "contact":user.contact
                 }
             };
             var rzp1 = new Razorpay(options);
@@ -573,7 +575,7 @@ console.log(lesson?.url)
                             {
                                 completed &&
                                 <div className="getCertificate">
-                                    <button onClick={() => { if (disabled) { document.getElementById('error').innerText = "Kindly complete test first"; setTimeout(() => document.getElementById('error').innerText = "", 1000) } else { getCertificate() } }} className="btn">Get certificate</button>
+                                    <button onClick={() => { if (disabled) { document.getElementById('error').innerText = "Kindly complete test first"; setTimeout(() => document.getElementById('error').innerText = "", 1000) } else { getCertificate() } }} className="btn p-4 sm:p-0">Get certificate</button>
                                     <p className="text-red-500 h-6 py-4 font-medium" id="error"></p>
                                 </div>
                             }

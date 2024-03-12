@@ -7,7 +7,7 @@ function Footer() {
     <div className="bg-[#111B21] text-[#e7e7e7] lg:px-6 transition-all ease-in-out duration-300 z-[1000]">
       <div className="w-full lg:w-[80%] xl:w-[70%] mx-auto">
 
-        <div className="grid sm:grid-cols-2 place-items-center sm:place-items-stretch md:flex gap-2 md:justify-between sm:text-base py-[6rem] border-b border-b-white px-2 sm:px-6 lg:px-0">
+        <div className="grid sm:grid-cols-2 place-items-center sm:place-items-stretch md:flex gap-2 md:justify-between sm:text-base py-[3rem] sm:py-[4rem] border-b border-b-white px-2 sm:px-6 lg:px-0">
           <div className="flex col-span-3 flex-col justify-around items-center px-3 gap-4 sm:px-12 md:px-0">
             <div className="w-[18rem] pb-8">
               <img src={logo} alt="SkillsWallah Internships" className="w-full h-full object-fill" />
