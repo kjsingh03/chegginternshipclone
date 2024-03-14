@@ -57,10 +57,10 @@ function AdminPanel() {
             <Navbar />
             <div className="h-screen overflow-y-auto">
 
-            <div className="min-h-screen flex flex-col gap-8 w-[90%] md:w-[85%] xl:w-[70%] mx-auto py-12 shadow-lg pt-[8rem]">
+            <div className="min-h-screen flex flex-col gap-8 w-[90%] md:w-[85%] xl:w-[70%] mx-auto py-12 shadow-lg pt-[7rem]">
 
                 <div className="">
-                    <h3 className="font-bold my-2 text-3xl sm:text-4xl">Promocodes</h3>
+                    <h3 className="font-bold text-3xl sm:text-4xl my-6">Promocodes</h3>
 
                     <div className="flex items-baseline gap-8 justify-between sm:justify-normal">
 
@@ -91,8 +91,12 @@ function AdminPanel() {
 
                 </div>
 
+                <p className="text-red-500 font-medium h-6" id="error"></p>
+
+                <div className="btn text-sm cursor-pointer" onClick={submit}>Update </div>
+
                 <div className="">
-                    <h3 className="font-bold my-2 text-3xl sm:text-4xl">Users</h3>
+                    <h3 className="font-bold my-6 text-3xl sm:text-4xl">Users</h3>
 
                     <div className="flex items-baseline gap-8 justify-between sm:justify-normal">
 
@@ -106,16 +110,16 @@ function AdminPanel() {
                                             {index1 + 1}
                                         </div>
 
-                                        <div className="grid grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                                             <input value={data.name || ""} type="text" name="name" placeholder="Enter Promo Name" onChange={e => e.target.value} className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
                                             <input value={data.username || ""} type="text" name="username" onChange={e => e.target.value} className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
                                             <input value={data.contact || ""} type="text" name="contact" onChange={e => e.target.value} className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
                                             <input value={data.email || ""} type="email" name="email" onChange={e => e.target.value} className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
                                             {
                                                 data?.internships?.length>0 && 
-                                            <div className="flex justify-between items-center w-full col-span-4">
-                                                <p className='font-semibold w-[25%]'>Courses Enrolled : </p>
-                                                <div className="grid grid-cols-3 w-full col-span-3 gap-6">
+                                            <div className="gap-3 lg:gap-16 flex justify-between items-center w-full col-span-2 lg:col-span-4">
+                                                <p className='font-semibold w-full lg:w-[25%]'>Courses Enrolled : </p>
+                                                <div className="grid grid-cols-1 lg:grid-cols-3 w-full lg:col-span-3 gap-6">
 
                                                     {
                                                         data?.internships?.map((intern, index2) => (
@@ -138,9 +142,7 @@ function AdminPanel() {
 
                 </div>
 
-                <p className="text-red-500 font-medium h-6" id="error"></p>
-
-                <div className="btn text-sm cursor-pointer" onClick={submit}>Update </div>
+                
 
             </div>
             <Footer />

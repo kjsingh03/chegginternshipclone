@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-0 pl-12 lg:px-2 py-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
+      <div className=" z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-0 pl-12 lg:px-2 py-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
         <div className="flex items-center justify-between gap-2 md:gap-3 sm:gap-5 relative">
           <button id="navbar-toggler" className="block sm:hidden text-xl px-4 absolute left-[-3rem] z-[1500]"  >☰</button>
           <div className="w-[7rem] ">
@@ -50,23 +50,19 @@ const Navbar = () => {
             {/* <Link to="/"><img src={smallLogo} alt="SkillsWallah Logo" className="block sm:hidden w-full h-full object-fill" /></Link> */}
           </div>
           <ul className="flex items-center justify-between gap-3 sm:gap-5">
-            {
-              !user?.role === 'Admin' &&
-              <li className="hidden sm:block"><Link to="/">HOME</Link></li>
-            }
-
+           
             {
               user &&
-              <li className="hidden sm:block"><Link to="/courses">{user.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
+              <li className="hover:text-[#403f3f] hidden sm:block"><Link to="/courses">{user.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
             }
             {
               user?.role === 'Admin' &&
-              <li className="hidden sm:block"><Link to="/add">ADD NEW</Link></li>
+              <li className="hover:text-[#403f3f] hidden sm:block"><Link to="/add">ADD NEW</Link></li>
             }
 
-            <li className="hidden sm:block"><Link to="/verify">CERTIFICATE VERIFICATION</Link></li>
-            <li className="hidden md:block"><Link to="/about">ABOUT US</Link></li>
-          <li className="hidden md:block"><Link to="/contact">CONTACT US</Link></li>
+            <li className="hover:text-[#403f3f] hidden md:block"><Link to="/verify">CERTIFICATE VERIFICATION</Link></li>
+            <li className="hover:text-[#403f3f] hidden lg:block"><Link to="/about">ABOUT US</Link></li>
+          <li className="hover:text-[#403f3f] hidden lg:block"><Link to="/contact">CONTACT US</Link></li>
           </ul>
         </div>
         {/* <div className="border border-[#313131] p-3 rounded-xl hidden lg:block">
@@ -76,19 +72,19 @@ const Navbar = () => {
         <ul className="flex items-center justify-between gap-3 sm:gap-5 px-7">
           {
             user &&
-            <li className="block"><Link to="/profile">PROFILE</Link></li>
+            <li className="hover:text-[#403f3f] block"><Link to="/profile">PROFILE</Link></li>
           }
           {
             user?.role==='Admin' &&
-            <li className="block"><Link to="/admin">ADMIN</Link></li>
+            <li className="hover:text-[#403f3f] block"><Link to="/admin">ADMIN</Link></li>
           }
           {
             user &&
-            <li className="hidden sm:block" onClick={logout}>LOGOUT</li>
+            <li className="hover:text-[#403f3f] hidden sm:block" onClick={logout}>LOGOUT</li>
           }
           {
             !user &&
-            <li className="block"><Link to="/login">LOG IN</Link></li>
+            <li className="hover:text-[#403f3f] block"><Link to="/login">LOG IN</Link></li>
           }
         </ul>
       </div>
@@ -126,10 +122,10 @@ const Navbar = () => {
           }
           {
             user?.role === 'Admin' &&
-            <p className=""><Link to="/courses">COURSES</Link></p>
+            <p className=""><Link to="/courses">ALL COURSES</Link></p>
           }
           {
-            user?.role !== 'Admin' &&
+            user && user?.role !== 'Admin' &&
             <p className=""><Link to="/courses">MY COURSES</Link></p>
           }
 

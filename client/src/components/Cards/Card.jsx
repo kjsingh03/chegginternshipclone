@@ -14,8 +14,8 @@ function Card({ data }) {
             <div className="">
                 <p className='flex items-center gap-2 font-medium'><i className="w-4 fa-solid fa-calendar-days"></i> {data.duration} Week(s)</p>
                 <div className="flex items-center gap-2 font-medium">
-                    <p className='flex items-center gap-2 '><i className="w-4 fa-solid fa-money-bill"></i><span className='text-[1rem]'>{data.price * (1 - data.discount / 100)}</span></p>
-                    <p className='flex gap-2 line-through'>{data.price}</p>
+                    <p className='flex items-center gap-2 '><i className="w-4 fa-solid fa-money-bill"></i><span className='text-[1rem]'>{(data.price * (1 - data.discount / 100)).toFixed(2)}</span></p>
+                    <p className='flex gap-2 line-through'>{data.price.toFixed(2)}</p>
                     <p className='flex gap-2 text-sm text-red-500'>({data.discount}% off)</p>
                 </div>
             </div>

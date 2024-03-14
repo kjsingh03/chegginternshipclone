@@ -202,7 +202,7 @@ function Update() {
                                 {
                                     options.map((option, optionIndex) => (
                                         <div className="flex gap-2 option" key={optionIndex}>
-                                            <input type="checkbox" name="correct" checked={question[index]?.options[optionIndex].correct || false} onChange={e => { newQuestion[index].options[optionIndex].correct = true; setQuestion([...newQuestion]) }} placeholder="Enter correct" className='w-4 border-2 rounded-xl  outline-[#1B88F4] ' />
+                                            <input type="checkbox" name="correct" checked={question[index]?.options[optionIndex].correct || false} onChange={e => { newQuestion[index].options[optionIndex].correct = e.target.checked; setQuestion([...newQuestion]) }} placeholder="Enter correct" className='w-4 border-2 rounded-xl  outline-[#1B88F4] ' />
                                             <input type="text" name="option" value={question[index]?.options[optionIndex].option || ""} onChange={e => { newQuestion[index].options[optionIndex].option = e.target.value; setQuestion([...newQuestion]) }} placeholder="Enter option" className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
                                         </div>
                                     ))

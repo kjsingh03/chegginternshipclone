@@ -92,7 +92,7 @@ function Internship() {
                 document.getElementById("success").innerHTML = "Promocode applied successfully"
                 setPrice(price => {
                     axios.post("http://localhost:8080/pay", {
-                        amount: price * (1 - isPromo.value / 100) * 100,
+                        amount: (price - isPromo?.value)*100 ,
                         currency: "INR",
                     }, {
                         headers: {
@@ -101,7 +101,7 @@ function Internship() {
                     }).then(res => {
                         var options = {
                             "key": "rzp_live_g81VV59tp11XQq",
-                            "amount": price * (1 - isPromo.value / 100) * 100,
+                            "amount": (price- isPromo?.value)*100 ,
                             "currency": "INR",
                             "name": "SkillWallah Internship",
                             "description": "Test Transaction",
@@ -126,7 +126,7 @@ function Internship() {
                             },
                             "prefill": {
                                 "username": user.username,
-                                "contact":user.contact
+                                "contact": user.contact
                             }
                         };
                         var rzp1 = new Razorpay(options);
@@ -142,7 +142,7 @@ function Internship() {
                         });
                     })
                         .catch(err => console.log(err))
-                    return price * (1 - isPromo.value / 100);
+                    return (price-isPromo.value) ;
                 })
             }
 
@@ -194,7 +194,7 @@ function Internship() {
                 },
                 "prefill": {
                     "username": user.username,
-                    "contact":user.contact
+                    "contact": user.contact
                 }
             };
             var rzp1 = new Razorpay(options);
@@ -445,7 +445,7 @@ function Internship() {
         }
     }
 
-console.log(lesson?.url)
+    // console.log(lesson?.url)
     if (!access) {
         return (
             <>
@@ -476,7 +476,7 @@ console.log(lesson?.url)
                         <div onClick={handleClick} className="btn w-max py-2 text-base">Buy Now</div>
 
                         <div className="promosection hidden bg-black/40 items-center text-[black] text-lg justify-center absolute h-full top-0 left-0 z-[1001] w-full">
-                            <div className="flex flex-col items-center gap-5 w-[25rem] bg-white p-6 rounded-xl">
+                            <div className="flex flex-col items-center gap-5 sm:w-[25rem] bg-white p-6 rounded-xl">
                                 <i onClick={() => document.querySelector('.promosection').style.display = "none"} className="fa-solid fa-xmark w-full text-right"></i>
                                 <input type="text" name="username" onChange={e => setPromo(e.target.value)} placeholder="Enter promocode" className='border-2 rounded-xl border-[#1B88F4] outline-[#1B88F4] p-4' />
                                 <p className="text-base font-semibold h-3">Price : {price}</p>
@@ -557,6 +557,7 @@ console.log(lesson?.url)
                             {
                                 test?.length > 0 &&
                                 <div className="flex flex-col gap-5 px-8 text-sm">
+                                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Test</h1>
                                     {test?.map((data, index) => (
                                         <div className="testQuestion flex flex-col gap-5" key={index}>
                                             <h1 className="text-xl">{data.question}</h1>
@@ -575,15 +576,17 @@ console.log(lesson?.url)
                             {
                                 completed &&
                                 <div className="getCertificate">
-                                    <button onClick={() => { if (disabled) { document.getElementById('error').innerText = "Kindly complete test first"; setTimeout(() => document.getElementById('error').innerText = "", 1000) } else { getCertificate() } }} className="btn p-4 sm:p-0">Get certificate</button>
+                                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Get Certificate Here</h1>
+
+                                    <button onClick={() => { if (disabled) { document.getElementById('error').innerText = "Kindly complete test first"; setTimeout(() => document.getElementById('error').innerText = "", 1000) } else { getCertificate() } }} className="btn p-4 sm:p-2 my-6 text-base">Download <i className="fa-solid fa-download"></i></button>
                                     <p className="text-red-500 h-6 py-4 font-medium" id="error"></p>
                                 </div>
                             }
                         </div>
 
                     </div>
-                        <Component />
-                        
+                    <Component />
+
                 </div>
 
             </>
