@@ -21,6 +21,8 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 
 -Google Authentication
 
+-Progressive Web Application
+
 -Razorpay Payment Integration
 
 -Certificate Generation & Verification
