@@ -17,8 +17,8 @@ const app = Express();
 // Razorpay
 
 export const instance = new Razorpay({
-    key_id: 'rzp_live_g81VV59tp11XQq',
-    key_secret: 'fIqbLSGbsxTqTVlkVhiFVutW',
+    key_id: 'rzp_test_aFHU3em4ZdNLo4',
+    key_secret: 'DlfamjLMFddIKU78LVXSahZy',
     
 });
 

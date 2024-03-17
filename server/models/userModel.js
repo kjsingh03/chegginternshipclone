@@ -37,8 +37,8 @@ const internshipSchema = new Schema({
             url: { type: String },
             description: { type: String }
         }],
-    assignmentTask: { type: String, required: [true, "Enter Assignment"] },
-    assignmentUrl: { type: String, required: [true, "Enter drive url"] },
+    assignmentTask: { type: String },
+    assignmentUrl: { type: String },
 
     // createdBy: { type: Schema.Types.ObjectId, ref: "User" },
     // lastApplyDate: { type: Date, required: [true, "Enter last date to apply"] },

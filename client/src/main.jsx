@@ -20,6 +20,7 @@ import PrivacyPolicy from './components/Pages/PrivacyPolicy.jsx'
 import About from './components/Pages/About.jsx'
 import Refund from './components/Pages/Refund.jsx'
 import AdminPanel from './components/Pages/AdminPanel.jsx'
+import Lesson from './components/Pages/Lesson.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +29,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/internship/:id" element={<Internship />} />
-      {/* <Route path="/lesson/:id" element={<Internship />} /> */}
+      <Route path="/internship/:id/:route" element={<Lesson />} />
       <Route path="/courses" element={<Courses />} />
       <Route path="/add" element={<Add />} />
       <Route path="/update/:id" element={<Update />} />
