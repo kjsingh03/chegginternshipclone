@@ -39,9 +39,14 @@ function Lesson() {
       })
       .catch(err => console.log(err));
 
+  }, [id])
+
+  
+  useEffect(() => {
     if (userCertificate)
       setDisabled(false)
-  }, [id])
+  }, [userCertificate])
+  
 
   useEffect(() => {
     setLesson(lessons[route.split("lesson")[1] - 1])
@@ -277,7 +282,7 @@ function Lesson() {
                   <li>Post your certificate on Linkedin</li>
                   <li>Complete the Assignment</li>
                   <li>Upload linkedin post url along with assignment zip file in below given drive link</li>
-                
+
                 </ul>
                 <input value={internship?.assignmentUrl || ""} type="text" name="duration" readOnly placeholder="Enter duration (in Months)" className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
               </div>
