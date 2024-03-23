@@ -23,7 +23,7 @@ function Update() {
     const [question, setQuestion] = useState([])
     const [options, setOptions] = useState([{}, {}, {}, {}])
     const [lessons, setLessons] = useState([])
-
+    const [image, setImage] = useState("")
 
     let newSkills = [...skills]
     let newPerks = [...perks]
@@ -45,23 +45,51 @@ function Update() {
             }
         })
 
-        axios.put(`http://localhost:8080/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons] }, {
-            headers: {
-                "Authorization": user?.token,
-                "Content-Type": "application/json"
-            }
-        })
-            .then((res) => {
-                document.getElementById("error").innerText = res.data.message;
+        if (image) {
+            const data = new FormData()
+            data.append("file", image)
+            data.append("upload_preset", "skillwallah")
+            data.append("cloud_name", "dwrwxeoih")
 
-                // setTimeout(() => {
-                //     navigate("/profile")
-                // }, 500)
+            axios.post("https://api.cloudinary.com/v1_1/dwrwxeoih/image/upload", data)
+                .then(res => {
+                    axios.put(`http://localhost:8080/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons], imageUrl: res.data.secure_url }, {
+                        headers: {
+                            "Authorization": user?.token,
+                            "Content-Type": "application/json"
+                        }
+                    })
+                        .then((response) => {
+                            document.getElementById("error").innerText = response.data.message;
+                            setTimeout(() => navigate("/courses"), 1000)
+                        })
+                        .catch((err) => {
+                            document.getElementById("error").innerText = err.response.data.message
+                        })
+                        .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
+                })
+                .catch((err) => {
+                    document.getElementById("error").innerText = err.response.data.message
+                })
+        }
+        else {
+            axios.put(`http://localhost:8080/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons] }, {
+                headers: {
+                    "Authorization": user?.token,
+                    "Content-Type": "application/json"
+                }
             })
-            .catch((err) => {
-                document.getElementById("error").innerText = err.response.data.message
-            })
-            .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
+                .then((response) => {
+                    document.getElementById("error").innerText = response.data.message;
+                    setTimeout(() => navigate("/courses"), 1000)
+                })
+                .catch((err) => {
+                    document.getElementById("error").innerText = err.response.data.message
+                })
+                .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
+
+        }
+
     }
 
     useEffect(() => {
@@ -97,7 +125,7 @@ function Update() {
             <Navbar />
             <div className="h-screen overflow-y-auto">
 
-                <div className='min-h-screen flex flex-col gap-6 w-[90%] md:w-[85%] xl:w-[70%] mx-auto py-12 shadow-lg pt-[8rem]'>
+                <div className='min-h-screen flex flex-col gap-6 w-[90%] md:w-[85%] xl:w-[70%] mx-auto py-12 pt-[8rem]'>
                     <h3 className="font-bold my-2 text-3xl sm:text-4xl">Update Internship</h3>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -218,15 +246,20 @@ function Update() {
                     <input type="text" value={form.assignmentTask || ""} name="assignmentTask" onChange={handleChange} placeholder="Enter description" className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
                     <input type="text" value={form.assignmentUrl || ""} name="assignmentUrl" onChange={handleChange} placeholder="Enter drive link" className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
 
+
+                    <p className='w-max p-3 rounded-xl'>Update Thumbnail !</p>
+                    <img src={form?.imageUrl} alt="" className='w-[15rem]' />
+
+                    <label htmlFor="dpFile" className=''>
+                        <input id="dpFile" type="file" onChange={e => setImage(e.target.files[0])} className='w-[11rem] text-xs ' />
+                    </label>
+
                     <p className="text-red-500 font-medium h-6" id="error"></p>
 
                     <div className="flex justify-between px-4 lg:px-6">
                         <div className="btn text-sm cursor-pointer" onClick={submit}>Update </div>
                         <div className="btn text-sm cursor-pointer" onClick={deleteInternship}>Delete </div>
                     </div>
-
-
-
                     <h3 className="font-bold my-2 text-3xl sm:text-4xl">Students Enrolled</h3>
 
                     <div className='flex items-center justify-between'>

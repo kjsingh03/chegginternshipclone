@@ -139,15 +139,15 @@ const Home = () => {
                     delay:4000
                   },
                   speed:800,
-                  spaceBetween: 20,
-                },
-                640: {
-                  slidesPerView: 2,
                   spaceBetween: 120,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 80  ,
                 },
                 1200: {
                   slidesPerView: 3,
-                  spaceBetween: 0 
+                  spaceBetween: 60 
                 },
               }}
               autoplay={{
@@ -156,7 +156,7 @@ const Home = () => {
                 pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
+              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
             >
               {
                 internships?.map((data, index) => (
@@ -184,13 +184,13 @@ const Home = () => {
                   speed:800,
                   spaceBetween: 20,
                 },
-                640: {
+                768: {
                   slidesPerView: 2,
-                  spaceBetween: 120,
+                  spaceBetween: 80  ,
                 },
                 1200: {
                   slidesPerView: 3,
-                  spaceBetween: 0
+                  spaceBetween: 60
                 },
               }}
               autoplay={{
@@ -199,7 +199,7 @@ const Home = () => {
                 pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
+              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Computer').map((data, index) => (
@@ -227,13 +227,13 @@ const Home = () => {
                   speed:800,
                   spaceBetween: 20,
                 },
-                640: {
+                768: {
                   slidesPerView: 2,
-                  spaceBetween: 120,
+                  spaceBetween: 80  ,
                 },
                 1200: {
                   slidesPerView: 3,
-                  spaceBetween: 0
+                  spaceBetween: 60
                 },
               }}
               autoplay={{
@@ -242,7 +242,7 @@ const Home = () => {
                 pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
+              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Electronics').map((data, index) => (
@@ -270,13 +270,13 @@ const Home = () => {
                   speed:800,
                   spaceBetween: 20,
                 },
-                640: {
+                768: {
                   slidesPerView: 2,
-                  spaceBetween: 120,
+                  spaceBetween: 80  ,
                 },
                 1200: {
                   slidesPerView: 3,
-                  spaceBetween: 0
+                  spaceBetween: 60
                 },
               }}
               autoplay={{
@@ -285,7 +285,7 @@ const Home = () => {
                 pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
+              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Mechanical').map((data, index) => (
@@ -313,13 +313,13 @@ const Home = () => {
                   speed:800,
                   spaceBetween: 20,
                 },
-                640: {
+                768: {
                   slidesPerView: 2,
-                  spaceBetween: 120,
+                  spaceBetween: 80  ,
                 },
                 1200: {
                   slidesPerView: 3,
-                  spaceBetween: 0
+                  spaceBetween: 60
                 },
               }}
               autoplay={{
@@ -328,7 +328,7 @@ const Home = () => {
                 pauseOnMouseEnter: true,
               }}
               modules={[Autoplay]}
-              className="mySwiper w-[95%] xs:w-[80%] sm:w-[95%] mx-auto h-[18rem] internship-swiper"
+              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
             >
               {
                 internships?.filter(data => data.branch === 'Civil').map((data, index) => (

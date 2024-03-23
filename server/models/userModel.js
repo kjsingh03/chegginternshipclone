@@ -19,7 +19,7 @@ const internshipSchema = new Schema({
     certificates: [{
         user: { type: String },
         codeId: { type: String },
-        courseName:{ type: String },
+        courseName: { type: String },
     }],
     questions: [
         {
@@ -39,6 +39,7 @@ const internshipSchema = new Schema({
         }],
     assignmentTask: { type: String },
     assignmentUrl: { type: String },
+    imageUrl: { type: String }
 
     // createdBy: { type: Schema.Types.ObjectId, ref: "User" },
     // lastApplyDate: { type: Date, required: [true, "Enter last date to apply"] },
@@ -72,7 +73,8 @@ const userSchema = new Schema({
         }, value: {
             type: Number
         }
-    }]
+    }],
+    imageUrl: { type: String }
 })
 
 export const Internship = model("Internship", internshipSchema);

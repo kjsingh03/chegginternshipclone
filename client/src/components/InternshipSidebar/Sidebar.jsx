@@ -48,12 +48,22 @@ function Sidebar() {
                                 <li className="menu-item" key={index}><Link to={`/internship/${id}/lesson${index + 1}`}><div><span><i className="fa-solid fa-graduation-cap"></i> Lesson {index + 1}</span></div><i className="fa-solid fa-chevron-right"></i></Link></li>
                             ))
                         }
-                        <li className="menu-item"><div >Test</div></li>
-                        <li className="menu-item"><Link to={`/internship/${id}/${'test'}`}><span><i className="fa-solid fa-chalkboard-user"></i> Test</span><i className="fa-solid fa-chevron-right"></i> </Link></li>
+                        {
+                            internship?.questions?.length > 0 &&
+                            <div className="">
+                                <li className="menu-item"><div >Test</div></li>
+                                <li className="menu-item"><Link to={`/internship/${id}/${'test'}`}><span><i className="fa-solid fa-chalkboard-user"></i> Test</span><i className="fa-solid fa-chevron-right"></i> </Link></li>
+                            </div>
+                        }
                         <li className="menu-item"><div>Certificate</div></li>
                         <li className="menu-item"><Link to={`/internship/${id}/${'certificate'}`}><span><i className="fa-solid fa-chalkboard-user"></i> Get Certificate</span><i className="fa-solid fa-chevron-right"></i></Link></li>
-                        <li className="menu-item"><div>Assignment</div></li>
-                        <li className="menu-item"><Link to={`/internship/${id}/${'assignment'}`}><span><i className="fa-solid fa-chalkboard-user"></i> Assignment</span><i className="fa-solid fa-chevron-right"></i></Link></li>
+                        {
+                            internship?.assignmentTask &&
+                            <div className="">
+                                <li className="menu-item"><div>Assignment</div></li>
+                                <li className="menu-item"><Link to={`/internship/${id}/${'assignment'}`}><span><i className="fa-solid fa-chalkboard-user"></i> Assignment</span><i className="fa-solid fa-chevron-right"></i></Link></li>
+                            </div>
+                        }
                     </ul>
                 </div>
 

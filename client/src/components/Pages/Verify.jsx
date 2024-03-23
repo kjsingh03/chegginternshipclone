@@ -68,7 +68,7 @@ function Verify() {
                     </p>
 
                     <div className="flex justify-center">
-                        <input type="text" name="username" onChange={e => setCodeId(e.target.value)} placeholder="Enter codeid" className='hover:shadow-lg cursor-pointer  outline-[#1B88F4] p-4' />
+                        <input type="text" name="username" onChange={e => setCodeId(e.target.value)} placeholder="Enter codeid" className='hover: cursor-pointer  outline-[#1B88F4] p-4' />
 
                         <button className="btn rounded-none" onClick={submit}>Verify</button>
                     </div>

@@ -7,6 +7,8 @@ import authRouter from './routes/auth.js';
 import internshipRouter from './routes/internship.js';
 import Razorpay from 'razorpay'
 import path from 'path'
+import fs from 'fs'
+import {v2 as cloudinary} from 'cloudinary'
 import { sendPromo } from './controllers/user.js';
 
 const PORT = process.env.PORT || 6000
@@ -17,10 +19,32 @@ const app = Express();
 // Razorpay
 
 export const instance = new Razorpay({
-    key_id: 'rzp_test_aFHU3em4ZdNLo4',
-    key_secret: 'DlfamjLMFddIKU78LVXSahZy',
-    
+    key_id: process.env.RAZORPAY_KEY,
+    key_secret: process.env.RAZORPAY_SECRET,
 });
+
+// Cloudinary
+
+cloudinary.config({
+    cloud_name:process.env.CLOUD_NAME,
+    api_key:process.env.CLOUDINARY_API_KEY,
+    api_secret:process.env.CLOUDINARY_API_SECRET
+})
+
+const uploadOnCloudinary = async(localFilePath)=>{
+    try{
+        if(!localFilePath) return null
+        const response = await cloudinary.uploader.upload(localFilePath,{
+            resource_type:"auto"
+        })
+        console.log("File is uploaded on cloudinary",response.url)
+        return response
+    }
+    catch(err){
+        fs.unlinkSync(localFilePath)
+        return null;
+    }
+}
 
 // MongoDB Connection
 

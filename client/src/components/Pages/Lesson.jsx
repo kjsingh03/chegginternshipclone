@@ -27,7 +27,7 @@ function Lesson() {
 
   const user = JSON.parse(localStorage.getItem("credentials"))
 
-  const userCertificate = user?.certificates?.filter(data => data?.internship === internship?._id)[0]
+  let userCertificate = user?.certificates?.filter(data => data?.internship === internship?._id)[0]
 
   useEffect(() => {
     axios.get(`http://localhost:8080/internship/${id}`)
@@ -36,17 +36,19 @@ function Lesson() {
         setTest(res.data.internship.questions)
         setLessons(res.data.internship.lessons)
         setLesson(res.data.internship.lessons[route.split("lesson")[1] - 1])
+        if (res.data.internship?.questions?.length === 0)
+          setDisabled(false)
       })
       .catch(err => console.log(err));
 
   }, [id])
 
-  
+
   useEffect(() => {
     if (userCertificate)
       setDisabled(false)
   }, [userCertificate])
-  
+
 
   useEffect(() => {
     setLesson(lessons[route.split("lesson")[1] - 1])
@@ -87,66 +89,101 @@ function Lesson() {
 
       // Draw a string of text diagonally across the first page
 
-      firstPage.drawText(name, {
-        x: 315,
-        y: 374,
-        size: 30,
-        font: SanChezFont,
-        color: rgb(0.121, 0.337, 0.517),
-      });
-      firstPage.drawText(`${userCertificate?.duration}`, {
-        x: 421,
-        y: 315,
-        size: 16,
-        font: SanChezFont,
-        color: rgb(0, 0, 0),
-      });
-      firstPage.drawText(`${userCertificate?.name}`, {
-        x: 540,
-        y: 287,
-        size: 16,
-        font: SanChezFont,
-        color: rgb(0, 0, 0),
-      });
-      firstPage.drawText(`${(userCertificate.percentage).toFixed(2)}%`, {
-        x: 634,
-        y: 257,
-        size: 16,
-        font: SanChezFont,
-        color: rgb(0, 0, 0),
-      });
-      firstPage.drawText(`${userCertificate?.codeId}`, {
-        x: 678,
-        y: 105,
-        size: 16,
-        font: SanChezFont,
-        color: rgb(0, 0, 0),
-      });
-      firstPage.drawText(`${userCertificate?.date.split("T")[0].replace(/-/g, "/")}`, {
-        x: 672,
-        y: 85,
-        size: 14,
-        font: SanChezFont,
-        color: rgb(0, 0, 0),
-      });
+      if (userCertificate) {
+        firstPage.drawText(name, {
+          x: 315,
+          y: 374,
+          size: 30,
+          font: SanChezFont,
+          color: rgb(0.121, 0.337, 0.517),
+        });
+        firstPage.drawText(`${userCertificate?.duration}`, {
+          x: 421,
+          y: 315,
+          size: 16,
+          font: SanChezFont,
+          color: rgb(0, 0, 0),
+        });
+        firstPage.drawText(`${userCertificate?.name}`, {
+          x: 540,
+          y: 287,
+          size: 16,
+          font: SanChezFont,
+          color: rgb(0, 0, 0),
+        });
+        firstPage.drawText(`${(userCertificate?.percentage)?.toFixed(2)}%`, {
+          x: 634,
+          y: 257,
+          size: 16,
+          font: SanChezFont,
+          color: rgb(0, 0, 0),
+        });
+        firstPage.drawText(`${userCertificate?.codeId}`, {
+          x: 678,
+          y: 105,
+          size: 16,
+          font: SanChezFont,
+          color: rgb(0, 0, 0),
+        });
+        firstPage.drawText(`${userCertificate?.date.split("T")[0].replace(/-/g, "/")}`, {
+          x: 672,
+          y: 85,
+          size: 14,
+          font: SanChezFont,
+          color: rgb(0, 0, 0),
+        });
+        // Serialize the PDFDocument to bytes (a Uint8Array)
+        const pdfBytes = await pdfDoc.save();
 
-      // Serialize the PDFDocument to bytes (a Uint8Array)
-      const pdfBytes = await pdfDoc.save();
+        // this was for creating uri and showing in iframe
 
-      // this was for creating uri and showing in iframe
-
-      const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
+        const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
 
 
-      var file = new File(
-        [pdfBytes],
-        "Certificate_Verification.pdf",
-        {
-          type: "application/pdf;charset=utf-8",
+        var file = new File(
+          [pdfBytes],
+          "Certificate_Verification.pdf",
+          {
+            type: "application/pdf;charset=utf-8",
+          }
+        );
+
+        saveAs(file);
+      }
+      else {
+        let newPoints = 100;
+
+        const string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let codeId = "";
+
+        for (let i = 0; i < 8; i++) {
+          codeId += string[Math.floor(Math.random() * string.length)];
         }
-      );
 
-      saveAs(file);
+        axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId, courseName: internship.name } }, {
+          headers: {
+            "Authorization": user?.token,
+            "Content-Type": "application/json"
+          }
+        })
+          .then((res) => {
+            axios.put(`http://localhost:8080/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId, percentage: 100, name: internship.name, duration: internship.duration, date: new Date().toJSON().slice(0, 10) } }, {
+              headers: {
+                "Authorization": user?.token,
+                "Content-Type": "application/json"
+              }
+            })
+              .then((response) => {
+                userCertificate = { internship: internship?._id, generated: true, codeId: codeId, percentage: 100, name: internship.name, duration: internship.duration, date: new Date().toJSON().slice(0, 10) }
+                localStorage.setItem("credentials", JSON.stringify(response.data.user))
+                setTimeout(() => generatePDF(user?.name), 1000)
+              })
+              .catch((err) => console.log(err))
+          })
+          .catch((err) => console.log(err))
+
+
+      }
 
     };
 
@@ -231,9 +268,11 @@ function Lesson() {
               /lesson/i.test(route) &&
               <div className='flex flex-col gap-6 items-center md:items-start text-center md:text-left'>
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{lesson?.lesson}</h1>
-                <div style={{ display: lesson?.lesson ? 'block' : 'none' }} className="w-[90%] h-[50vw] md:mx-auto md:h-[46vw] lg:w-[95%] xl:w-[70%] xl:h-[70vh]">
-                  <iframe style={{ display: lesson?.lesson ? 'block' : 'none', width: '100%', height: '100%' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-                </div>
+                {lesson?.url &&
+                  <div style={{ display: lesson?.lesson ? 'block' : 'none' }} className="w-[90%] h-[50vw] md:mx-auto md:h-[46vw] lg:w-[95%] xl:w-[70%] xl:h-[70vh]">
+                    <iframe style={{ display: lesson?.lesson ? 'block' : 'none', width: '100%', height: '100%' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                  </div>
+                }
                 <p className="text-sm lg:text-lg font-medium w-full">{lesson?.description}</p>
               </div>
             }
@@ -255,7 +294,7 @@ function Lesson() {
                   </div>
                 ))}
                 <p className="text-red-500 h-6" id="error"></p>
-                <button onClick={() => submitQuiz()} className='btn w-max text-sm'>Complete</button>
+                <button onClick={() => submitQuiz()} className='btn w-max text-sm mb-8'>Complete</button>
               </div>
             }
 
@@ -266,7 +305,7 @@ function Lesson() {
               <div className="getCertificate px-8 md:px-0">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Get Certificate Here</h1>
 
-                <button onClick={() => { if (disabled) { document.getElementById('error').innerText = "Kindly complete test first"; setTimeout(() => document.getElementById('error').innerText = "", 1000) } else { getCertificate() } }} className="btn p-4 sm:p-2 my-6 text-base">Download <i className="fa-solid fa-download"></i></button>
+                <button onClick={() => { if (disabled) { document.getElementById('error').innerText = "Kindly complete test first"; setTimeout(() => document.getElementById('error').innerText = "", 1000) } else { getCertificate() } }} className="btn p-2.5 my-8 text-sm sm:text-base">Download <i className="fa-solid fa-download"></i></button>
                 <p className="text-red-500 h-6 py-4 font-medium" id="error"></p>
               </div>
             }
@@ -276,7 +315,7 @@ function Lesson() {
               <div className="flex flex-col gap-4">
 
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Assignment</h1>
-                <input value={internship?.assignmentTask || ""} type="text" name="name" readOnly placeholder="Enter name" className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
+                <input value={internship?.assignmentTask || ""} type="text" name="name" readOnly className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
                 <h1 className="text-lg md:text-xl lg:text-2xl font-bold py-2">Steps to follow :</h1>
                 <ul className='list-disc px-6'>
                   <li>Post your certificate on Linkedin</li>
@@ -284,7 +323,7 @@ function Lesson() {
                   <li>Upload linkedin post url along with assignment zip file in below given drive link</li>
 
                 </ul>
-                <input value={internship?.assignmentUrl || ""} type="text" name="duration" readOnly placeholder="Enter duration (in Months)" className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
+                <input value={internship?.assignmentUrl || ""} type="text" name="duration" readOnly className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
               </div>
             }
 

@@ -43,6 +43,16 @@ ul li{
   cursor: pointer;
 }
 
+/* #error{
+  position: absolute;
+  top:10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  border:1px solid #EF4444; 
+  width:70%;
+  text-align: center;
+} */
+
 .option.active{
   background-color: #1B88F4;
   color:white;
@@ -125,15 +135,8 @@ ul li{
   background-color:white;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-   
-  color: #000 !important;
-  fill: black !important;
-    stroke: black !important;
-}
 
-@media screen and (max-width:1024px){
+/* @media screen and (max-width:1024px){
   .internship-section .swiper-slide:nth-child(1){
     margin-left: 1.25rem;
   }
@@ -157,4 +160,4 @@ ul li{
   .internship-section .swiper-slide:nth-child(1){
     margin-left: 5%;
   }
-}
+} */

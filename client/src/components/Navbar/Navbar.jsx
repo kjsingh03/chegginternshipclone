@@ -27,22 +27,20 @@ const Navbar = () => {
     // document.addEventListener('DOMContentLoaded', function () {
     const toggler = document.getElementById('navbar-toggler')
     const navbar = document.querySelector('.nav-sidebar')
-    const navList = document.querySelector('.nav-list')
-    const navbg =
 
-      toggler.addEventListener('click', () => {
-        navbar.style.transform = navbar.style.transform === 'translateX(0)' ? 'translateX(-100%)' : 'translateX(0)';
-        document.querySelector('.nav-list ~ div').addEventListener('click', (event) => {
-          navbar.style.transform = 'translateX(-100%)'
-        })
+    toggler.addEventListener('click', () => {
+      navbar.style.transform = navbar.style.transform === 'translateX(0)' ? 'translateX(-100%)' : 'translateX(0)';
+      document.querySelector('.nav-list ~ div').addEventListener('click', (event) => {
+        navbar.style.transform = 'translateX(-100%)'
       })
+    })
     // })
   }, [])
 
 
   return (
     <>
-      <div className=" z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-0 pl-12 lg:px-2 py-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
+      <div className=" z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-0 pl-12 lg:px-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
         <div className="flex items-center justify-between gap-2 md:gap-3 sm:gap-5 relative">
           <button id="navbar-toggler" className="block sm:hidden text-xl px-4 absolute left-[-3rem] z-[1500]"  >☰</button>
           <div className="w-[7rem] ">
@@ -50,7 +48,7 @@ const Navbar = () => {
             {/* <Link to="/"><img src={smallLogo} alt="SkillsWallah Logo" className="block sm:hidden w-full h-full object-fill" /></Link> */}
           </div>
           <ul className="flex items-center justify-between gap-3 sm:gap-5">
-           
+
             {
               user &&
               <li className="hover:text-[#403f3f] hidden sm:block"><Link to="/courses">{user.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
@@ -60,9 +58,9 @@ const Navbar = () => {
               <li className="hover:text-[#403f3f] hidden sm:block"><Link to="/add">ADD NEW</Link></li>
             }
 
-            <li className="hover:text-[#403f3f] hidden md:block"><Link to="/verify">CERTIFICATE VERIFICATION</Link></li>
+            <li className="hover:text-[#403f3f] hidden lg:block"><Link to="/verify">CERTIFICATE VERIFICATION</Link></li>
             <li className="hover:text-[#403f3f] hidden lg:block"><Link to="/about">ABOUT US</Link></li>
-          <li className="hover:text-[#403f3f] hidden lg:block"><Link to="/contact">CONTACT US</Link></li>
+            <li className="hover:text-[#403f3f] hidden lg:block"><Link to="/contact">CONTACT US</Link></li>
           </ul>
         </div>
         {/* <div className="border border-[#313131] p-3 rounded-xl hidden lg:block">
@@ -71,39 +69,66 @@ const Navbar = () => {
       </div> */}
         <ul className="flex items-center justify-between gap-3 sm:gap-5 px-7">
           {
-            user &&
-            <li className="hover:text-[#403f3f] block"><Link to="/profile">PROFILE</Link></li>
-          }
-          {
-            user?.role==='Admin' &&
-            <li className="hover:text-[#403f3f] block"><Link to="/admin">ADMIN</Link></li>
+            user?.role === 'Admin' &&
+            <li className="hover:text-[#403f3f] hidden sm:block py-3"><Link to="/admin">ADMIN</Link></li>
           }
           {
             user &&
-            <li className="hover:text-[#403f3f] hidden sm:block" onClick={logout}>LOGOUT</li>
+            <li className="hover:text-[#403f3f] block">
+              <div className="dropdown">
+                <div className="">
+                  <div className="dropbtn flex items-center gap-2 py-3">
+                    {!user?.imageUrl &&
+                      <i className="fa-regular fa-circle-user text-xl"></i>
+                    }
+                    {user?.imageUrl &&
+                      <img src={user?.imageUrl} className=" w-8 rounded-[50%]" alt="" />
+                    }
+                    <p className="hidden xs:block">Welcome, {user?.name.split(" ")[0]}</p>
+                    <i className="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div className="dropcontent min-w-min w-[94%] sm:w-full bg-white -translate-x-3.5 xs:translate-x-0.5">
+                    <p><Link to="/profile">PROFILE</Link></p>
+                    <p><Link to="/courses">COURSES</Link></p>
+                    <p onClick={logout}>LOGOUT</p>
+                  </div>
+                </div>
+                
+              </div>
+            </li>
           }
+
           {
             !user &&
-            <li className="hover:text-[#403f3f] block"><Link to="/login">LOG IN</Link></li>
+            <li className="hover:text-[#403f3f] block py-3"><Link to="/login">LOG IN</Link></li>
           }
         </ul>
       </div>
-      <div className="nav-sidebar translate-x-[-100%] absolute z-[1000] w-screen flex">
-        <div className="nav-list flex flex-col gap-4 bg-white h-screen w-[15rem] text-sm p-4 font-medium">
-          
-        {/* <div className="w-[7rem] mx-8 py-3">
+      <div className="nav-sidebar translate-x-[-100%]  absolute z-[1000] w-screen flex h-screen overflow-y-auto">
+        <div className="nav-list flex flex-col transition-all ease-in-out duration-300 gap-4 bg-white h-screen overflow-y-auto w-[15rem] text-sm p-4 font-medium">
+
+          {/* <div className="w-[7rem] mx-8 py-3">
             <Link to="/"><img src={logo} alt="SkillsWallah Logo" className="block w-full h-full object-fill" /></Link>
           </div> */}
 
-          <div className="flex items-center gap-2 py-3">
-            <i className="fa-solid fa-user-circle text-3xl"></i>
+          <Link to="/profile" className="flex items-center gap-2 py-3">
+            {!user?.imageUrl &&
+              <i className="fa-solid fa-circle-user text-3xl"></i>
+            }
+            {user?.imageUrl &&
+              <img src={user?.imageUrl} className=" w-12 rounded-[50%]" alt="" />
+            }
             <div className="">
               <p>{user?.name}</p>
               <p className="text-xs">{user?.email}</p>
             </div>
-          </div>
+          </Link>
 
           <p className=""><Link to="/">HOME</Link></p>
+          {
+            user?.role === 'Admin' &&
+            <p><Link to="/admin">ADMIN DASHBOARD</Link></p>
+          }
 
           <div onClick={() => document.querySelector('.nav-courses').style.display = document.querySelector('.nav-courses').style.display === 'flex' ? 'none' : 'flex'}>
             <p className=""> COURSES <i className="fa-solid fa-chevron-down"></i></p>
