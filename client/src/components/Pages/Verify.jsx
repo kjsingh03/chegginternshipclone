@@ -22,7 +22,7 @@ function Verify() {
         setCertificate((prev) => {
             console.log(prev)
             if (prev) {
-                axios.get(`http://localhost:8080/user/${prev?.user}`)
+                axios.get(`http://localhost:8080/api/user/${prev?.user}`)
                     .then(res => {
                         setView(true)
                         setTimeout(() => {
@@ -41,7 +41,7 @@ function Verify() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/internship")
+        axios.get("http://localhost:8080/api/internship")
             .then((res) => {
                 let internships = res.data.internships;
 

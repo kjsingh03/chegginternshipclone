@@ -43,7 +43,7 @@ function Profile() {
         .then(res => {
           document.querySelector(".userDp").src = res.data.secure_url
           document.querySelector(".dpButton").style.display = 'none'
-          axios.put(`http://localhost:8080/user`, { ...user, imageUrl: res.data.secure_url }, {
+          axios.put(`http://localhost:8080/api/user`, { ...user, imageUrl: res.data.secure_url }, {
             headers: {
               "Authorization": user?.token,
               "Content-Type": "application/json"
@@ -61,7 +61,7 @@ function Profile() {
         .catch(err => console.log(err))
     }
     else {
-      axios.put(`http://localhost:8080/user`, { ...user }, {
+      axios.put(`http://localhost:8080/api/user`, { ...user }, {
         headers: {
           "Authorization": user?.token,
           "Content-Type": "application/json"

@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     navigate(`${window.location.pathname}`)
 
-    axios.get("http://localhost:8080/internship")
+    axios.get("http://localhost:8080/api/internship")
       .then(res => dispatch(updateInternships(res.data.internships)))
       .catch(err => console.log(err))
   }, [])

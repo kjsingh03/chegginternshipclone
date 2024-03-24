@@ -18,7 +18,7 @@ function Signup() {
         e.preventDefault();
         // setForm({...form,username:form?.username?.toLowerCase()})
 
-        axios.post("http://localhost:8080/auth/signup", { ...form, role: role })
+        axios.post("http://localhost:8080/api/auth/signup", { ...form, role: role })
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
                 setTimeout(() => navigate("/"), 1000)

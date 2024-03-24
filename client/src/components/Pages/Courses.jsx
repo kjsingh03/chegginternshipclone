@@ -17,7 +17,7 @@ function Profile() {
     const [students, setStudents] = useState(0)
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/user/${user.username}`)
+        axios.get(`http://localhost:8080/api/user/${user.username}`)
             .then(res => {
                 setInternships(res.data.internships)
                 res?.data?.internships.forEach(data => {

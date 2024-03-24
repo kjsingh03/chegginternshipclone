@@ -24,7 +24,7 @@ function Internship() {
     const user = JSON.parse(localStorage.getItem("credentials"))
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/internship/${id}`)
+        axios.get(`http://localhost:8080/api/internship/${id}`)
             .then(res => {
                 setInternship(res.data.internship)
                 setPrice(Math.floor(res.data.internship.price * (1 - res.data.internship.discount / 100)))
@@ -37,7 +37,7 @@ function Internship() {
             })
             .catch(err => console.log(err));
 
-        axios.get("http://localhost:8080/promocodes")
+        axios.get("http://localhost:8080/api/promocodes")
             .then(res => setPromocodes(res.data.promocodes))
             .catch(err => console.log(err))
 
@@ -68,7 +68,7 @@ function Internship() {
                 document.getElementById("error").style.display = 'none'
                 document.getElementById("success").innerHTML = "Promocode applied successfully"
                 setPrice(price => {
-                    axios.post("http://localhost:8080/pay", {
+                    axios.post("http://localhost:8080/api/pay", {
                         amount: (price - isPromo?.value)*100 ,
                         currency: "INR",
                     }, {
@@ -85,13 +85,13 @@ function Internship() {
                             "image": logo,
                             "order_id": res.data.id,
                             "handler": (response) => {
-                                axios.put("http://localhost:8080/user", { username: user?.username, internship: internship, promocodes: { name: promo, used: true } }, {
+                                axios.put("http://localhost:8080/api/user", { username: user?.username, internship: internship, promocodes: { name: promo, used: true } }, {
                                     headers: {
                                         "Content-Type": "application/json"
                                     }
                                 }).then(res => {
                                     localStorage.setItem("credentials", JSON.stringify(res.data.user))
-                                    axios.put(`http://localhost:8080/internship/${id}`, { studentsEnrolled: user?.username }, {
+                                    axios.put(`http://localhost:8080/api/internship/${id}`, { studentsEnrolled: user?.username }, {
                                         headers: {
                                             "Authorization": user?.token,
                                             "Content-Type": "application/json"
@@ -136,7 +136,7 @@ function Internship() {
     }
 
     const payNow = () => {
-        axios.post("http://localhost:8080/pay", {
+        axios.post("http://localhost:8080/api/pay", {
             amount: price * 100,
             currency: "INR",
         }, {
@@ -153,13 +153,13 @@ function Internship() {
                 "image": logo,
                 "order_id": res.data.id,
                 "handler": (response) => {
-                    axios.put("http://localhost:8080/user", { username: user?.username, internship: internship, promocodes: { name: promo, used: true } }, {
+                    axios.put("http://localhost:8080/api/user", { username: user?.username, internship: internship, promocodes: { name: promo, used: true } }, {
                         headers: {
                             "Content-Type": "application/json"
                         }
                     }).then(res => {
                         localStorage.setItem("credentials", JSON.stringify(res.data.user))
-                        axios.put(`http://localhost:8080/internship/${id}`, { studentsEnrolled: user?.username }, {
+                        axios.put(`http://localhost:8080/api/internship/${id}`, { studentsEnrolled: user?.username }, {
                             headers: {
                                 "Authorization": user?.token,
                                 "Content-Type": "application/json"

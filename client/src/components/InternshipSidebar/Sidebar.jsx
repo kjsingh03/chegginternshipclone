@@ -9,7 +9,7 @@ function Sidebar() {
     const [internship, setInternship] = useState({})
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/internship/${id}`)
+        axios.get(`http://localhost:8080/api/internship/${id}`)
             .then(res => {
                 setInternship(res.data.internship)
             })

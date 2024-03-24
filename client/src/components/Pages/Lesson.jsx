@@ -30,7 +30,7 @@ function Lesson() {
   let userCertificate = user?.certificates?.filter(data => data?.internship === internship?._id)[0]
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/internship/${id}`)
+    axios.get(`http://localhost:8080/api/internship/${id}`)
       .then(res => {
         setInternship(res.data.internship)
         setTest(res.data.internship.questions)
@@ -163,14 +163,14 @@ function Lesson() {
           codeId += string[Math.floor(Math.random() * string.length)];
         }
 
-        axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId, courseName: internship.name } }, {
+        axios.put(`http://localhost:8080/api/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId, courseName: internship.name } }, {
           headers: {
             "Authorization": user?.token,
             "Content-Type": "application/json"
           }
         })
           .then((res) => {
-            axios.put(`http://localhost:8080/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId, percentage: 100, name: internship.name, duration: internship.duration, date: new Date().toJSON().slice(0, 10) } }, {
+            axios.put(`http://localhost:8080/api/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId, percentage: 100, name: internship.name, duration: internship.duration, date: new Date().toJSON().slice(0, 10) } }, {
               headers: {
                 "Authorization": user?.token,
                 "Content-Type": "application/json"
@@ -229,14 +229,14 @@ function Lesson() {
         codeId += string[Math.floor(Math.random() * string.length)];
       }
 
-      axios.put(`http://localhost:8080/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId, courseName: internship.name } }, {
+      axios.put(`http://localhost:8080/api/internship/${internship.id}`, { certificates: { user: user?.username, codeId: codeId, courseName: internship.name } }, {
         headers: {
           "Authorization": user?.token,
           "Content-Type": "application/json"
         }
       })
         .then((res) => {
-          axios.put(`http://localhost:8080/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId, percentage: newPoints / test.length * 100, name: internship.name, duration: internship.duration, date: new Date().toJSON().slice(0, 10) } }, {
+          axios.put(`http://localhost:8080/api/user`, { username: user?.username, certificates: { internship: internship?._id, generated: true, codeId: codeId, percentage: newPoints / test.length * 100, name: internship.name, duration: internship.duration, date: new Date().toJSON().slice(0, 10) } }, {
             headers: {
               "Authorization": user?.token,
               "Content-Type": "application/json"

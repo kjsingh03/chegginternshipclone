@@ -8,13 +8,13 @@
         "client_secret": "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",
         "redirect_uris": [
             "http://localhost",
-            "http://localhost:8080",
+            "http://localhost:8080/api",
             "http://localhost:5173"
         ],
         "javascript_origins": [
             "http://localhost",
             "http://localhost:5173",
-            "http://localhost:8080"
+            "http://localhost:8080/api"
         ]
     }
 }

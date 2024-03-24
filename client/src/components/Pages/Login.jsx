@@ -19,7 +19,7 @@ function Login() {
     const submit = (e) => {
         e.preventDefault();
 
-        axios.post("http://localhost:8080/auth/login", form)
+        axios.post("http://localhost:8080/api/auth/login", form)
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
                 // console.log(res.data)
