@@ -13,6 +13,13 @@
   <link rel="mask-icon" href="/client/public/maskable-icon-512x512.png" color="#FFFFFF">
   <meta name="theme-color" content="#ffffff">
 
+  <script>
+    const reload = ()=> {
+        if(window.location.href.slice(0,-1)!==window.location.origin)
+          window.location.href = window.location.origin
+    }
+  </script>
+
   <title>SkillWallah</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +45,7 @@
 
 </head>
 
-<body>
+<body onload="reload()">
   <div id="root"></div>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script type="module" src="/src/main.jsx"></script>
