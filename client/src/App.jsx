@@ -11,7 +11,8 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    navigate(`${window.location.pathname}`)
+    
+    navigate("/")
 
     axios.get("http://localhost:8080/api/internship")
       .then(res => dispatch(updateInternships(res.data.internships)))
