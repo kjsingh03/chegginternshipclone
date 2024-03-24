@@ -85,7 +85,7 @@ function Internship() {
                             "image": logo,
                             "order_id": res.data.id,
                             "handler": (response) => {
-                                axios.put("http://localhost:8080/user", { username: user.username, internship: internship, promocodes: { name: promo, used: true } }, {
+                                axios.put("http://localhost:8080/user", { username: user?.username, internship: internship, promocodes: { name: promo, used: true } }, {
                                     headers: {
                                         "Content-Type": "application/json"
                                     }
@@ -102,8 +102,8 @@ function Internship() {
                                     .catch(err => console.log(err))
                             },
                             "prefill": {
-                                "username": user.username,
-                                "contact": user.contact
+                                "username": user?.username,
+                                "contact": user?.contact
                             }
                         };
                         var rzp1 = new Razorpay(options);
@@ -153,7 +153,7 @@ function Internship() {
                 "image": logo,
                 "order_id": res.data.id,
                 "handler": (response) => {
-                    axios.put("http://localhost:8080/user", { username: user.username, internship: internship, promocodes: { name: promo, used: true } }, {
+                    axios.put("http://localhost:8080/user", { username: user?.username, internship: internship, promocodes: { name: promo, used: true } }, {
                         headers: {
                             "Content-Type": "application/json"
                         }
@@ -170,8 +170,8 @@ function Internship() {
                         .catch(err => console.log(err))
                 },
                 "prefill": {
-                    "username": user.username,
-                    "contact": user.contact
+                    "username": user?.username,
+                    "contact": user?.contact
                 }
             };
             var rzp1 = new Razorpay(options);
@@ -234,7 +234,7 @@ function Internship() {
 
                         </div>
                         {/* {
-                            completed && user.role === 'User' &&
+                            completed && user?.role === 'User' &&
                             <div className="">
                                 <div onClick={getCertificate} className="btn w-max h-12">Get Certificate</div>
                             </div>

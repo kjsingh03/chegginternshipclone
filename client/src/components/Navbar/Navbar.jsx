@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const logout = () => {
-    axios.post("http://localhost:8080/auth/logout", { username: user.username })
+    axios.post("http://localhost:8080/auth/logout", { username: user?.username })
       .then(() => {
         localStorage.removeItem('credentials')
         user = {}
@@ -49,10 +49,8 @@ const Navbar = () => {
           </div>
           <ul className="flex items-center justify-between gap-3 sm:gap-5">
 
-            {
-              user &&
-              <li className="hover:text-[#403f3f] hidden sm:block"><Link to="/courses">{user.role === "Admin" ? 'COURSES' : 'MY COURSES'}</Link></li>
-            }
+
+            <li className="hover:text-[#403f3f] hidden sm:block"><Link to="/">HOME</Link></li>
             {
               user?.role === 'Admin' &&
               <li className="hover:text-[#403f3f] hidden sm:block"><Link to="/add">ADD NEW</Link></li>
@@ -89,11 +87,14 @@ const Navbar = () => {
                   </div>
                   <div className="dropcontent min-w-min w-[94%] sm:w-full bg-white -translate-x-3.5 xs:translate-x-0.5">
                     <p><Link to="/profile">PROFILE</Link></p>
-                    <p><Link to="/courses">COURSES</Link></p>
+                    {
+                      user &&
+                      <p><Link to="/courses">{user?.role === "Admin" ? 'ALL COURSES' : 'MY COURSES'}</Link></p>
+                    }
                     <p onClick={logout}>LOGOUT</p>
                   </div>
                 </div>
-                
+
               </div>
             </li>
           }

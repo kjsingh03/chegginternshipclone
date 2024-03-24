@@ -15,7 +15,7 @@ export const createInternship = async (req, res) => {
                 
                 jwt.verify(token, publicKey, async function (err, decoded) {
                     if(!err){
-                        let user = await User.findOne({ username: decoded.username })
+                        let user = await user.findOne({ username: decoded.username })
                         user.internships=[...user.internships,internship._id]
                         internship.createdBy = user._id
                         internship.id = uuidv4();

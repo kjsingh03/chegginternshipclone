@@ -38,10 +38,13 @@ function Lesson() {
         setLesson(res.data.internship.lessons[route.split("lesson")[1] - 1])
         if (res.data.internship?.questions?.length === 0)
           setDisabled(false)
+        else
+          setDisabled(true)
       })
       .catch(err => console.log(err));
 
   }, [id])
+  console.log(disabled)
 
 
   useEffect(() => {
