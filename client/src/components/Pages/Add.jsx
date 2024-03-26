@@ -53,7 +53,7 @@ function Add() {
 
             axios.post("https://api.cloudinary.com/v1_1/dwrwxeoih/image/upload", data)
                 .then(res => {
-                    axios.post("http://localhost:8080/api/internship", { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons], imageUrl: res.data.secure_url }, {
+                    axios.post(`${import.meta.env.VITE_API_KEY}/internship`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons], imageUrl: res.data.secure_url }, {
                         headers: {
                             "Authorization": user?.token,
                             "Content-Type": "application/json"
@@ -75,7 +75,7 @@ function Add() {
                     document.getElementById("error").innerText = err.response.data.message
                 })
         } else {
-            axios.post("http://localhost:8080/api/internship", { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons]}, {
+            axios.post(`${import.meta.env.VITE_API_KEY}/internship`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons]}, {
                 headers: {
                     "Authorization": user?.token,
                     "Content-Type": "application/json"

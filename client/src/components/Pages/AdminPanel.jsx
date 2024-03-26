@@ -16,11 +16,11 @@ function AdminPanel() {
     useEffect(() => {
         let newUser = JSON.parse(localStorage.getItem('credentials'))?.username
 
-        axios.get("http://localhost:8080/api/promocodes")
+        axios.get(`${import.meta.env.VITE_API_KEY}/promocodes`)
             .then(res => setPromocodes(res.data.promocodes))
             .catch(err => console.log(err))
 
-        axios.get("http://localhost:8080/api/user/all")
+        axios.get(`${import.meta.env.VITE_API_KEY}/user/all`)
             .then(res => setUsers(res.data.splice(1)))
             .catch(err => console.log(err))
 
@@ -29,7 +29,7 @@ function AdminPanel() {
     const submit = () => {
         if (user?.role === 'Admin') {
 
-            axios.put(`http://localhost:8080/api/user`, { ...user, promocodes }, {
+            axios.put(`${import.meta.env.VITE_API_KEY}/user`, { ...user, promocodes }, {
                 headers: {
                     "Authorization": user?.token,
                     "Content-Type": "application/json"

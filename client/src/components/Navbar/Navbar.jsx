@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const logout = () => {
-    axios.post("http://localhost:8080/api/auth/logout", { username: user?.username })
+    axios.post(`${import.meta.env.VITE_API_KEY}/auth/logout`, { username: user?.username })
       .then(() => {
         localStorage.removeItem('credentials')
         user = {}

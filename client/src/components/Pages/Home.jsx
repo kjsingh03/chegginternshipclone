@@ -54,300 +54,310 @@ const Home = () => {
       <Navbar />
       <div className="h-screen overflow-y-auto">
 
-      <div className='flex flex-col gap-4 max-h-screen overflow-y-auto'>
-        <div className="py-[3.5rem] w-full mx-auto lg:gap-12 pt-[3.25rem]">
-          <Swiper
-            style={{
-              "--swiper-navigation-color": "#000",
-              "--swiper-navigation-size": "15px",
-            }}
-            spaceBetween={30}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: true,
-            }}
-            speed={1200}
-            // loop={true}
-            navigation={true}
-            modules={[Autoplay, Navigation]}
-            className="mySwiper xs:h-[] sm:h-[] md:h md:h-[41rem]"
-          >
-            <SwiperSlide>
-              <img src={thumb1} className="w-full h-full object-bottom" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={thumb2} className="w-full h-full object-bottom" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={thumb3} className="w-full h-full object-bottom" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={thumb4} className="w-full h-full object-bottom" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={thumb5} className="w-full h-full object-bottom" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={thumb6} className="w-full h-full object-bottom" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={thumb7} className="w-full h-full object-bottom" />
-            </SwiperSlide>
-          </Swiper>
-        </div>
+        <div className='flex flex-col gap-4 max-h-screen overflow-y-auto'>
+          <div className="py-[3.5rem] w-full mx-auto lg:gap-12 pt-[3.25rem]">
+            <Swiper
+              style={{
+                "--swiper-navigation-color": "#000",
+                "--swiper-navigation-size": "15px",
+              }}
+              spaceBetween={30}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: true,
+              }}
+              speed={1200}
+              // loop={true}
+              navigation={true}
+              modules={[Autoplay, Navigation]}
+              className="mySwiper xs:h-[] sm:h-[] md:h md:h-[41rem]"
+            >
+              <SwiperSlide>
+                <img src={thumb1} className="w-full h-full object-bottom" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={thumb2} className="w-full h-full object-bottom" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={thumb3} className="w-full h-full object-bottom" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={thumb4} className="w-full h-full object-bottom" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={thumb5} className="w-full h-full object-bottom" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={thumb6} className="w-full h-full object-bottom" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={thumb7} className="w-full h-full object-bottom" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
 
-        <div className="w-full xl:w-[90%] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12  ">
-          <h1 className="text-base xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mx-auto">Courses that Transform, Learning that Lasts.</h1>
-          <p className="text-sm lg:text-xl font-medium w-full sm:w-[90%] mx-auto">
-            Crafting Excellence with Skillwallah: Your Journey Begins Now.
-          </p>
+          <div className="w-full xl:w-[90%] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12  ">
+            <h1 className="text-base xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mx-auto">Courses that Transform, Learning that Lasts.</h1>
+            <p className="text-sm lg:text-xl font-medium w-full sm:w-[90%] mx-auto">
+              Crafting Excellence with Skillwallah: Your Journey Begins Now.
+            </p>
 
-          {
-            !user &&
-            <Link to="/login"><button className="btn">Get started</button></Link>
-          }
-        </div>
+            {
+              !user &&
+              <Link to="/login"><button className="btn">Get started</button></Link>
+            }
+          </div>
 
 
 
-        <div className="internship-section flex flex-col gap-4 sm:gap-10 py-12">
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+          <div className="internship-section flex flex-col gap-4 sm:gap-10 py-12">
+            <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
-            <div className="flex justify-between items-center px-6 sm:px-4">
-              <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 xs:px- sm:px-0  ">Featured skill programs</h2>
-              <div className="dropdown z-[50] flex items-center gap-4 md:gap-8 border-[1.6px] border-[#c4c3c3] rounded-xl py-[0.375rem] px-4 md:px-2 md:py-1 cursor-pointer">
-                <div className="">
-                  <div className="dropbtn">Sort</div>
-                  <div className="dropcontent">
-                    <p onClick={sortDateAsc}><span>Price</span> <i className="fa-solid fa-arrow-down"></i></p>
-                    <p onClick={sortDateDesc}><span>Price</span> <i className="fa-solid fa-arrow-up"></i></p>
-                    <p onClick={sortPriorityAsc}><span>Discount</span> <i className="fa-solid fa-arrow-up"></i></p>
-                    <p onClick={sortPriorityDesc}><span>Discount</span> <i className="fa-solid fa-arrow-down"></i></p>
+              <div className="flex justify-between items-center px-6 sm:px-4">
+                <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 xs:px- sm:px-0  ">Featured skill programs</h2>
+                <div className="dropdown z-[50] flex items-center gap-4 md:gap-8 border-[1.6px] border-[#c4c3c3] rounded-xl py-[0.375rem] px-4 md:px-2 md:py-1 cursor-pointer">
+                  <div className="">
+                    <div className="dropbtn">Sort</div>
+                    <div className="dropcontent">
+                      <p onClick={sortDateAsc}><span>Price</span> <i className="fa-solid fa-arrow-down"></i></p>
+                      <p onClick={sortDateDesc}><span>Price</span> <i className="fa-solid fa-arrow-up"></i></p>
+                      <p onClick={sortPriorityAsc}><span>Discount</span> <i className="fa-solid fa-arrow-up"></i></p>
+                      <p onClick={sortPriorityDesc}><span>Discount</span> <i className="fa-solid fa-arrow-down"></i></p>
+                    </div>
                   </div>
+                  <i className="fa-solid fa-chevron-down"></i>
                 </div>
-                <i className="fa-solid fa-chevron-down"></i>
               </div>
+              <Swiper
+                spaceBetween={0}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    grabCursor: true,
+                    centeredSlides: true,
+                    autoplay: {
+                      delay: 4000
+                    },
+                    speed: 800,
+                    spaceBetween: 120,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 80,
+                  },
+                  1200: {
+                    slidesPerView: 3,
+                    spaceBetween: 60
+                  },
+                }}
+                autoplay={{
+                  delay: 2750,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                modules={[Autoplay]}
+                className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
+              >
+                {
+                  internships?.map((data, index) => (
+                    <SwiperSlide key={index}>
+                      <Card data={data} />
+                    </SwiperSlide>
+                  ))
+                }
+              </Swiper>
             </div>
-            <Swiper
-              spaceBetween={0}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                  grabCursor: true,
-                  centeredSlides: true,
-                  autoplay:{
-                    delay:4000
-                  },
-                  speed:800,
-                  spaceBetween: 120,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 80  ,
-                },
-                1200: {
-                  slidesPerView: 3,
-                  spaceBetween: 60 
-                },
-              }}
-              autoplay={{
-                delay: 2750,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              modules={[Autoplay]}
-              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
-            >
-              {
-                internships?.map((data, index) => (
-                  <SwiperSlide key={index}>
-                    <Card data={data} />
-                  </SwiperSlide>
-                ))
-              }
-            </Swiper>
-          </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">CSE/IT Engineering</h2>
+            {internships?.filter(data => data.branch === 'Computer') &&
+              <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
-            <Swiper
-              spaceBetween={0}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                  grabCursor: true,
-                  centeredSlides: true,
-                  autoplay:{
-                    delay:4000
-                  },
-                  speed:800,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 80  ,
-                },
-                1200: {
-                  slidesPerView: 3,
-                  spaceBetween: 60
-                },
-              }}
-              autoplay={{
-                delay: 2750,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              modules={[Autoplay]}
-              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
-            >
-              {
-                internships?.filter(data => data.branch === 'Computer').map((data, index) => (
-                  <SwiperSlide key={index}>
-                    <Card data={data} />
-                  </SwiperSlide>
-                ))
-              }
-            </Swiper>
-          </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+                <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">CSE/IT Engineering</h2>
 
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">ECE/EEE Engineering</h2>
+                <Swiper
+                  spaceBetween={0}
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1,
+                      grabCursor: true,
+                      centeredSlides: true,
+                      autoplay: {
+                        delay: 4000
+                      },
+                      speed: 800,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 80,
+                    },
+                    1200: {
+                      slidesPerView: 3,
+                      spaceBetween: 60
+                    },
+                  }}
+                  autoplay={{
+                    delay: 2750,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                  }}
+                  modules={[Autoplay]}
+                  className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
+                >
+                  {
+                    internships?.filter(data => data.branch === 'Computer')?.map((data, index) => (
+                      <SwiperSlide key={index}>
+                        <Card data={data} />
+                      </SwiperSlide>
+                    ))
+                  }
+                </Swiper>
+              </div>
+            }
+            {internships?.filter(data => data.branch === 'Electronics') &&
+              <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
-            <Swiper
-              spaceBetween={0}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                  grabCursor: true,
-                  centeredSlides: true,
-                  autoplay:{
-                    delay:4000
-                  },
-                  speed:800,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 80  ,
-                },
-                1200: {
-                  slidesPerView: 3,
-                  spaceBetween: 60
-                },
-              }}
-              autoplay={{
-                delay: 2750,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              modules={[Autoplay]}
-              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
-            >
-              {
-                internships?.filter(data => data.branch === 'Electronics').map((data, index) => (
-                  <SwiperSlide key={index}>
-                    <Card data={data} />
-                  </SwiperSlide>
-                ))
-              }
-            </Swiper>
-          </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+                <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">ECE/EEE Engineering</h2>
 
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Mechanical Engineering</h2>
+                <Swiper
+                  spaceBetween={0}
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1,
+                      grabCursor: true,
+                      centeredSlides: true,
+                      autoplay: {
+                        delay: 4000
+                      },
+                      speed: 800,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 80,
+                    },
+                    1200: {
+                      slidesPerView: 3,
+                      spaceBetween: 60
+                    },
+                  }}
+                  autoplay={{
+                    delay: 2750,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                  }}
+                  modules={[Autoplay]}
+                  className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
+                >
+                  {
+                    internships?.filter(data => data.branch === 'Electronics')?.map((data, index) => (
+                      <SwiperSlide key={index}>
+                        <Card data={data} />
+                      </SwiperSlide>
+                    ))
+                  }
+                </Swiper>
+              </div>
+            }
+            {
+              internships?.filter(data => data.branch === 'Mechanical') &&
+              <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
-            <Swiper
-              spaceBetween={0}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                  grabCursor: true,
-                  centeredSlides: true,
-                  autoplay:{
-                    delay:4000
-                  },
-                  speed:800,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 80  ,
-                },
-                1200: {
-                  slidesPerView: 3,
-                  spaceBetween: 60
-                },
-              }}
-              autoplay={{
-                delay: 2750,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              modules={[Autoplay]}
-              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
-            >
-              {
-                internships?.filter(data => data.branch === 'Mechanical').map((data, index) => (
-                  <SwiperSlide key={index}>
-                    <Card data={data} />
-                  </SwiperSlide>
-                ))
-              }
-            </Swiper>
-          </div>
-          <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+                <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Mechanical Engineering</h2>
 
-            <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Civil Engineering</h2>
+                <Swiper
+                  spaceBetween={0}
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1,
+                      grabCursor: true,
+                      centeredSlides: true,
+                      autoplay: {
+                        delay: 4000
+                      },
+                      speed: 800,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 80,
+                    },
+                    1200: {
+                      slidesPerView: 3,
+                      spaceBetween: 60
+                    },
+                  }}
+                  autoplay={{
+                    delay: 2750,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                  }}
+                  modules={[Autoplay]}
+                  className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
+                >
+                  {
+                    internships?.filter(data => data.branch === 'Mechanical')?.map((data, index) => (
+                      <SwiperSlide key={index}>
+                        <Card data={data} />
+                      </SwiperSlide>
+                    ))
+                  }
+                </Swiper>
+              </div>
+            }
+            {
+              internships?.filter(data => data.branch === 'Civil') &&
+              <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
+                <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Civil Engineering</h2>
 
-            <Swiper
-              spaceBetween={0}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                  grabCursor: true,
-                  centeredSlides: true,
-                  autoplay:{
-                    delay:4000
-                  },
-                  speed:800,
-                  spaceBetween: 20,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 80  ,
-                },
-                1200: {
-                  slidesPerView: 3,
-                  spaceBetween: 60
-                },
-              }}
-              autoplay={{
-                delay: 2750,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              modules={[Autoplay]}
-              className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
-            >
-              {
-                internships?.filter(data => data.branch === 'Civil').map((data, index) => (
-                  <SwiperSlide key={index}>
-                    <Card data={data} />
-                  </SwiperSlide>
-                ))
-              }
-            </Swiper>
+                <Swiper
+                  spaceBetween={0}
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1,
+                      grabCursor: true,
+                      centeredSlides: true,
+                      autoplay: {
+                        delay: 4000
+                      },
+                      speed: 800,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 80,
+                    },
+                    1200: {
+                      slidesPerView: 3,
+                      spaceBetween: 60
+                    },
+                  }}
+                  autoplay={{
+                    delay: 2750,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                  }}
+                  modules={[Autoplay]}
+                  className="mySwiper w-[80%] sm:w-[63%] md:w-[95%] lg:w-[85%] xl:w-[95%] mx-auto h-[27rem] internship-swiper"
+                >
+                  {
+                    internships?.filter(data => data.branch === 'Civil')?.map((data, index) => (
+                      <SwiperSlide key={index}>
+                        <Card data={data} />
+                      </SwiperSlide>
+                    ))
+                  }
+                </Swiper>
+              </div>
+
+
+            }
           </div>
 
 
-        </div>
 
-
-
-        <Footer />
-      </div >
-      <Component />
+          <Footer />
+        </div >
+        <Component />
       </div>
     </>
   );
