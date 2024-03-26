@@ -12,7 +12,7 @@ export default function Google({ path }) {
 
         const { name, email } = jwtDecode(res.credential)
 
-        axios.post(`${import.meta.env.VITE_API_KEY}/auth/google/login`, { email: email })
+        axios.post(`${import.meta.env.VITE_API_KEY}/api/auth/google/login`, { email: email })
             .then((res) => {
                 setTimeout(() => navigate("/"), 500)
                 document.getElementById("error").innerText = res.data.message;

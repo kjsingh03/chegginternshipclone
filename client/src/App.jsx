@@ -11,7 +11,7 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_KEY}/internship`)
+    axios.get(`${import.meta.env.VITE_API_KEY}/api/internship`)
       .then(res => dispatch(updateInternships(res.data.internships)))
       .catch(err => console.log(err))
   }, [])

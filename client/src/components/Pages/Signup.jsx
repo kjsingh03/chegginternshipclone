@@ -18,7 +18,7 @@ function Signup() {
         e.preventDefault();
         // setForm({...form,username:form?.username?.toLowerCase()})
 
-        axios.post(`${import.meta.env.VITE_API_KEY}/auth/signup`, { ...form, role: role })
+        axios.post(`${import.meta.env.VITE_API_KEY}/api/auth/signup`, { ...form, role: role })
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
                 setTimeout(() => navigate("/"), 1000)

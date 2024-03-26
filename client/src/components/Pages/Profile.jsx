@@ -43,7 +43,7 @@ function Profile() {
         .then(res => {
           document.querySelector(".userDp").src = res.data.secure_url
           document.querySelector(".dpButton").style.display = 'none'
-          axios.put(`${import.meta.env.VITE_API_KEY}/user`, { ...user, imageUrl: res.data.secure_url }, {
+          axios.put(`${import.meta.env.VITE_API_KEY}/api/user`, { ...user, imageUrl: res.data.secure_url }, {
             headers: {
               "Authorization": user?.token,
               "Content-Type": "application/json"
@@ -61,7 +61,7 @@ function Profile() {
         .catch(err => console.log(err))
     }
     else {
-      axios.put(`${import.meta.env.VITE_API_KEY}/user`, { ...user }, {
+      axios.put(`${import.meta.env.VITE_API_KEY}/api/user`, { ...user }, {
         headers: {
           "Authorization": user?.token,
           "Content-Type": "application/json"

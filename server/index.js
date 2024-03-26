@@ -37,10 +37,10 @@ export const instance = new Razorpay({
 app.use(cors())
     .use(Express.json())
     .use(Express.static(path.join(path.resolve(),'/dist')))
-    .use("/auth", authRouter)
-    .use("/user", userRouter)
-    .use("/internship", internshipRouter)
-    .post("/pay", (req, res) => {
+    .use("/api/auth", authRouter)
+    .use("/api/user", userRouter)
+    .use("/api/internship", internshipRouter)
+    .post("/api/pay", (req, res) => {
         instance.orders.create(req.body, function (err, order) {
             if (!err) {
                 res.send(order)
@@ -50,7 +50,7 @@ app.use(cors())
             }
         });
     })
-    .get("/promocodes", sendPromo);
+    .get("/api/promocodes", sendPromo);
 
 
 // Server Listening

@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     internships:[],
-    test:[]
+    userInternships:[]
 }
 
 export const internshipSlice = createSlice({
@@ -12,12 +12,12 @@ export const internshipSlice = createSlice({
         updateInternships:(state,action)=>{
             state.internships = action.payload
         },
-        setTest:(state,action)=>{
-            state.test = action.payload
+        updateUserInternships:(state,action)=>{
+            state.userInternships = action.payload
         }
     }
 })
 
-export const {updateInternships} = internshipSlice.actions
+export const {updateInternships,updateUserInternships} = internshipSlice.actions
 
 export default internshipSlice.reducer

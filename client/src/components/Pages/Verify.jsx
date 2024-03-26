@@ -22,7 +22,7 @@ function Verify() {
         setCertificate((prev) => {
             console.log(prev)
             if (prev) {
-                axios.get(`${import.meta.env.VITE_API_KEY}/user/${prev?.user}`)
+                axios.get(`${import.meta.env.VITE_API_KEY}/api/user/${prev?.user}`)
                     .then(res => {
                         setView(true)
                         setTimeout(() => {
@@ -41,7 +41,7 @@ function Verify() {
     }
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_KEY}/internship`)
+        axios.get(`${import.meta.env.VITE_API_KEY}/api/internship`)
             .then((res) => {
                 let internships = res.data.internships;
 

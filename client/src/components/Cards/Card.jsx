@@ -1,11 +1,26 @@
+import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { updateUserInternships } from '../../store/internshipslice'
+import { useDispatch } from 'react-redux'
 
-function Card({ data }) {
+function Card({ data, route = 'internship' }) {
+
+    const dispatch = useDispatch()
 
     const user = JSON.parse(localStorage.getItem("credentials"))
+
+    const deleteInternship = (id) => {
+        axios.delete(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`)
+            .then((res) => {
+                dispatch(updateUserInternships(internships.filter(internship => internship.id !== id)))
+            })
+            .catch(err => console.log(err.response.data.message))
+    }
+
+
     return (
-        <Link to={`/internship/${data.id}`} className="shadow-sm card w-[80vw] sm:w-[22rem] overflow-hidden hover:shadow-lg transition-all duration-150 ease-in flex flex-col justify-between gap- rounded-xl border-[1.6px] border-[#dadada]">
+        <div className="shadow-sm card w-[80vw] sm:w-[22rem] overflow-hidden hover:shadow-lg transition-all duration-150 ease-in flex flex-col justify-between gap- rounded-xl border-[1.6px] border-[#dadada]">
             <div className="flex flex-col gap-1">
                 <img src={data?.imageUrl} alt="" className='w-full h-[12rem] object-fill' />
             </div>
@@ -19,9 +34,23 @@ function Card({ data }) {
                         <p className='flex gap-2 text-sm text-red-500'>({data.discount}% off)</p>
                     </div>
                 </div>
-                <div className='btn text-sm text-[#1B88F4] bg-transparent border-2 border-[#1B88F4]'>View Details</div>
+                <div className="flex gap-4">
+                    {
+                        route !== 'update' &&
+                        <Link to={`/internship/${data.id}`} className='btn text-sm text-[#1B88F4] bg-transparent border-2 border-[#1B88F4]'>View Details</Link>
+                    }
+
+                    {
+                        route === 'update' &&
+                        <Link to={`/update/${data.id}`} className='btn text-sm text-[#1B88F4] bg-transparent border-2 border-[#1B88F4]'>Update</Link>
+                    }
+                    {
+                        route === 'update' &&
+                        <div onClick={() => deleteInternship(data.id)} className='btn text-sm text-[#1B88F4] bg-transparent border-2 border-[#1B88F4]'>Delete</div>
+                    }
+                </div>
             </div>
-        </Link>
+        </div>
     )
 }
 

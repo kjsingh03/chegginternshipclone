@@ -19,7 +19,7 @@ function Login() {
     const submit = (e) => {
         e.preventDefault();
 
-        axios.post(`${import.meta.env.VITE_API_KEY}/auth/login`, form)
+        axios.post(`${import.meta.env.VITE_API_KEY}/api/auth/login`, form)
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
                 // console.log(res.data)

@@ -53,7 +53,7 @@ function Update() {
 
             axios.post("https://api.cloudinary.com/v1_1/dwrwxeoih/image/upload", data)
                 .then(res => {
-                    axios.put(`${import.meta.env.VITE_API_KEY}/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons], imageUrl: res.data.secure_url }, {
+                    axios.put(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons], imageUrl: res.data.secure_url }, {
                         headers: {
                             "Authorization": user?.token,
                             "Content-Type": "application/json"
@@ -73,7 +73,7 @@ function Update() {
                 })
         }
         else {
-            axios.put(`${import.meta.env.VITE_API_KEY}/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons] }, {
+            axios.put(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons] }, {
                 headers: {
                     "Authorization": user?.token,
                     "Content-Type": "application/json"
@@ -93,7 +93,7 @@ function Update() {
     }
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_KEY}/internship/${id}`)
+        axios.get(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`)
             .then(res => {
                 setInternship(res.data.internship)
                 let keys = Object.keys(res.data.internship);
@@ -111,8 +111,7 @@ function Update() {
     }, [])
 
     const deleteInternship = () => {
-        console.log(id)
-        axios.delete(`${import.meta.env.VITE_API_KEY}/internship/${id}`)
+        axios.delete(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`)
             .then((res) => {
                 dispatch(updateInternships(internships.filter(internship => internship.id !== id)))
                 navigate("/courses")
