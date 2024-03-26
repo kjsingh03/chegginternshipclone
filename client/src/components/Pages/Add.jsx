@@ -90,7 +90,7 @@ function Add() {
                 })
                 .catch((err) => {
                     document.getElementById("error").innerText = err.response.data.message
-                    console.log(err.response.data)
+                    console.log(err)
                 })
                 .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))
         }

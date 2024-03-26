@@ -34,12 +34,7 @@ export const instance = new Razorpay({
 
 // Middlewares
 
-app.use((req, res, next) =>{
-        res.header("Access-Control-Allow-Origin", "*"); 
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        next();
-    })
-    .use(cors())
+app.use(cors())
     .use(Express.json())
     .use(Express.static(path.join(path.resolve(), '/dist')))
     .use("/api/auth", authRouter)
