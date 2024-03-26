@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import img1 from "../../assets/img1.png";
-import img2 from "../../assets/img2.png";
 import logo from "../../assets/SkillwallahLogo.jpg";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
@@ -13,15 +11,9 @@ import Card from '../Cards/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { updateInternships } from '../../store/internshipslice';
-import thumb1 from '../../assets/1.png'
-import thumb2 from '../../assets/2.png'
-import thumb3 from '../../assets/3.png'
-import thumb4 from '../../assets/4.png'
-import thumb5 from '../../assets/5.png'
-import thumb6 from '../../assets/6.png'
-import thumb7 from '../../assets/7.png'
 import Footer from '../Footer/Footer';
 import Component from '../whatsapp/Component';
+import axios from 'axios';
 
 const Home = () => {
 
@@ -47,7 +39,7 @@ const Home = () => {
     dispatch(updateInternships(_.orderBy(internships, ['discount'], ['desc'])))
   }
 
-
+  const thumbnails = useSelector(state => state.thumbnails)
 
   return (
     <>
@@ -55,48 +47,39 @@ const Home = () => {
       <div className="h-screen overflow-y-auto">
 
         <div className='flex flex-col gap-4 max-h-screen overflow-y-auto'>
-          <div className="py-[3.5rem] w-full mx-auto lg:gap-12 pt-[3.25rem]">
-            <Swiper
-              style={{
-                "--swiper-navigation-color": "#000",
-                "--swiper-navigation-size": "15px",
-              }}
-              spaceBetween={30}
-              autoplay={{
-                delay: 4000,
-                disableOnInteraction: true,
-              }}
-              speed={1200}
-              // loop={true}
-              navigation={true}
-              modules={[Autoplay, Navigation]}
-              className="mySwiper xs:h-[] sm:h-[] md:h md:h-[41rem]"
-            >
-              <SwiperSlide>
-                <img src={thumb1} className="w-full h-full object-bottom" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={thumb2} className="w-full h-full object-bottom" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={thumb3} className="w-full h-full object-bottom" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={thumb4} className="w-full h-full object-bottom" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={thumb5} className="w-full h-full object-bottom" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={thumb6} className="w-full h-full object-bottom" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={thumb7} className="w-full h-full object-bottom" />
-              </SwiperSlide>
-            </Swiper>
-          </div>
+          {
+            thumbnails?.length>0 &&
+            <div className="w-full mx-auto lg:gap-12 pt-[3.25rem]">
+              <Swiper
+                style={{
+                  "--swiper-navigation-color": "#000",
+                  "--swiper-navigation-size": "15px",
+                }}
+                spaceBetween={30}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: true,
+                }}
+                speed={1200}
+                // loop={true}
+                navigation={true}
+                modules={[Autoplay, Navigation]}
+                className="mySwiper xs:h-[] sm:h-[] md:h md:h-[41rem]"
+              >
+                {
 
-          <div className="w-full xl:w-[90%] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12  ">
+                  thumbnails?.map((thumb, index) => (
+                    <SwiperSlide>
+                      <img src={thumb} key={index} className="w-full h-full object-bottom" />
+                    </SwiperSlide>
+                  ))
+                }
+
+              </Swiper>
+            </div>
+          }
+
+          <div className="w-full xl:w-[90%] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12 pt-[3.75rem]">
             <h1 className="text-base xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mx-auto">Courses that Transform, Learning that Lasts.</h1>
             <p className="text-sm lg:text-xl font-medium w-full sm:w-[90%] mx-auto">
               Crafting Excellence with Skillwallah: Your Journey Begins Now.
@@ -208,9 +191,9 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Computer')?.map((data, index) => (
                       <SwiperSlide key={index}>
-                         <Link to={`/internship/${data.id}`}>
-                        <Card data={data} />
-                      </Link>
+                        <Link to={`/internship/${data.id}`}>
+                          <Card data={data} />
+                        </Link>
                       </SwiperSlide>
                     ))
                   }
@@ -255,9 +238,9 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Electronics')?.map((data, index) => (
                       <SwiperSlide key={index}>
-                         <Link to={`/internship/${data.id}`}>
-                        <Card data={data} />
-                      </Link>
+                        <Link to={`/internship/${data.id}`}>
+                          <Card data={data} />
+                        </Link>
                       </SwiperSlide>
                     ))
                   }
@@ -303,9 +286,9 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Mechanical')?.map((data, index) => (
                       <SwiperSlide key={index}>
-                         <Link to={`/internship/${data.id}`}>
-                        <Card data={data} />
-                      </Link>
+                        <Link to={`/internship/${data.id}`}>
+                          <Card data={data} />
+                        </Link>
                       </SwiperSlide>
                     ))
                   }
@@ -350,9 +333,9 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Civil')?.map((data, index) => (
                       <SwiperSlide key={index}>
-                         <Link to={`/internship/${data.id}`}>
-                        <Card data={data} />
-                      </Link>
+                        <Link to={`/internship/${data.id}`}>
+                          <Card data={data} />
+                        </Link>
                       </SwiperSlide>
                     ))
                   }

@@ -83,6 +83,32 @@ function AdminPanel() {
                         </div>
 
                     </div>
+                    {/* <div className="">
+                        <div className="flex sm:flex-row flex-col items-baseline sm:gap-8 justify-between sm:justify-normal">
+                            <h3 className="font-bold text-3xl sm:text-4xl my-6">Thumbnail</h3>
+                            <div className="w-full text-xs cursor-pointer gap-4 lg:gap-4 flex pb-6 sm:justify-end">
+                                <p onClick={() => setPromocodes((prev) => [...prev, { name: "", value: 0 }])} className='w-[10rem] text-center border border-gray-600 p-3 rounded-xl'>add promocode</p>
+                                {
+                                    promocodes?.length > 1 &&
+                                    <p onClick={() => setPromocodes((prev) => prev.slice(0, -1))} className='w-[10rem] text-center border border-gray-600 p-3 rounded-xl'>remove promocode</p>
+                                }
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-2 w-full gap-6">
+
+                            {
+                                user?.thumbnails?.map((thumbnail, index) => (
+                                    <div className="cursor-pointer hover:bg-slate-500 relative " key={index}>
+                                        <img src={thumbnail} className='w-full h-[12rem]' alt="" />
+                                        <div className="gap-6">
+                                            <p className='absolute right-0 top-0 btn text-xs py-1 px-2 w-max h-max'><i className="fa-solid fa-xmark"></i></p>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                    </div> */}
 
                     <p className="text-red-500 font-medium h-6" id="error"></p>
 

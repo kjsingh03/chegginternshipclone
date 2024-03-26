@@ -29,7 +29,7 @@ function Card({ data, route = 'internship',deleteInternship }) {
                     </div>
                     {
                         user?.role==='Admin' &&
-                    <p className='flex items-center gap-2 font-medium'><i class="fa-solid fa-graduation-cap"></i> {data.studentsEnrolled.filter(stud=>stud!==null).length} student(s) enrolled</p>
+                    <p className='flex items-center gap-2 font-medium'><i className="fa-solid fa-graduation-cap"></i> {data.studentsEnrolled.filter(stud=>stud!==null).length} student(s) enrolled</p>
                     }
                 </div>
                 <div className="flex gap-4">

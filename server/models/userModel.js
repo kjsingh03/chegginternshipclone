@@ -74,7 +74,8 @@ const userSchema = new Schema({
             type: Number
         }
     }],
-    imageUrl: { type: String }
+    imageUrl: { type: String },
+    thumbnails:{type:String}
 })
 
 export const Internship = model("Internship", internshipSchema);

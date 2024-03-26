@@ -2,7 +2,8 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     internships:[],
-    userInternships:[]
+    userInternships:[],
+    thumbnails:[]
 }
 
 export const internshipSlice = createSlice({
@@ -14,10 +15,13 @@ export const internshipSlice = createSlice({
         },
         updateUserInternships:(state,action)=>{
             state.userInternships = action.payload
+        },
+        setThumbnails:(state,action)=>{
+            state.thumbnails=action.payload
         }
     }
 })
 
-export const {updateInternships,updateUserInternships} = internshipSlice.actions
+export const {updateInternships,updateUserInternships,setThumbnails} = internshipSlice.actions
 
 export default internshipSlice.reducer
