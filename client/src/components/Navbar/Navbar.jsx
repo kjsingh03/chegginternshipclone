@@ -42,7 +42,9 @@ const Navbar = () => {
     <>
       <div className=" z-[1000] whitespace-nowrap flex items-center justify-between sm:justify-between px-0 pl-12 lg:px-2 text-sm fixed w-full bg-white shadow-md text-[#080808]">
         <div className="flex items-center justify-between gap-2 md:gap-3 sm:gap-5 relative">
+          {
           <button id="navbar-toggler" className="block sm:hidden text-xl px-4 absolute left-[-3rem] z-[1500]"  >☰</button>
+          }
           <div className="w-[7rem] ">
             <Link to="/"><img src={logo} alt="SkillsWallah Logo" className="block w-full h-full object-fill" /></Link>
             {/* <Link to="/"><img src={smallLogo} alt="SkillsWallah Logo" className="block sm:hidden w-full h-full object-fill" /></Link> */}
@@ -80,7 +82,7 @@ const Navbar = () => {
                       <i className="fa-regular fa-circle-user text-xl"></i>
                     }
                     {user?.imageUrl &&
-                      <img src={user?.imageUrl} className=" w-8 rounded-[50%]" alt="" />
+                      <img src={user?.imageUrl} className="w-8 rounded-[50%]" alt="" />
                     }
                     <p className="hidden xs:block">Welcome, {user?.name.split(" ")[0]}</p>
                     <i className="fa-solid fa-chevron-down"></i>

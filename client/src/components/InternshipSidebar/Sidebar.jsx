@@ -33,7 +33,7 @@ function Sidebar() {
 
     return (
         <>
-            <button onClick={activateSidebar} id="sidebar-toggler" className="absolute block lg:hidden text-xl py-[0.71rem] px-4 z-[2000]"  >☰</button>
+            <button onClick={activateSidebar} id="sidebar-toggler" className="absolute block lg:hidden text-xl py-[0.9rem] px-4 z-[2000]"  >☰</button>
 
             <div className="flex">
 

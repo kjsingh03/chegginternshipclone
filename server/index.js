@@ -7,27 +7,22 @@ import authRouter from './routes/auth.js';
 import internshipRouter from './routes/internship.js';
 import Razorpay from 'razorpay'
 import path from 'path'
-import fs from 'fs'
-import { v2 as cloudinary } from 'cloudinary'
 import { sendPromo } from './controllers/user.js';
-
-const PORT = process.env.PORT || 6000
-const MONGO_URL = process.env.MONGO_URL;
 
 const app = Express();
 
 // Razorpay
 
 export const instance = new Razorpay({
-    key_id: "rzp_test_aFHU3em4ZdNLo4",
-    key_secret: "DlfamjLMFddIKU78LVXSahZy",
+    key_id: process.env.RAZORPAY_KEY,
+    key_secret: process.env.RAZORPAY_SECRET,
 });
 
 
 // MongoDB Connection
 
 (async () => {
-    mongoose.connect(MONGO_URL)
+    mongoose.connect(process.env.MONGO_URL)
         .then(() => console.log("Database connected successfully"))
         .catch((err) => console.log(err))
 })();
@@ -55,7 +50,7 @@ app.use(cors())
 
 // Server Listening
 
-app.listen(PORT, () => {
-    console.log(`Server is working at http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is working at http://localhost:${process.env.PORT}`);
 })
 

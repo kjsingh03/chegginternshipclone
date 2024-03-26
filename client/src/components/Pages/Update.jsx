@@ -48,10 +48,10 @@ function Update() {
         if (image) {
             const data = new FormData()
             data.append("file", image)
-            data.append("upload_preset", "skillwallah")
-            data.append("cloud_name", "dwrwxeoih")
+            data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
+            data.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME)
 
-            axios.post("https://api.cloudinary.com/v1_1/dwrwxeoih/image/upload", data)
+            axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, data)
                 .then(res => {
                     axios.put(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`, { ...form, skills: newSkills, perks: newPerks, questions: newQuestion, lessons: [...newLessons], imageUrl: res.data.secure_url }, {
                         headers: {

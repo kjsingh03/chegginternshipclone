@@ -161,14 +161,16 @@ const Home = () => {
                 {
                   internships?.map((data, index) => (
                     <SwiperSlide key={index}>
-                      <Card data={data} />
+                      <Link to={`/internship/${data.id}`}>
+                        <Card data={data} />
+                      </Link>
                     </SwiperSlide>
                   ))
                 }
               </Swiper>
             </div>
 
-            {internships?.filter(data => data.branch === 'Computer') &&
+            {internships?.filter(data => data.branch === 'Computer')?.length > 0 &&
               <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
                 <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">CSE/IT Engineering</h2>
@@ -206,14 +208,16 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Computer')?.map((data, index) => (
                       <SwiperSlide key={index}>
+                         <Link to={`/internship/${data.id}`}>
                         <Card data={data} />
+                      </Link>
                       </SwiperSlide>
                     ))
                   }
                 </Swiper>
               </div>
             }
-            {internships?.filter(data => data.branch === 'Electronics') &&
+            {internships?.filter(data => data.branch === 'Electronics')?.length > 0 &&
               <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
                 <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">ECE/EEE Engineering</h2>
@@ -251,7 +255,9 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Electronics')?.map((data, index) => (
                       <SwiperSlide key={index}>
+                         <Link to={`/internship/${data.id}`}>
                         <Card data={data} />
+                      </Link>
                       </SwiperSlide>
                     ))
                   }
@@ -259,7 +265,7 @@ const Home = () => {
               </div>
             }
             {
-              internships?.filter(data => data.branch === 'Mechanical') &&
+              internships?.filter(data => data.branch === 'Mechanical')?.length > 0 &&
               <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
 
                 <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Mechanical Engineering</h2>
@@ -297,7 +303,9 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Mechanical')?.map((data, index) => (
                       <SwiperSlide key={index}>
+                         <Link to={`/internship/${data.id}`}>
                         <Card data={data} />
+                      </Link>
                       </SwiperSlide>
                     ))
                   }
@@ -305,7 +313,7 @@ const Home = () => {
               </div>
             }
             {
-              internships?.filter(data => data.branch === 'Civil') &&
+              internships?.filter(data => data.branch === 'Civil')?.length > 0 &&
               <div className="w-full lg:w-[95%] xl:w-[90%] px-0 sm:px-8 md:px-0 mx-auto flex flex-col gap-4 sm:gap-6">
                 <h2 className="text-base xs:text-2xl sm:text-3xl font-bold py-6 px-6 sm:px-6  ">Civil Engineering</h2>
 
@@ -342,7 +350,9 @@ const Home = () => {
                   {
                     internships?.filter(data => data.branch === 'Civil')?.map((data, index) => (
                       <SwiperSlide key={index}>
+                         <Link to={`/internship/${data.id}`}>
                         <Card data={data} />
+                      </Link>
                       </SwiperSlide>
                     ))
                   }

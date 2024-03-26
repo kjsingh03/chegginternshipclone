@@ -28,16 +28,23 @@ function Profile() {
             })
             .catch(err => console.log(err))
 
-    }, [])
+    }, [updateUserInternships])
 
-    console.log(internships)
+
+    const deleteInternship = (id) => {
+        axios.delete(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`)
+            .then((res) => {
+                dispatch(updateUserInternships(internships.filter(internship => internship.id !== id)))
+            })
+            .catch(err => console.log(err.response.data.message))
+    }
 
     return (
         <>
             <Navbar />
             <div className="h-screen overflow-y-auto">
 
-                <div className="w-[95%] min-h-screen lg:w-[90%] xl:w-[80%] px-0 sm:px-16 mx-auto flex flex-col gap-3 text-center py-[7rem] ">
+                <div className="w-full min-h-screen lg:w-[98%] xl:w-[93%] px-0 sm:px-4 mx-auto flex flex-col gap-3 text-center py-[7rem] ">
                     <h3 className="font-bold my-2 text-4xl">{user?.role === "Admin" ? 'All Courses' : 'My Courses'}</h3>
                     <h3 className="font-bold text-2xl">
                         <p>Total Courses : {internships?.filter(stud => stud !== null).length || 0}</p>
@@ -45,11 +52,11 @@ function Profile() {
                             <p>Students Enrolled : {students || 0}</p>
                         }
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 my-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-16 my-12 place-items-center">
 
                         {
                             internships?.map((data, index) => (
-                                <Card key={index} data={data} route={user?.role === 'User' ? 'internship' : 'update'} />
+                                <Card key={index} data={data} route={user?.role === 'User' ? 'internship' : 'update'} deleteInternship={deleteInternship} />
                             ))
                         }
 

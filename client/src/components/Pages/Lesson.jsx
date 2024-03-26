@@ -44,7 +44,6 @@ function Lesson() {
       .catch(err => console.log(err));
 
   }, [id])
-  console.log(disabled)
 
 
   useEffect(() => {
@@ -184,8 +183,6 @@ function Lesson() {
               .catch((err) => console.log(err))
           })
           .catch((err) => console.log(err))
-
-
       }
 
     };
@@ -297,7 +294,7 @@ function Lesson() {
                   </div>
                 ))}
                 <p className="text-red-500 h-6" id="error"></p>
-                <button onClick={() => submitQuiz()} className='btn w-max text-sm mb-8'>Complete</button>
+                <button onClick={() => submitQuiz()} className='btn w-max text-sm mb-16'>Complete</button>
               </div>
             }
 
@@ -315,7 +312,7 @@ function Lesson() {
 
             {
               route === 'assignment' &&
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 px-8">
 
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Assignment</h1>
                 <input value={internship?.assignmentTask || ""} type="text" name="name" readOnly className='border-2 rounded-xl  outline-[#1B88F4] p-3' />

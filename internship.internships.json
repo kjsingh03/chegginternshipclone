@@ -1,0 +1,1083 @@
+[{
+  "_id": {
+    "$oid": "65e68433d5f222e2b163f0bd"
+  },
+  "name": "MERN Development",
+  "duration": 6,
+  "discount": 50,
+  "skills": [
+    "mongodb",
+    "express",
+    "React"
+  ],
+  "perks": [
+    "certificate",
+    "5 days"
+  ],
+  "price": 2100,
+  "questions": [
+    {
+      "question": "What is usecase of mern?",
+      "options": [
+        {
+          "option": "end-to-end development",
+          "correct": true,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0bf"
+          }
+        },
+        {
+          "option": "UI/UX design",
+          "correct": false,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0c0"
+          }
+        },
+        {
+          "option": "App development",
+          "correct": true,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0c1"
+          }
+        },
+        {
+          "option": "Writing Smart Contracts",
+          "correct": false,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0c2"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65e68433d5f222e2b163f0be"
+      }
+    },
+    {
+      "question": "What is full form of MERN?",
+      "options": [
+        {
+          "option": "MongoDB ExpressJS AngularJS Nodejs",
+          "correct": false,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0c4"
+          }
+        },
+        {
+          "option": "MySQL ExpressJS React-Native Nodemon",
+          "correct": false,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0c5"
+          }
+        },
+        {
+          "option": "MongoDB ExpressJS ReactJS NodeJs",
+          "correct": true,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0c6"
+          }
+        },
+        {
+          "option": "MySQL ExpressJS ReactJS NextJS",
+          "correct": false,
+          "_id": {
+            "$oid": "65e68433d5f222e2b163f0c7"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65e68433d5f222e2b163f0c3"
+      }
+    }
+  ],
+  "assignmentTask": "Finish todo task",
+  "assignmentUrl": "https://drive.google.com/drive/my-drive",
+  "lessons": [
+    {
+      "lesson": "Database",
+      "url": "cGAdC4A5fF4",
+      "description": "Here we are going to learn how to develop Backend server & connect it with Database.",
+      "_id": {
+        "$oid": "65e688f5d5f222e2b163f618"
+      }
+    },
+    {
+      "lesson": "ReactJS",
+      "url": "4DqAvWonPAg",
+      "description": "Here we are learning about React js",
+      "_id": {
+        "$oid": "65e688f5d5f222e2b163f619"
+      }
+    }
+  ],
+  "__v": 9,
+  "id": "4d467f1a-f79a-4892-99c5-96db76b7cb63",
+  "branch": "Computer",
+  "imageUrl": "https://res.cloudinary.com/dwrwxeoih/image/upload/v1711228921/xyy0h2wriaz4bopmytu8.png"
+},
+{
+  "_id": {
+    "$oid": "65e7298fa706eb91240877fc"
+  },
+  "name": "Robotics & Automation",
+  "duration": 8,
+  "discount": 50,
+  "skills": [
+    "Introduction to Robotics",
+    "Arduino",
+    "Automation"
+  ],
+  "perks": [
+    "certificate"
+  ],
+  "price": 500,
+  "questions": [
+    {
+      "question": "1. The main objective(s) of Industrial robot is",
+      "options": [
+        {
+          "option": "To minimise the labour requirement",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76ee"
+          }
+        },
+        {
+          "option": "To increase productivity",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76ef"
+          }
+        },
+        {
+          "option": "To enhance the life of production machines",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f0"
+          }
+        },
+        {
+          "option": "All of the above",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f1"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a76ed"
+      }
+    },
+    {
+      "question": "2. What is the standard form of BLDC?",
+      "options": [
+        {
+          "option": "Brushless Distinct Current Motor",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f3"
+          }
+        },
+        {
+          "option": "Brushless Direct Current Motor",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f4"
+          }
+        },
+        {
+          "option": "Brushless Direct Common Motor",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f5"
+          }
+        },
+        {
+          "option": "Brushless Diflected Common Motor",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f6"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a76f2"
+      }
+    },
+    {
+      "question": "3. What are the disadvantages of robots?",
+      "options": [
+        {
+          "option": "Don't need experience",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f8"
+          }
+        },
+        {
+          "option": "Cost lot of money",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76f9"
+          }
+        },
+        {
+          "option": "Don't get bored",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76fa"
+          }
+        },
+        {
+          "option": "Works in dangerous environment",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76fb"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a76f7"
+      }
+    },
+    {
+      "question": "4. What are the main components of robots?",
+      "options": [
+        {
+          "option": "Controller",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76fd"
+          }
+        },
+        {
+          "option": "Sensors",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76fe"
+          }
+        },
+        {
+          "option": "Actuators",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a76ff"
+          }
+        },
+        {
+          "option": "All of the above",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7700"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a76fc"
+      }
+    },
+    {
+      "question": "5. Which one of the following engineering deals with machinery and structure of robots?",
+      "options": [
+        {
+          "option": "Electrical",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7702"
+          }
+        },
+        {
+          "option": "Mechanical",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7703"
+          }
+        },
+        {
+          "option": "Computer",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7704"
+          }
+        },
+        {
+          "option": "All of the above",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7705"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a7701"
+      }
+    },
+    {
+      "question": "6. The microcontroller 8051 used in Robotics has ___pins.",
+      "options": [
+        {
+          "option": "22",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7707"
+          }
+        },
+        {
+          "option": "55",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7708"
+          }
+        },
+        {
+          "option": "40",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7709"
+          }
+        },
+        {
+          "option": "39",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a770a"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a7706"
+      }
+    },
+    {
+      "question": "7. The Most preferred motor for angular displacement is ____.",
+      "options": [
+        {
+          "option": "Synchronous Motor",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a770c"
+          }
+        },
+        {
+          "option": "Shaded Pole Motor",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a770d"
+          }
+        },
+        {
+          "option": "universal motor",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a770e"
+          }
+        },
+        {
+          "option": "servo motor",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a770f"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a770b"
+      }
+    },
+    {
+      "question": "8. The device responsible for the detection of change of environmental conditions is ____.",
+      "options": [
+        {
+          "option": "Microcontroller",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7711"
+          }
+        },
+        {
+          "option": "Actuators",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7712"
+          }
+        },
+        {
+          "option": "Sensor",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7713"
+          }
+        },
+        {
+          "option": "servo motor",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7714"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a7710"
+      }
+    },
+    {
+      "question": "9. Drives are also known as",
+      "options": [
+        {
+          "option": "Sensors",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7716"
+          }
+        },
+        {
+          "option": "Manipulators",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7717"
+          }
+        },
+        {
+          "option": "Actuators",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7718"
+          }
+        },
+        {
+          "option": "Controllers",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7719"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a7715"
+      }
+    },
+    {
+      "question": "10. RADAR stands for____.",
+      "options": [
+        {
+          "option": "Radio Direct Radiation",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a771b"
+          }
+        },
+        {
+          "option": "Radio detection and radiation",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a771c"
+          }
+        },
+        {
+          "option": "Radio detection and Ranging",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a771d"
+          }
+        },
+        {
+          "option": "Red light detection and Ranging",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a771e"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a771a"
+      }
+    },
+    {
+      "question": "11. The process of combining millions or billions of transistors onto a single chip is called ____.",
+      "options": [
+        {
+          "option": "small scale integration",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7720"
+          }
+        },
+        {
+          "option": "VLSI",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7721"
+          }
+        },
+        {
+          "option": "long scale integration",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7722"
+          }
+        },
+        {
+          "option": "MSI",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7723"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a771f"
+      }
+    },
+    {
+      "question": "12.  The circuit which has no memory is related to ___.",
+      "options": [
+        {
+          "option": "combinational circuits.",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7725"
+          }
+        },
+        {
+          "option": "Sequential circuits.",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7726"
+          }
+        },
+        {
+          "option": "both",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7727"
+          }
+        },
+        {
+          "option": "None",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7728"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a7724"
+      }
+    },
+    {
+      "question": "13. The circuit whose output depends on both input as well as previous output is related to",
+      "options": [
+        {
+          "option": "combinational circuits.",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a772a"
+          }
+        },
+        {
+          "option": "Sequential circuits.",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a772b"
+          }
+        },
+        {
+          "option": "both",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a772c"
+          }
+        },
+        {
+          "option": "None",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a772d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a7729"
+      }
+    },
+    {
+      "question": "14. HDL stands for",
+      "options": [
+        {
+          "option": "Hardware Discriptive Language.",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a772f"
+          }
+        },
+        {
+          "option": "Hardware Design Language.",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7730"
+          }
+        },
+        {
+          "option": "Hardware Domain Language.",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7731"
+          }
+        },
+        {
+          "option": "None",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7732"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a772e"
+      }
+    },
+    {
+      "question": "15. Multiplexer is a ___ circuit.",
+      "options": [
+        {
+          "option": "Sequential",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7734"
+          }
+        },
+        {
+          "option": "combinational",
+          "correct": true,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7735"
+          }
+        },
+        {
+          "option": "both",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7736"
+          }
+        },
+        {
+          "option": "None",
+          "correct": false,
+          "_id": {
+            "$oid": "65edffebd28ec1e8ec3a7737"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65edffebd28ec1e8ec3a7733"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Introduction",
+      "url": "pwwVOpXrazs",
+      "description": "We are going to have tutorial on Robotics",
+      "_id": {
+        "$oid": "65efbfacb1d15aefa33b3d9e"
+      }
+    }
+  ],
+  "assignmentTask": "Must Post the certificate of this course on linkedin .",
+  "assignmentUrl": "Drive Link",
+  "__v": 4,
+  "id": "22fd1144-7e6f-4b55-861d-ecea5b83d4ab",
+  "branch": "Electronics",
+  "imageUrl": "https://res.cloudinary.com/dwrwxeoih/image/upload/v1711228986/ggeqevns3uklnhzuhq0k.png"
+},
+{
+  "_id": {
+    "$oid": "65eb65d36157bfb729e9abb3"
+  },
+  "name": "Machine Learning",
+  "branch": "Computer",
+  "duration": 8,
+  "discount": 50,
+  "skills": [
+    "Data analysis",
+    "Advance Mathematics",
+    "Python",
+    "Data visualization"
+  ],
+  "perks": [
+    "Certificate"
+  ],
+  "price": 500,
+  "questions": [
+    {
+      "question": "What do you know about Machine Learning?",
+      "options": [
+        {
+          "option": "It is used to predict future",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb65d36157bfb729e9abb5"
+          }
+        },
+        {
+          "option": "It is used to train advance models",
+          "correct": true,
+          "_id": {
+            "$oid": "65eb65d36157bfb729e9abb6"
+          }
+        },
+        {
+          "option": "It is used to visualise data",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb65d36157bfb729e9abb7"
+          }
+        },
+        {
+          "option": "It is used to develop products",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb65d36157bfb729e9abb8"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65eb65d36157bfb729e9abb4"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Inroduction",
+      "url": "",
+      "description": "Here we are going to understand what is Machine learning?",
+      "_id": {
+        "$oid": "65eb65d36157bfb729e9abb9"
+      }
+    },
+    {
+      "lesson": "Supervised & unsupervised models",
+      "url": "",
+      "description": "Here, we are going to discuss about supervised & unsupervised models",
+      "_id": {
+        "$oid": "65eb65d36157bfb729e9abba"
+      }
+    },
+    {
+      "lesson": "Types of Machine Learning ",
+      "url": "",
+      "description": "Here, we are going to discuss about types of Machine Learning ",
+      "_id": {
+        "$oid": "65eb65d36157bfb729e9abbb"
+      }
+    },
+    {
+      "lesson": "Advance ML concepts",
+      "url": "",
+      "description": "In this lesson we are going to learn Advance ML concepts",
+      "_id": {
+        "$oid": "65eb65d36157bfb729e9abbc"
+      }
+    }
+  ],
+  "assignmentTask": "Develop a recommendatioon system for ecommerce store",
+  "assignmentUrl": "",
+  "__v": 1,
+  "id": "691230f6-e16a-4e92-86ba-48e9ed44b6e1",
+  "imageUrl": "https://res.cloudinary.com/dwrwxeoih/image/upload/v1711229202/cwqr7nnwsvzg6mcu2ta0.jpg"
+},
+{
+  "_id": {
+    "$oid": "65eb66836157bfb729e9abc2"
+  },
+  "name": "Data Science",
+  "branch": "Computer",
+  "duration": 1,
+  "discount": 50,
+  "skills": [
+    "Data analysis",
+    "Advance Mathematics",
+    "Python",
+    "Data visualization"
+  ],
+  "perks": [
+    "Certificate"
+  ],
+  "price": 500,
+  "studentsEnrolled": [],
+  "questions": [
+    {
+      "question": "What do you know about Data Science?",
+      "options": [
+        {
+          "option": "It is used to predict future",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb66836157bfb729e9abc4"
+          }
+        },
+        {
+          "option": "It is used to train advance models",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb66836157bfb729e9abc5"
+          }
+        },
+        {
+          "option": "It is used to visualise data",
+          "correct": true,
+          "_id": {
+            "$oid": "65eb66836157bfb729e9abc6"
+          }
+        },
+        {
+          "option": "It is used to develop products",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb66836157bfb729e9abc7"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65eb66836157bfb729e9abc3"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Inroduction",
+      "url": "X3paOmcrTjQ",
+      "description": "Here we are going to understand what is Data SCience?",
+      "_id": {
+        "$oid": "65eb66836157bfb729e9abc8"
+      }
+    },
+    {
+      "lesson": "Advance Data Science",
+      "url": "-ETQ97mXXF0",
+      "description": "Here, we are going to discuss about advance Data science topics",
+      "_id": {
+        "$oid": "65eb66836157bfb729e9abc9"
+      }
+    }
+  ],
+  "assignmentTask": "Analyse data of corona symptoms & prediction",
+  "assignmentUrl": "https://drive.google.com/drive/folders/1-vr96lKbJQCWqUUFaUJlsInYShgvohIC?usp=sharing",
+  "certificates": [],
+  "__v": 0,
+  "id": "0c084d0a-6c45-4dd2-9270-80a0770fda4d",
+  "imageUrl": "https://res.cloudinary.com/dwrwxeoih/image/upload/v1711229237/gggwfgnsrh7nszkpkw6v.webp"
+},
+{
+  "_id": {
+    "$oid": "65eb67686157bfb729e9abcf"
+  },
+  "name": "Embedded System",
+  "branch": "Electronics",
+  "duration": 1,
+  "discount": 75,
+  "skills": [
+    "Data analysis",
+    "Advance Mathematics",
+    "Python"
+  ],
+  "perks": [
+    "Certificate"
+  ],
+  "price": 1000,
+  "studentsEnrolled": [],
+  "questions": [
+    {
+      "question": "What do you know about Embedded system?",
+      "options": [
+        {
+          "option": "It is used to predict future",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb67686157bfb729e9abd1"
+          }
+        },
+        {
+          "option": "It is used to develop advance system",
+          "correct": true,
+          "_id": {
+            "$oid": "65eb67686157bfb729e9abd2"
+          }
+        },
+        {
+          "option": "It is used to visualise data",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb67686157bfb729e9abd3"
+          }
+        },
+        {
+          "option": "It is used to develop products",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb67686157bfb729e9abd4"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65eb67686157bfb729e9abd0"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Introduction",
+      "url": "PDYuYGHT668",
+      "description": "An embedded system is a computer system—a combination of a computer processor, computer memory, and input/output peripheral devices—that has a dedicated function within a larger mechanical or electronic system.",
+      "_id": {
+        "$oid": "65eb67686157bfb729e9abd5"
+      }
+    }
+  ],
+  "assignmentTask": "Build vehicle tracking system",
+  "assignmentUrl": "https://drive.google.com/drive/folders/1-vr96lKbJQCWqUUFaUJlsInYShgvohIC?usp=sharing",
+  "certificates": [],
+  "__v": 0,
+  "id": "b23b0455-351e-45b3-a30a-5b606128b058",
+  "imageUrl": "https://res.cloudinary.com/dwrwxeoih/image/upload/v1711229283/fcb3vreqwfmqketbf85j.jpg"
+},
+{
+  "_id": {
+    "$oid": "65eb681c6157bfb729e9abe7"
+  },
+  "name": "Solidworks",
+  "branch": "Mechanical",
+  "duration": 6,
+  "discount": 75,
+  "skills": [
+    "Solidworks"
+  ],
+  "perks": [
+    "Certificate"
+  ],
+  "price": 1000,
+  "studentsEnrolled": [],
+  "questions": [
+    {
+      "question": "What do you know about solidworks?",
+      "options": [
+        {
+          "option": "It is used to predict future",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb681c6157bfb729e9abe9"
+          }
+        },
+        {
+          "option": "It is used to develop advance system",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb681c6157bfb729e9abea"
+          }
+        },
+        {
+          "option": "It is used to design architectures",
+          "correct": true,
+          "_id": {
+            "$oid": "65eb681c6157bfb729e9abeb"
+          }
+        },
+        {
+          "option": "It is used to develop products",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb681c6157bfb729e9abec"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65eb681c6157bfb729e9abe8"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Introduction",
+      "url": "",
+      "description": "Interoduction to use solidworks",
+      "_id": {
+        "$oid": "65eb681c6157bfb729e9abed"
+      }
+    }
+  ],
+  "assignmentTask": "Build vehicle tracking system",
+  "assignmentUrl": "",
+  "__v": 0,
+  "id": "1e8ced0f-abf7-49d1-b910-a1bf9a39d7cb",
+  "imageUrl": "https://res.cloudinary.com/dwrwxeoih/image/upload/v1711229378/lufhozv80okan1obnsfk.png"
+},
+{
+  "_id": {
+    "$oid": "65eb683c6157bfb729e9abf3"
+  },
+  "name": "Autocad",
+  "branch": "Civil",
+  "duration": 8,
+  "discount": 50,
+  "skills": [
+    "Autocad"
+  ],
+  "perks": [
+    "Certificate"
+  ],
+  "price": 600,
+  "studentsEnrolled": [],
+  "questions": [
+    {
+      "question": "What do you know about autocad?",
+      "options": [
+        {
+          "option": "It is used to predict future",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb683c6157bfb729e9abf5"
+          }
+        },
+        {
+          "option": "It is used to develop advance system",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb683c6157bfb729e9abf6"
+          }
+        },
+        {
+          "option": "It is used to design architectures",
+          "correct": true,
+          "_id": {
+            "$oid": "65eb683c6157bfb729e9abf7"
+          }
+        },
+        {
+          "option": "It is used to develop products",
+          "correct": false,
+          "_id": {
+            "$oid": "65eb683c6157bfb729e9abf8"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "65eb683c6157bfb729e9abf4"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": "Introduction",
+      "url": "",
+      "description": "Interoduction to use Autocad",
+      "_id": {
+        "$oid": "65eb683c6157bfb729e9abf9"
+      }
+    }
+  ],
+  "assignmentTask": "Build vehicle tracking system",
+  "assignmentUrl": "",
+  "certificates": [],
+  "__v": 0,
+  "id": "63aa5664-674e-4e61-9e23-601119527475",
+  "imageUrl": "https://res.cloudinary.com/dwrwxeoih/image/upload/v1711229345/zlqff3wmwceanrgtcylh.jpg"
+}]

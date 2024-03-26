@@ -36,12 +36,12 @@ function Profile() {
     if (image) {
       const data = new FormData()
       data.append("file", image)
-      data.append("upload_preset", "skillwallah")
-      data.append("cloud_name", "dwrwxeoih")
+      data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
+      data.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME)
 
-      axios.post("https://api.cloudinary.com/v1_1/dwrwxeoih/image/upload", data)
+      axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, data)
         .then(res => {
-          document.querySelector(".userDp").src = res.data.secure_url
+          document.querySelectorAll(".userDp").src = res.data.secure_url        
           document.querySelector(".dpButton").style.display = 'none'
           axios.put(`${import.meta.env.VITE_API_KEY}/api/user`, { ...user, imageUrl: res.data.secure_url }, {
             headers: {
@@ -95,7 +95,8 @@ function Profile() {
                   <input id="dpFile" type="file" onChange={e => setImage(e.target.files[0])} className='w-[15rem] hidden' />
                 </label>
               }
-              <img src={user?.imageUrl} alt="" className='userDp w-[4rem] rounded-[50%]' />
+              
+                <img src={user?.imageUrl} alt="" className='userDp w-[4rem] rounded-[50%]' />
 
             </div>
           </div>
