@@ -167,13 +167,6 @@ export const updateUser = async (req, res) => {
         if (username) {
             let user = await User.findOne({ username: username })
             if (user) {
-                // if (user.body?.certificates?.length > 0 && user.body?.internships?.length > 0)
-                //     user = await User.findOneAndUpdate({ username: username }, { ...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates] }, { returnDocument: 'after' });
-                // else if (user.body?.certificates?.length > 0 )
-                //     user = await User.findOneAndUpdate({ username: username }, { ...req.body, certificates: [...user.certificates, req.body.certificates] }, { returnDocument: 'after' });
-                // else if ( user.body?.internships?.length > 0)
-                //     user = await User.findOneAndUpdate({ username: username }, { ...req.body, internships: [...user.internships, req.body.internship]}, { returnDocument: 'after' });
-                // else
                 user = await User.findOneAndUpdate({ username: username }, {...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates]}, { returnDocument: 'after' });
                 res.status(200).json({ "success": true, "message": "User updated successfully", user });
             } else {

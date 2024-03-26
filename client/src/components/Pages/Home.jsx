@@ -67,7 +67,6 @@ const Home = () => {
                 className="mySwiper xs:h-[] sm:h-[] md:h md:h-[41rem]"
               >
                 {
-
                   thumbnails?.map((thumb, index) => (
                     <SwiperSlide>
                       <img src={thumb} key={index} className="w-full h-full object-bottom" />

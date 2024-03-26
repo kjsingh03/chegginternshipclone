@@ -18,12 +18,7 @@ function App() {
 
     axios.get(`${import.meta.env.VITE_API_KEY}/api/user/all`)
       .then(res => {
-        res.data.forEach((user,index)=>{
-          if(user.role==='Admin'){
-            dispatch(setThumbnails(res.data[index].thumbnails))
-            console.log(res.data[index].thumbnails)
-          }
-        })
+            dispatch(setThumbnails(res.data[0]?.thumbnails))
       })
       .catch(err => console.log(err))
 
