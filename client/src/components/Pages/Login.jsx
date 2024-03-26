@@ -55,7 +55,7 @@ function Login() {
                 <div className="w-full text-center font-medium">
                     <p>Don't have an account? <span onClick={() => navigate("/signup")} className='text-red-500 hover:underline cursor-pointer'>Sign Up</span></p>
                 </div>
-                <GoogleOAuthProvider clientId="338532837249-shjrc0p3oo4omlac9659sl36a1gggo2h.apps.googleusercontent.com">
+                <GoogleOAuthProvider clientId="998073669915-anlutjml8l1v5kmhkrvnh5klk3sa9qmk.apps.googleusercontent.com">
                     <Google />
                 </GoogleOAuthProvider>
             </div>

@@ -41,8 +41,8 @@ function Profile() {
 
       axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, data)
         .then(res => {
-          document.querySelectorAll(".userDp").src = res.data.secure_url        
           document.querySelector(".dpButton").style.display = 'none'
+          document.querySelectorAll(".userDp").src = res.data.secure_url        
           axios.put(`${import.meta.env.VITE_API_KEY}/api/user`, { ...user, imageUrl: res.data.secure_url }, {
             headers: {
               "Authorization": user?.token,
