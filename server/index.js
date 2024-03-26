@@ -8,7 +8,7 @@ import internshipRouter from './routes/internship.js';
 import Razorpay from 'razorpay'
 import path from 'path'
 import fs from 'fs'
-import {v2 as cloudinary} from 'cloudinary'
+import { v2 as cloudinary } from 'cloudinary'
 import { sendPromo } from './controllers/user.js';
 
 const PORT = process.env.PORT || 6000
@@ -19,7 +19,7 @@ const app = Express();
 // Razorpay
 
 export const instance = new Razorpay({
-    key_id:"rzp_test_aFHU3em4ZdNLo4" ,
+    key_id: "rzp_test_aFHU3em4ZdNLo4",
     key_secret: "DlfamjLMFddIKU78LVXSahZy",
 });
 
@@ -34,9 +34,14 @@ export const instance = new Razorpay({
 
 // Middlewares
 
-app.use(cors())
+app.use((req, res, next) =>{
+        res.header("Access-Control-Allow-Origin", "*"); 
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    })
+    .use(cors())
     .use(Express.json())
-    .use(Express.static(path.join(path.resolve(),'/dist')))
+    .use(Express.static(path.join(path.resolve(), '/dist')))
     .use("/api/auth", authRouter)
     .use("/api/user", userRouter)
     .use("/api/internship", internshipRouter)
