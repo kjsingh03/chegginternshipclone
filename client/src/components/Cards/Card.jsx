@@ -35,7 +35,7 @@ function Card({ data, route = 'internship',deleteInternship }) {
                 <div className="flex gap-4">
                     {
                         route !== 'update' &&
-                        <div className='btn text-sm text-[#1B88F4] bg-transparent border-2 border-[#1B88F4]'>View Details</div>
+                        <Link to={`/internship/${data.id}`} className='btn text-sm text-[#1B88F4] bg-transparent border-2 border-[#1B88F4]'>View Details</Link>
                     }
 
                     {
