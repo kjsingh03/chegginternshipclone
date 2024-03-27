@@ -167,7 +167,10 @@ export const updateUser = async (req, res) => {
         if (username) {
             let user = await User.findOne({ username: username })
             if (user) {
-                user = await User.findOneAndUpdate({ username: username }, {...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates]}, { returnDocument: 'after' });
+                if(user.role==='Admin')
+                    user = await User.findOneAndUpdate({ username: username }, {...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates]}, { returnDocument: 'after' });
+                else
+                    user = await User.findOneAndUpdate({ username: username }, {...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates],promocodes:[...user.promocodes,req.body.promocodes]}, { returnDocument: 'after' });
                 res.status(200).json({ "success": true, "message": "User updated successfully", user });
             } else {
                 res.status(404).json({ "success": false, "message": "User not found" });
