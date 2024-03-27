@@ -49,4 +49,4 @@ https://skillwallah.com
 
 For sample testing:
 
-https://skillwallah-9i3gp.ondigitalocean.app
+https://skillwallah-c28jm.ondigitalocean.app/login
