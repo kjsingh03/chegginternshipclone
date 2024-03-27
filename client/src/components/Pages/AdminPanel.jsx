@@ -149,14 +149,14 @@ function AdminPanel() {
                                                     </div>
                                                 }
                                                 {
-                                                    data?.promocodes?.filter(promo => promo.name !== "")?.length > 0 &&
+                                                    data?.promocodes?.filter(promo => promo?.name !== "")?.length > 0 &&
                                                     <div className="gap-3 lg:gap-16 flex flex-col xm:flex-row justify-between items-center w-full xm:col-span-2 lg:col-span-4">
                                                         <p className='font-semibold w-full py-2 lg:w-[25%]'>Promocode used : </p>
                                                         <div className="grid grid-cols-1 lg:grid-cols-3 w-full lg:col-span-3 gap-8">
 
                                                             {
-                                                                data?.promocodes?.filter(promo => promo.name !== "")?.map((promocode, index2) => (
-                                                                    <input value={promocode.name || ""} readOnly key={index2} type="text" className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
+                                                                data?.promocodes?.filter(promo => promo?.name )?.map((promocode, index2) => (
+                                                                    <input value={promocode?.name || ""} readOnly key={index2} type="text" className='w-full border-2 rounded-xl  outline-[#1B88F4] p-3' />
                                                                 ))
                                                             }
                                                         </div>
