@@ -15,7 +15,7 @@ export const createInternship = async (req, res) => {
                 
                 jwt.verify(token, publicKey, async function (err, decoded) {
                     if(!err){
-                        let user = await user.findOne({ username: decoded.username })
+                        let user = await User.findOne({ username: decoded.username })
                         user.internships=[...user.internships,internship._id]
                         internship.createdBy = user._id
                         internship.id = uuidv4();
@@ -72,20 +72,7 @@ export const updateInternship = async (req, res) => {
         const id = req.params.id;
         let internship = await Internship.findOne({ id: id })
         if (internship) {
-            if(req.body.certificates?.user==="" && req.body.studentsEnrolled ==="")
-                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled],certificates:[...internship.certificates]}, { returnDocument: 'after' })
-            else if(req.body.studentsEnrolled ==="")
-                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled]}, { returnDocument: 'after' })
-            else if(req.body.certificates?.user==="" )
-                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,certificates:[...internship.certificates]}, { returnDocument: 'after' })
-            else if(req.body.certificates && req.body.studentsEnrolled)
-                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled,req.body.studentsEnrolled],certificates:[...internship.certificates,req.body.certificates]}, { returnDocument: 'after' })
-            else if(req.body.certificates && !req.body.studentsEnrolled)
-                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,certificates:[...internship.certificates,req.body.certificates]}, { returnDocument: 'after' })
-            else if(!req.body.certificates && req.body.studentsEnrolled)
-                internship = await Internship.findOneAndUpdate({ id: id }, {...req.body,studentsEnrolled:[...internship.studentsEnrolled,req.body.studentsEnrolled]}, { returnDocument: 'after' })
-            else if(!req.body.certificates && !req.body.studentsEnrolled)
-                internship = await Internship.findOneAndUpdate({ id: id }, req.body, { returnDocument: 'after' })
+            internship = await Internship.findOneAndUpdate({ id: id }, req.body, { returnDocument: 'after' })
             internship.save()
                 .then(() => { return res.status(200).json({ "Success": true,"message":"Internship updated successully", "internship": internship }) })
                 .catch((err) => { return res.status(404).json({ "Success": "false", "message": "Failed to save internship", "error": err.message }) })
