@@ -77,7 +77,7 @@ function Internship() {
                         }
                     }).then(res => {
                         var options = {
-                            "key": "rzp_test_aFHU3em4ZdNLo4",
+                            "key": import.meta.env.VITE_RAZORPAY_KEY,
                             "amount": (price- isPromo?.value)*100 ,
                             "currency": "INR",
                             "name": "SkillWallah Internship",
@@ -145,7 +145,7 @@ function Internship() {
             }
         }).then(res => {
             var options = {
-                "key": "rzp_test_aFHU3em4ZdNLo4",
+                "key": import.meta.env.VITE_RAZORPAY_KEY,
                 "amount": price * 100,
                 "currency": "INR",
                 "name": "SkillWallah Internship",

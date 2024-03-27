@@ -63,7 +63,7 @@ const Home = () => {
                 // loop={true}
                 navigation={true}
                 modules={[Autoplay, Navigation]}
-                className="mySwiper xs:h-[] sm:h-[] md:h md:h-[41rem]"
+                className="mySwiper md:h-[41rem]"
               >
                 {
                   thumbnails?.map((thumb, index) => (
