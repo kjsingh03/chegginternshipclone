@@ -200,7 +200,6 @@ function Internship() {
     if (!access) {
         return (
             <>
-                <Navbar />
                 <div className="h-screen overflow-y-auto">
 
                     <div className="min-h-screen w-full lg:w-[90%] xl:w-[80%] p-10 mx-auto py-[5rem] sm:py-[8rem] flex flex-col gap-6 ">

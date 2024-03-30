@@ -80,7 +80,6 @@ function Profile() {
 
   return (
     <div>
-      <Navbar />
       <div className="h-screen overflow-y-auto">
         <div className="min-h-screen flex flex-col gap-8 w-[90%] md:w-[85%] xl:w-[70%] mx-auto py-12 pt-[8rem]">
           <div className="flex justify-between items-center h-[4.25rem]">

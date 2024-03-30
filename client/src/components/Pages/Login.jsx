@@ -40,7 +40,6 @@ function Login() {
 
     return (
         <>
-            <Navbar />
             <div className="h-screen overflow-y-auto">
 
                 <div className='min-h-screen flex flex-col items-center gap-6 w-[90%] sm:w-[50%] md:w-[40%] xl:w-[30%] mx-auto py-12 pt-[8rem]'>

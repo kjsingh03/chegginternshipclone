@@ -57,7 +57,6 @@ function Verify() {
 
     return (
         <div>
-            <Navbar />
             <div className="h-screen overflow-y-auto">
 
                 <div className="w-full xl:w-[90%] min-h-[100vh] mx-auto text-center flex flex-col px-3 sm:px-0 gap-6 lg:gap-12 pt-[8rem]">

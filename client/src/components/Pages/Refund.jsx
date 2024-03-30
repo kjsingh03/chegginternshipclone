@@ -6,7 +6,6 @@ import Component from '../whatsapp/Component'
 function Refund() {
     return (
         <>
-            <Navbar />
             <div className="h-screen overflow-y-auto">
 
             <div className="w-full xl:w-[95%] min-h-[100vh] mx-auto  flex flex-col  text-center px-3 sm:px-0 gap-6 lg:gap-12 pb-[5rem] pt-[8rem]">

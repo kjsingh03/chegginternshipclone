@@ -41,7 +41,6 @@ function Profile() {
 
     return (
         <>
-            <Navbar />
             <div className="h-screen overflow-y-auto">
 
                 <div className="w-full min-h-screen lg:w-[98%] xl:w-[93%] px-0 sm:px-4 mx-auto flex flex-col gap-3 text-center py-[7rem] ">

@@ -43,7 +43,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div className="h-screen overflow-y-auto">
 
         <div className='flex flex-col gap-4 max-h-screen overflow-y-auto'>
