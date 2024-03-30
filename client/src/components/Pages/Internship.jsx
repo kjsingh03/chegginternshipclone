@@ -122,7 +122,6 @@ function Internship() {
                     return (price-isPromo.value) ;
                 })
             }
-
             else {
                 document.querySelector("#error").innerHTML = "Promocode already used"
             }

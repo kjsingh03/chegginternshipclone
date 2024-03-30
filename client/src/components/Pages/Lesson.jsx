@@ -262,7 +262,7 @@ function Lesson() {
         <div className="min-h-screen">
 
           <Sidebar />
-          <div className="w-full md:w-[90%] lg:w-auto mx-auto lg:ml-[18rem] pt-[6rem]">
+          <div className="w-full md:w-[90%] lg:w-auto mx-auto lg:ml-[18rem] py-[6rem] ">
 
             {
               /lesson/i.test(route) &&
@@ -270,7 +270,7 @@ function Lesson() {
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">{lesson?.lesson}</h1>
                 {lesson?.url &&
                   <div style={{ display: lesson?.lesson ? 'block' : 'none' }} className="w-[90%] h-[50vw] md:mx-auto md:h-[46vw] lg:w-[95%] xl:w-[70%] xl:h-[70vh]">
-                    <iframe style={{ display: lesson?.lesson ? 'block' : 'none', width: '100%', height: '100%' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp;controls=0`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                    <iframe className='w-full h-full' style={{ display: lesson?.lesson ? 'block' : 'none' }} src={`https://www.youtube.com/embed/${lesson?.url}?si=2g_0geZbXlguYOu8&amp`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                   </div>
                 }
                 <p className="text-sm lg:text-lg font-medium w-full">{lesson?.description}</p>
@@ -323,7 +323,7 @@ function Lesson() {
                   <li>Upload linkedin post url along with assignment zip file in below given drive link</li>
 
                 </ul>
-                <input value={internship?.assignmentUrl || ""} type="text" name="duration" readOnly className='border-2 rounded-xl  outline-[#1B88F4] p-3' />
+                <a href={internship?.assignmentUrl || ""} target='_blank' className="border-2 rounded-xl  active:border-[#1B88F4] p-3 h-12 border-[#d1cece]">{internship?.assignmentUrl}</a>
               </div>
             }
 

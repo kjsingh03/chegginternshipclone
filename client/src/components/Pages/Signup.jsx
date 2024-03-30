@@ -45,7 +45,7 @@ function Signup() {
             <Navbar />
             <div className="h-screen overflow-y-auto">
 
-            <div className='min-h-screen flex flex-col items-center gap-6 w-[90%] sm:w-[50%] md:w-[40%] xl:w-[30%] mx-auto py-12  pt-[8rem]'>
+            <div className='min-h-screen flex flex-col items-center gap-6 w-[90%] sm:w-[50%] md:w-[40%] xl:w-[30%] mx-auto py-12 pt-[8rem] sm:pt-[4rem]'>
                 {/* <div className="flex items-center justify-between rounded-xl overflow-hidden px-3 py-2 bg-[#313131]">
                     <p onClick={setUserType} className="role active w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">User</p>
                     <p onClick={setUserType} className="role w-[50%] rounded-xl text-center py-1.5 font-medium cursor-pointer">Organisation</p>
@@ -54,10 +54,12 @@ function Signup() {
                 <input type="text" name="username" onChange={handleChange} placeholder="Enter Username" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
                 <input type="email" name="email" onChange={handleChange} placeholder="Enter Email" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
                 <input type="number" name="contact" onChange={handleChange} placeholder="Enter Contact Number (Whatsapp)" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
-                <input type="text" name="college" onChange={handleChange} placeholder="Enter college" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+                <input type="text" name="college" onChange={handleChange} placeholder="Enter College" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
                 <input type="text" name="password" onChange={handleChange} placeholder="Create Password" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+                <input type="date" name="birthDate" onChange={handleChange} placeholder="Enter Birth Date" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
 
-                <p className="text-red-500 font-medium h-6" id="error">Note : you can set your name only once</p>
+
+                <p className="text-red-500 font-medium h-6" id="error">Enter Birth Date</p>
 
                 <button className="btn text-sm" onClick={submit}>Sign Up</button>
 

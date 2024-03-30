@@ -75,7 +75,8 @@ const userSchema = new Schema({
         }
     }],
     imageUrl: { type: String },
-    thumbnails: [{ type: String }]
+    thumbnails: [{ type: String }],
+    birthDate: { type: Date ,required:[true,"Enter your Birth Date"]}
 })
 
 export const Internship = model("Internship", internshipSchema);

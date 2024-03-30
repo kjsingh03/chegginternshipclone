@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import {  googleLogin, login, logout, signup } from '../controllers/user.js';
+import {  forgetPassword, googleLogin, login, logout, signup } from '../controllers/user.js';
 
 const authRouter = Router();
 
@@ -8,6 +8,6 @@ authRouter
     .post('/login', login)
     .post('/google/login', googleLogin)
     .post('/logout', logout)
-    // .post('/forgetpassword',forgetPassword)
+    .post('/forgetpassword',forgetPassword)
 
 export default authRouter

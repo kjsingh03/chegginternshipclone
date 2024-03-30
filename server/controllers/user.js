@@ -167,10 +167,10 @@ export const updateUser = async (req, res) => {
         if (username) {
             let user = await User.findOne({ username: username })
             if (user) {
-                if(user.role==='Admin')
-                    user = await User.findOneAndUpdate({ username: username }, {...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates]}, { returnDocument: 'after' });
+                if (user.role === 'Admin')
+                    user = await User.findOneAndUpdate({ username: username }, { ...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates] }, { returnDocument: 'after' });
                 else
-                    user = await User.findOneAndUpdate({ username: username }, {...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates],promocodes:[...user.promocodes,req.body.promocodes]}, { returnDocument: 'after' });
+                    user = await User.findOneAndUpdate({ username: username }, { ...req.body, internships: [...user.internships, req.body.internship], certificates: [...user.certificates, req.body.certificates], promocodes: [...user.promocodes, req.body.promocodes] }, { returnDocument: 'after' });
                 res.status(200).json({ "success": true, "message": "User updated successfully", user });
             } else {
                 res.status(404).json({ "success": false, "message": "User not found" });
@@ -216,50 +216,75 @@ export const sendPromo = async (req, res) => {
     }
 }
 
-// export const forgetPassword = async (req, res) => {
-//     try {
-//         let { username } = req.body;
-//         if (username) {
-//             let user = await User.findOne({ username: username })
-//             if (user) {
-//                 const otp = parseInt(Math.floor(Math.random() * 900000 + 99999))
-//                 res.json({ "success": true, otp: otp })
+export const forgetPassword = async (req, res) => {
+    try {
+        const { username, birthDate, verified, password } = req.body;
+        if (username) {
+            if (birthDate) {
+                let user = await User.findOne({ username: username })
+                if (user) {
+                    if (!verified) {
+                        if (JSON.stringify(user.birthDate).slice(1, 11) === birthDate)
+                            res.json({ "success": true, message: "DOB verified", verified: true })
+                        else
+                            res.json({ "success": false, message: "Failed to verify DOB", verified: false })
+                    }
+                    else {
+                        if (password) {
+                            bcrypt.genSalt(10, function (err, salt) {
+                                bcrypt.hash(password, salt, function (err, hash) {
+                                    user.password = hash;
+                                    user.save()
+                                        .then(()=>res.status(201).json({ "Success": "true", "message": "Password updated successfully",verified:true, user })                                        )
+                                        .catch(()=>res.status(404).json({ "Success": "false", message: "Failed to update password",verified:false })                                        )
+                                });
+                            });
+                        }
+                        else {
+                            res.json({ "success": false, message: "Enter password" })
+                        }
+                    }
 
-//                 let transporter = nodemailer.createTransport({
-//                     service: 'Gmail',
-//                     auth: {
-//                         user: process.env.AUTH_EMAIL,
-//                         pass: process.env.AUTH_PASSWORD,
-//                     }
-//                 });
 
-//                 var mailOptions = {
-//                     from: process.env.AUTH_EMAIL,
-//                     to: user.email,
-//                     subject: "Otp for registration is: ",
-//                     html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + otp + "</h1>"
-//                 };
+                    // const otp = parseInt(Math.floor(Math.random() * 900000 + 99999))
+                    // let transporter = nodemailer.createTransport({
+                    //     service: 'Gmail',
+                    //     auth: {
+                    //         user: process.env.AUTH_EMAIL,
+                    //         pass: process.env.AUTH_PASSWORD,
+                    //     }
+                    // });
 
+                    // var mailOptions = {
+                    //     from: process.env.AUTH_EMAIL,
+                    //     to: user.email,
+                    //     subject: "Otp for registration is: ",
+                    //     html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + otp + "</h1>"
+                    // };
 
-//                 transporter.sendMail(mailOptions, (error, info) => {
-//                     if (error) {
-//                         return console.log(error);
-//                     }
-//                     console.log('Message sent: %s', info.messageId);
-//                     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-//                     res.render('otp', { msg: "otp has been sent" });
-//                 });
+                    // transporter.sendMail(mailOptions, (error, info) => {
+                    //     if (error) {
+                    //         return console.log(error);
+                    //     }
+                    //     console.log('Message sent: %s', info.messageId);
+                    //     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                    //     res.render('otp', { msg: "otp has been sent" });
+                    // });
 
-//             }
-//             else {
-//                 res.status(404).json({ success: false, "message": "User not found" });
-//             }
-//         }
-//         else {
-//             res.status(404).json({ success: false, "message": "Please enter username" });
-//         }
-//     }
-//     catch (err) {
-//         res.status(404).json({ success: false, "message": err });
-//     }
-// }
+                }
+                else {
+                    res.status(404).json({ success: false, "message": "User not found" });
+                }
+            }
+            else {
+                res.status(404).json({ success: false, "message": "Please enter your Date of Birth" });
+            }
+        }
+        else {
+            res.status(404).json({ success: false, "message": "Please enter username" });
+        }
+    }
+    catch (err) {
+        res.status(404).json({ success: false, "message": err });
+    }
+}

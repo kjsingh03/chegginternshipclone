@@ -78,8 +78,6 @@ function Profile() {
     }
   }
 
-
-
   return (
     <div>
       <Navbar />
@@ -102,11 +100,12 @@ function Profile() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <input type="text" value={user?.name || ""} name="name" readOnly placeholder="Enter Name" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
-            <input type="text" value={user?.username || ""} name="username" readOnly placeholder="Enter username" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
-            <input type="email" value={user?.email || ""} name="email" onChange={handleChange} placeholder="Enter Email" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
-            <input type="number" value={user?.contact || ""} name="contact" onChange={handleChange} placeholder="Enter Contact" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
-            <input type="text" value={user?.college || ""} name="college" onChange={handleChange} placeholder="Enter College Name" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+            <input type="text" value={user?.name || ""} name="name" readOnly placeholder="Your Name" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+            <input type="text" value={user?.username || ""} name="username" readOnly placeholder="Your username" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+            <input type="email" value={user?.email || ""} name="email" onChange={handleChange} placeholder="Your Email" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+            <input type="number" value={user?.contact || ""} name="contact" onChange={handleChange} placeholder="Your Contact" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+            <input type="text" value={user?.college || ""} name="college" onChange={handleChange} placeholder="Your College Name" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
+            <input type="date" value={user?.birthDate?.split("T")[0] || ""} name="birthDate" onChange={handleChange} placeholder="Your Birth Date" className='w-full border-2 rounded-xl outline-[#1B88F4] p-3' />
           </div>
 
 
