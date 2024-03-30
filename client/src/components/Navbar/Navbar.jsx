@@ -24,7 +24,6 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    // document.addEventListener('DOMContentLoaded', function () {
     const toggler = document.getElementById('navbar-toggler')
     const navbar = document.querySelector('.nav-sidebar')
 
@@ -34,7 +33,6 @@ const Navbar = () => {
         navbar.style.transform = 'translateX(-100%)'
       })
     })
-    // })
   }, [])
 
 
@@ -47,7 +45,6 @@ const Navbar = () => {
           }
           <div className="w-[7rem] ">
             <Link to="/"><img src={logo} alt="SkillsWallah Logo" className="block w-full h-full object-fill" /></Link>
-            {/* <Link to="/"><img src={smallLogo} alt="SkillsWallah Logo" className="block sm:hidden w-full h-full object-fill" /></Link> */}
           </div>
           <ul className="flex items-center justify-between gap-3 sm:gap-5">
 

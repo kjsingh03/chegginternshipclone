@@ -8,10 +8,14 @@ import _ from 'lodash'
 import '../../App.css'
 import Component from '../whatsapp/Component'
 import Footer from '../Footer/Footer';
+import { useDispatch } from 'react-redux';
+import { setLoader } from '../../store/internshipslice';
 
 function Internship() {
 
     const { id } = useParams()
+
+    const dispatch=useDispatch()
 
     const navigate = useNavigate()
 
@@ -24,6 +28,9 @@ function Internship() {
     const user = JSON.parse(localStorage.getItem("credentials"))
 
     useEffect(() => {
+
+        dispatch(setLoader(true))
+
         axios.get(`${import.meta.env.VITE_API_KEY}/api/internship/${id}`)
             .then(res => {
                 setInternship(res.data.internship)
@@ -34,13 +41,14 @@ function Internship() {
                         break;
                     }
                 }
+                dispatch(setLoader(false))
+
             })
             .catch(err => console.log(err));
 
         axios.get(`${import.meta.env.VITE_API_KEY}/api/promocodes`)
             .then(res => setPromocodes(res.data.promocodes))
             .catch(err => console.log(err))
-
 
     }, [id])
 

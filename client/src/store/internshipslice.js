@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     internships:[],
     userInternships:[],
-    thumbnails:[]
+    thumbnails:[],
+    loader:false
 }
 
 export const internshipSlice = createSlice({
@@ -18,10 +19,13 @@ export const internshipSlice = createSlice({
         },
         setThumbnails:(state,action)=>{
             state.thumbnails=action.payload
+        },
+        setLoader:(state,action)=>{
+            state.loader = action.payload
         }
     }
 })
 
-export const {updateInternships,updateUserInternships,setThumbnails} = internshipSlice.actions
+export const {updateInternships,updateUserInternships,setThumbnails,setLoader} = internshipSlice.actions
 
 export default internshipSlice.reducer

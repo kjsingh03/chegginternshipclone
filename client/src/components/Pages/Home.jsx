@@ -67,8 +67,8 @@ const Home = () => {
               >
                 {
                   thumbnails?.map((thumb, index) => (
-                    <SwiperSlide>
-                      <img src={thumb} key={index} className="w-full h-full object-bottom" />
+                    <SwiperSlide key={index}>
+                      <img src={thumb} className="w-full h-full object-bottom" />
                     </SwiperSlide>
                   ))
                 }

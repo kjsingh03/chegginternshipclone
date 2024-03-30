@@ -3,6 +3,8 @@ import logo from "../../assets/SkillwallahLogo-white.png";
 import { Link } from 'react-router-dom';
 
 function Footer() {
+
+  const user = JSON.parse(localStorage.getItem("credentials"))
   return (
     <div className="bg-[#111B21] text-[#e7e7e7] lg:px-6 transition-all ease-in-out duration-300 z-[900]">
       <div className="w-full lg:w-[80%] xl:w-[70%] mx-auto">
@@ -18,7 +20,7 @@ function Footer() {
             
             <ul className='list-none text-xs sm:text-[0.9rem] md:text-[1.1rem] flex flex-col gap-7'>
               <li className="hover:text-[#1B88F4] "><Link to="/">Home</Link></li>
-              <li className="hover:text-[#1B88F4] "><Link to="/courses">Courses</Link></li>
+              <li className="hover:text-[#1B88F4] "><Link to={user?"/courses":"/login"}>Courses</Link></li>
               <li className="hover:text-[#1B88F4] "><Link to="/verify">Verification</Link></li>
             </ul>
           </div>

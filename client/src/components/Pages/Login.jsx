@@ -22,9 +22,9 @@ function Login() {
         axios.post(`${import.meta.env.VITE_API_KEY}/api/auth/login`, form)
             .then((res) => {
                 document.getElementById("error").innerText = res.data.message;
-                // console.log(res.data)
                 setTimeout(() => navigate("/"), 1000)
-                localStorage.setItem("credentials", JSON.stringify(res.data.user))
+                if(res.data.message!=='Failed to login')
+                    localStorage.setItem("credentials", JSON.stringify(res.data.user))
             })
             .catch((err) => document.getElementById("error").innerText = err.response.data.message)
             .finally(() => setTimeout(() => document.getElementById("error").innerText = " ", 1000))

@@ -323,7 +323,9 @@ function Lesson() {
                   <li>Upload linkedin post url along with assignment zip file in below given drive link</li>
 
                 </ul>
-                <a href={internship?.assignmentUrl || ""} target='_blank' className="border-2 rounded-xl  active:border-[#1B88F4] p-3 h-12 border-[#d1cece]">{internship?.assignmentUrl}</a>
+                <a href={internship?.assignmentUrl || ""} target='_blank' className="overflow-hidden border-2 rounded-xl  active:border-[#1B88F4] p-3 h-12 border-[#d1cece]">
+                  {internship?.assignmentUrl}
+                </a>
               </div>
             }
 
