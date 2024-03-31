@@ -7,7 +7,9 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 -REST APIs
 
 -Tailwind
+
 -Redux.js
+
 -oAuth
 
 
