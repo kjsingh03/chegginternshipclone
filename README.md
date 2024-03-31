@@ -7,12 +7,8 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 -REST APIs
 
 -Tailwind
-
 -Redux.js
-
 -oAuth
-
--Razorpay
 
 
 ✨ Key Features:
@@ -30,17 +26,6 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 -User authentication with JWT
 
 -Password encryption with Bcrypt
-
-
-🚀 Get Started:
-
--Clone the repo.
-
--Install dependencies ("npm i" command)
-
--Configure environment variables.
-
--Run the server & explore ("npm run dev")
 
 
 Original website Hosted at:
