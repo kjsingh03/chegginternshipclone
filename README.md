@@ -30,10 +30,6 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 -Password encryption with Bcrypt
 
 
-Original website Hosted at:
-
-https://skillwallah.com
-
 For sample testing:
 
-https://skillwallah-c28jm.ondigitalocean.app
+https://skillwallah-sigma.vercel.app
