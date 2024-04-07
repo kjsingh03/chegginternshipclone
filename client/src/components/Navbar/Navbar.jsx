@@ -60,10 +60,7 @@ const Navbar = () => {
             <li className="hover:text-[#403f3f] hidden lg:block"><Link to="/contact">CONTACT US</Link></li>
           </ul>
         </div>
-        {/* <div className="border border-[#313131] p-3 rounded-xl hidden lg:block">
-        <input type="search" className="bg-transparent outline-none" placeholder="Find Internships" />
-        <i className="fa-solid fa-magnifying-glass"></i>
-      </div> */}
+        
         <ul className="flex items-center justify-between gap-3 sm:gap-5 px-7">
           {
             user?.role === 'Admin' &&

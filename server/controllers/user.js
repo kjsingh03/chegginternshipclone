@@ -1,6 +1,5 @@
 import { User } from '../models/userModel.js'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
 import path from 'path'
 import fs from 'fs'
 import nodemailer from 'nodemailer'
@@ -19,15 +18,10 @@ export const signup = async (req, res) => {
                 user = new User(req.body)
                 user.save()
                     .then(() => {
-                        bcrypt.genSalt(10, function (err, salt) {
-                            bcrypt.hash(user.password, salt, function (err, hash) {
-                                user.password = hash;
-                                var token = jwt.sign({ username: user.username }, privateKey, { algorithm: 'RS256' });
-                                user.token = token;
-                                user.save()
-                                res.status(201).json({ "Success": "true", "message": "User created successfully", user })
-                            });
-                        });
+                        var token = jwt.sign({ username: user.username }, privateKey, { algorithm: 'RS256' });
+                        user.token = token;
+                        user.save()
+                        res.status(201).json({ "Success": "true", "message": "User created successfully", user })
                     })
                     .catch((err) => res.status(404).json({ "Success": "false", "message": err.message.split(":").pop() }))
             }
@@ -50,21 +44,19 @@ export const login = async (req, res) => {
             if (password) {
                 let user = await User.findOne({ username: username })
                 if (user) {
-                    bcrypt.compare(password, user.password, function (err, result) {
-                        if (result) {
-                            var token = jwt.sign({ username: user.username }, privateKey, { algorithm: 'RS256' });
-                            user.token = token;
-                            user.save()
-                                .then(async () => {
-                                    // user=await User.findOne({ username: username }).populate('internships').exec()
-                                    return res.status(201).json({ "Success": "true", "message": "User logged in successfully", user })
-                                })
-                                .catch((err) => { return res.status(201).json({ "Success": "false", "message": "Failed to login", "error": err.message }) })
-                        }
-                        else {
-                            return res.status(404).json({ "Success": "false", "message": "Please enter valid Password" })
-                        }
-                    });
+                    if (password === user.password) {
+                        var token = jwt.sign({ username: user.username }, privateKey, { algorithm: 'RS256' });
+                        user.token = token;
+                        user.save()
+                            .then(async () => {
+                                // user=await User.findOne({ username: username }).populate('internships').exec()
+                                return res.status(201).json({ "Success": "true", "message": "User logged in successfully", user })
+                            })
+                            .catch((err) => { return res.status(201).json({ "Success": "false", "message": "Failed to login", "error": err.message }) })
+                    }
+                    else {
+                        return res.status(404).json({ "Success": "false", "message": "Please enter valid Password" })
+                    }
                 }
                 else {
                     return res.status(404).json({ "Success": "false", "message": "User Not found" })
@@ -231,14 +223,12 @@ export const forgetPassword = async (req, res) => {
                     }
                     else {
                         if (password) {
-                            bcrypt.genSalt(10, function (err, salt) {
-                                bcrypt.hash(password, salt, function (err, hash) {
-                                    user.password = hash;
-                                    user.save()
-                                        .then(()=>res.status(201).json({ "Success": "true", "message": "Password updated successfully",verified:true, user })                                        )
-                                        .catch(()=>res.status(404).json({ "Success": "false", message: "Failed to update password",verified:false })                                        )
-                                });
-                            });
+
+                            user.password = password;
+                            user.save()
+                                .then(() => res.status(201).json({ "Success": "true", "message": "Password updated successfully", verified: true, user }))
+                                .catch(() => res.status(404).json({ "Success": "false", message: "Failed to update password", verified: false }))
+
                         }
                         else {
                             res.json({ "success": false, message: "Enter password" })
