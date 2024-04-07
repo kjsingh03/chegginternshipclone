@@ -12,8 +12,6 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 
 -oAuth
 
--Razorpay
-
 
 ✨ Key Features:
 
@@ -32,21 +30,6 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 -Password encryption with Bcrypt
 
 
-🚀 Get Started:
-
--Clone the repo.
-
--Install dependencies ("npm i" command)
-
--Configure environment variables.
-
--Run the server & explore ("npm run dev")
-
-
-Original website Hosted at:
-
-https://skillwallah.com
-
 For sample testing:
 
-https://skillwallah-c28jm.ondigitalocean.app
+https://skillwallah-sigma.vercel.app
