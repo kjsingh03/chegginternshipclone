@@ -2,7 +2,7 @@ import { User } from '../models/userModel.js'
 import jwt from 'jsonwebtoken'
 import path from 'path'
 import fs from 'fs'
-import nodemailer from 'nodemailer'
+// import nodemailer from 'nodemailer'
 import 'dotenv/config'
 
 const privateKey = fs.readFileSync(path.join(path.resolve(), './private.key'), "utf-8")
