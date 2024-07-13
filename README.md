@@ -33,3 +33,5 @@ Excited to share my latest project, Skillwallah - a cutting-edge course selling 
 For sample testing:
 
 https://skillwallah-sigma.vercel.app
+(Kindly wait a minute for server to get deployed )
+
