@@ -15,7 +15,7 @@ function Internship() {
 
     const { id } = useParams()
 
-    const dispatch=useDispatch()
+    const dispatch=useDispatch();
 
     const navigate = useNavigate()
 
